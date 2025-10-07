@@ -1,11 +1,13 @@
+import Browse from "./browse"
 import Header from "./header"
-import MaskGroup from "./maskgroup"
+import MaskGroup from "./maskGroup"
 
 function Home() {
   return (
     <>
       <Header />
       <MaskGroup />
+      <Browse />
     </>
   )
 }
