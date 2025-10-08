@@ -1,6 +1,7 @@
 import Browse from "./browse"
 import Header from "./header"
-import MaskGroup from "./maskGroup"
+import MaskGroup from "./maskgroup"
+import OurProducts from "./ourproducts"
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
       <Header />
       <MaskGroup />
       <Browse />
+      <OurProducts />
     </>
   )
 }
