@@ -6,6 +6,7 @@ function FuniroFurniture() {
       flexDirection: 'column',
       alignItems: 'center',
       paddingTop: '67px',
+      marginBottom: '50px',
     }}>
       <p style={{
         fontFamily: '"Poppins", sans-serif',

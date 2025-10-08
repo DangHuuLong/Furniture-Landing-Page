@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import ListProduct from "./ListProduct";
 import ToolBar from "./ToolBar";
 
 function Shop(){
@@ -6,6 +7,7 @@ function Shop(){
     <>
       <Banner />
       <ToolBar />
+      <ListProduct />
     </>
   )
 }

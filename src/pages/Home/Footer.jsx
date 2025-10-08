@@ -2,7 +2,6 @@ function Footer() {
   return (
     <div style={{
       width: '100%',
-      marginTop: '50px',
       borderTop: '1px solid rgba(0, 0, 0, 0.17)',
       padding: '48px 100px 38px 100px',
     }}>
