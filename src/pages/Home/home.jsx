@@ -1,5 +1,6 @@
 import Browse from "./browse"
 import Header from "./header"
+import Inspirations from "./inspirations"
 import MaskGroup from "./maskgroup"
 import OurProducts from "./ourproducts"
 
@@ -10,6 +11,7 @@ function Home() {
       <MaskGroup />
       <Browse />
       <OurProducts />
+      <Inspirations />
     </>
   )
 }
