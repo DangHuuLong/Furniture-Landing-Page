@@ -1,8 +1,9 @@
-import Browse from "./browse"
-import Header from "./header"
-import Inspirations from "./inspirations"
-import MaskGroup from "./maskgroup"
-import OurProducts from "./ourproducts"
+import Browse from "./Browse";
+import Header from "./Header";
+import Inspirations from "./Inspirations";
+import MaskGroup from "./MaskGroup";
+import OurProducts from "./OurProducts";
+import FuniroFurniture from "./FuniroFurniture";
 
 function Home() {
   return (
@@ -12,8 +13,8 @@ function Home() {
       <Browse />
       <OurProducts />
       <Inspirations />
+      <FuniroFurniture />
     </>
-  )
+  );
 }
-
-export default Home
+export default Home;
