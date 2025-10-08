@@ -1,3 +1,4 @@
+import { Link, NavLink, useNavigate } from "react-router-dom";
 function Header() {
   return (
     <>
@@ -45,7 +46,7 @@ function Header() {
             fontSize: 16,
             color: '#000000ff',                        
           }}>
-            Home
+            <Link to="/" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link>
           </p>
           <p style={{
             fontFamily: '"Poppins", sans-serif',
@@ -53,7 +54,7 @@ function Header() {
             fontSize: 16,
             color: '#000000ff',
           }}>
-            Shop
+            <Link to="/shop" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Shop</Link>
           </p>
           <p style={{
             fontFamily: '"Poppins", sans-serif',
