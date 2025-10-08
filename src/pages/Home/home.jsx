@@ -8,7 +8,6 @@ import FuniroFurniture from "./FuniroFurniture";
 function Home() {
   return (
     <>
-      <Header />
       <MaskGroup />
       <Browse />
       <OurProducts />
