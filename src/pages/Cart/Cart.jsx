@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Banner from '../Shop/Banner'
 import FeaturesBar from '../Shop/FeaturesBar'
 function Cart(){
@@ -176,23 +177,25 @@ function Cart(){
             }}>Rs. 250,000.00</p>
           </div>
 
-          <div style={{
-            width: '222px',
-            height: '59px',
-            backgroundColor: 'transparent',
-            borderRadius: '15px',
-            border: '1px solid rgba(0,0,0,1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-            <p style={{
+          <Link
+            to="/checkout" 
+            style={{
+              width: '222px',
+              height: '59px',
+              backgroundColor: 'transparent',
+              borderRadius: '15px',
+              border: '1px solid rgba(0,0,0,1)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,
               fontSize: '20px',
               color: 'rgba(0,0,0,1)',
-            }}>Check Out</p>
-          </div>
+              textDecoration: 'none'
+            }}
+          >Check Out
+          </Link>
         </div>
       </div>
       <FeaturesBar />

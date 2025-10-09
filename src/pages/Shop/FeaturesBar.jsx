@@ -8,7 +8,6 @@ function FeaturesBar() {
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: 'rgba(250, 243, 234, 1)',
-      marginTop: '85px',
     }}>
       {/* Feature 1 */}
       <div style={{

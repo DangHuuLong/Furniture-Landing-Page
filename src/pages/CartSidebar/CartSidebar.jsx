@@ -124,40 +124,44 @@ function CartSidebar({ onClose }){
             >
               Cart
             </Link>
-
-            <div style={{
-              height: '30px',
-              width: '118px',
-              borderRadius: '50px',
-              border: '1px solid rgba(0,0,0,1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <p style={{
+            <Link
+              to="/checkout"
+              style={{
+                height: '30px',
+                width: '118px',
+                borderRadius: '50px',
+                border: '1px solid rgba(0,0,0,1)',
+                display: 'inline-flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textDecoration: "none",
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 400,
                 fontSize: '12px',
                 color: 'rgba(0,0,0,1)'
-              }}>Checkout</p>
-            </div>
+              }}
+            >
+              Checkout
+            </Link>
 
-            <div style={{
-              height: '30px',
-              width: '136px',
-              borderRadius: '50px',
-              border: '1px solid rgba(0,0,0,1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <p style={{
+            <Link 
+              to="/comparison"
+              style={{
+                height: '30px',
+                width: '136px',
+                borderRadius: '50px',
+                border: '1px solid rgba(0,0,0,1)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textDecoration: "none",
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 400,
                 fontSize: '12px',
                 color: 'rgba(0,0,0,1)'
-              }}>Comparison</p>
-            </div>
+              }}
+              >Comparison
+            </Link>
           </div>
         </div>
       </div>
