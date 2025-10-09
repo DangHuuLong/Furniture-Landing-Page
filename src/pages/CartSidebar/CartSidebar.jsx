@@ -1,3 +1,4 @@
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CartItem from '../../components/CartItem'
 function CartSidebar({ onClose }){
   return (
@@ -104,22 +105,25 @@ function CartSidebar({ onClose }){
             marginBottom: '28px',
             gap: '14px',
           }}>
-            <div style={{
-              height: '30px',
-              width: '88px',
-              borderRadius: '50px',
-              border: '1px solid rgba(0,0,0,1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <p style={{
+            <Link
+              to="/cart"
+              style={{
+                display: "inline-flex",
+                height: 30,
+                width: 88,
+                borderRadius: 50,
+                border: "1px solid rgba(0,0,0,1)",
+                justifyContent: "center",
+                alignItems: "center",
+                textDecoration: "none",
+                color: "rgba(0,0,0,1)",
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 400,
-                fontSize: '12px',
-                color: 'rgba(0,0,0,1)'
-              }}>Cart</p>
-            </div>
+                fontSize: 12
+              }}
+            >
+              Cart
+            </Link>
 
             <div style={{
               height: '30px',
