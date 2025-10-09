@@ -15,7 +15,7 @@ function TabBar() {
         color: 'rgba(159, 159, 159, 1)',
         marginRight: 14,
       }}>Home</p> 
-      <img src="./src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
+      <img src="/src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
         width: 20,
         height: 20,
         marginRight: 24,
@@ -27,7 +27,7 @@ function TabBar() {
         color: 'rgba(159, 159, 159, 1)',
         marginRight: 14,
       }}>Shop</p>
-      <img src="./src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
+      <img src="/src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
         width: 20,
         height: 20,
         marginRight: 24,

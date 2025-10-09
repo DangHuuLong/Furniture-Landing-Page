@@ -162,7 +162,7 @@ function Product({image, title, description, price, oldPrice, discount, newProdu
               alignItems: 'center',
               gap: '2px',
             }}>
-              <img src="./src/pages/Home/images/Share.png" style={{
+              <img src="/src/pages/Home/images/Share.png" style={{
                 width: '16px',
                 height: '16px',
               }} />
@@ -180,7 +180,7 @@ function Product({image, title, description, price, oldPrice, discount, newProdu
               alignItems: 'center',
               gap: '2px',
             }}>
-              <img src="./src/pages/Home/images/Compare.png" style={{
+              <img src="/src/pages/Home/images/Compare.png" style={{
                 width: '16px',
                 height: '16px',
               }} />
@@ -201,7 +201,7 @@ function Product({image, title, description, price, oldPrice, discount, newProdu
               alignItems: 'center',
               gap: '2px',
             }}>
-              <img src="./src/pages/Home/images/Heart.png" style={{
+              <img src="/src/pages/Home/images/Heart.png" style={{
                 width: '16px',
                 height: '16px',
               }} />

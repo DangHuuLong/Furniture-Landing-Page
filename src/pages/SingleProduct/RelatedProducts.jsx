@@ -22,7 +22,7 @@ function RelatedProducts(){
         marginBottom: '44px',
       }}>
         <Product {...{
-          image: './src/pages/Home/images/product1.png',
+          image: '/src/pages/Home/images/product1.png',
           title: 'Syltherine',
           description: 'Stylish cafe chair',
           price: '2.500.000',
@@ -31,7 +31,7 @@ function RelatedProducts(){
           newProduct: false,
         }} />
         <Product {...{
-          image: './src/pages/Home/images/product2.png',
+          image: '/src/pages/Home/images/product2.png',
           title: 'Leviosa',
           description: 'Stylish cafe chair',
           price: '2.500.000',
@@ -40,7 +40,7 @@ function RelatedProducts(){
           newProduct: false,
         }} />
         <Product {...{
-          image: './src/pages/Home/images/product3.png',
+          image: '/src/pages/Home/images/product3.png',
           title: 'Lolito',
           description: 'Luxury big sofa',
           price: '7.000.000',
@@ -49,7 +49,7 @@ function RelatedProducts(){
           newProduct: false,
         }} />
         <Product {...{
-          image: './src/pages/Home/images/product4.png',
+          image: '/src/pages/Home/images/product4.png',
           title: 'Respira',
           description: 'Outdoor bar table and stool',
           price: '500.000',
