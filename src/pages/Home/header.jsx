@@ -70,7 +70,7 @@ function Header({ onOpenCart }) {
             fontSize: 16,
             color: '#000000ff',
           }}>
-            Contact
+            <Link to="/contact" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Contact</Link>
           </p>
         </div>
 

@@ -9,6 +9,7 @@ import ProductComparison from './pages/ProductComparison/ProductComparison'
 import CartSidebar from "./pages/CartSidebar/CartSidebar";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout"
+import Contact from "./pages/Contact/Contact"
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/comparison' element={<ProductComparison />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
         <Footer />
       </BrowserRouter>
