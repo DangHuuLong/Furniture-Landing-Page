@@ -1,4 +1,4 @@
-function Banner() {
+function Banner({name}) {
   return (
     <div style={{
       width: "100%",
@@ -15,12 +15,18 @@ function Banner() {
         justifyContent: "center",
         alignItems: "center",
       }}>
+        <img src="/src/pages/Shop/images/Meubel House_Logos-05.png" style={{
+          width: '77px',
+          height: '77px',
+          position: 'relative',
+          top: '20px'  
+        }}/>
         <p style={{
           fontFamily: '"Poppins", sans-serif',  
           fontWeight: '500',
           fontSize: '48px',
           color: '000000',
-        }}>Shop</p>
+        }}>{name}</p>
         <div style={{
           display: "flex",
         }}>
@@ -39,7 +45,7 @@ function Banner() {
             fontWeight: '300',
             fontSize: '16px',
             color: '000000',
-          }}>Shop</p>
+          }}>{name}</p>
         </div>
       </div>
     </div>

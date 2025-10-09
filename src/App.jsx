@@ -5,6 +5,7 @@ import Header from './pages/Home/Header'
 import Home from './pages/Home/home'
 import Shop from './pages/Shop/shop'
 import SingleProduct from './pages/SingleProduct/SingleProduct'
+import ProductComparison from './pages/ProductComparison/ProductComparison'
 import CartSidebar from "./pages/CartSidebar/CartSidebar";
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -15,7 +16,7 @@ function App() {
         <Header onOpenCart={() => setIsCartOpen(true)} />
         {isCartOpen && <CartSidebar onClose={() => setIsCartOpen(false)} />}
         <Routes>
-          <Route path='/' element={<SingleProduct />} />
+          <Route path='/' element={<ProductComparison />} />
           <Route path='/shop' element={<Shop/>}/>
         </Routes>
         <Footer />

@@ -6,7 +6,7 @@ import FeaturesBar from "./FeaturesBar";
 function Shop(){
   return (
     <>
-      <Banner />
+      <Banner {...{name: 'Shop'}}/>
       <ToolBar />
       <ListProduct />
       <FeaturesBar />
