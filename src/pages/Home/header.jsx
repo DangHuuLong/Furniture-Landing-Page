@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-function Header() {
+function Header({ onOpenCart }) {
   return (
     <>
       <div style={{
@@ -93,10 +93,12 @@ function Header() {
             width: 28,
             height: 28,
           }} />
-          <img src="./src/pages/Home/images/ant-design_shopping-cart-outlined.png" style={{
-            width: 28,
-            height: 28,
-          }} />
+          <button onClick={onOpenCart} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+            <img src="./src/pages/Home/images/ant-design_shopping-cart-outlined.png" style={{
+              width: 28,
+              height: 28,
+            }} />
+          </button>
         </div>
         <div>
 

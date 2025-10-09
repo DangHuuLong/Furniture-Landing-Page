@@ -1,4 +1,4 @@
-import Product from "../../components/product"
+import Product from "../../components/Product"
 function RelatedProducts(){
   return (
     <div style={{
