@@ -85,10 +85,12 @@ function Header({ onOpenCart }) {
             width: 28,
             height: 28,
           }} />
-          <img src="./src/pages/Home/images/akar-icons_search.png" style={{
-            width: 28,
-            height: 28,
-          }} />
+          <Link to="/blog" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>
+            <img src="./src/pages/Home/images/akar-icons_search.png" style={{
+              width: 28,
+              height: 28,
+            }} />
+          </Link>
           <img src="./src/pages/Home/images/akar-icons_heart.png" style={{
             width: 28,
             height: 28,

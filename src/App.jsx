@@ -10,6 +10,7 @@ import CartSidebar from "./pages/CartSidebar/CartSidebar";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout"
 import Contact from "./pages/Contact/Contact"
+import Blog from "./pages/Blog/Blog"
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -21,10 +22,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/singleProduct' element={<SingleProduct />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/comparison' element={<ProductComparison />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/blog' element={<Blog />} />
         </Routes>
         <Footer />
       </BrowserRouter>

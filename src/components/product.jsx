@@ -1,3 +1,4 @@
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 function Product({image, title, description, price, oldPrice, discount, newProduct}) {
   const [hovered, setHovered] = useState(false);
@@ -183,12 +184,15 @@ function Product({image, title, description, price, oldPrice, discount, newProdu
                 width: '16px',
                 height: '16px',
               }} />
-              <p style={{
+              <Link to="/shop/singleProduct" style={{ 
+                textDecoration: "none", 
+                color: "inherit", 
+                font: "inherit",
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: '600',
                 fontSize: '16px',
-                color: 'rgba(255, 255, 255, 1)',
-              }}>Compare</p>
+                color: 'rgba(255, 255, 255, 1)', 
+              }}>Compare</Link>
             </div>
 
             <div style={{
