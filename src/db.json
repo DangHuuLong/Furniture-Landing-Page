@@ -1,0 +1,639 @@
+{
+  "products": [
+    {
+      "SKU": "SOFA-MODERN-MS01",
+      "name": "Modern Living Sofa",
+      "category": "Living Room",
+      "price": 12500000,
+      "unit": "VND",
+      "stock": 50,
+      "isNew": true,
+      "discount": 20,
+      "intendedUse": "A stylish and comfortable sofa for modern living spaces, perfect for relaxing or entertaining guests.",
+      "images": {
+        "mainImage": "https://www.bocadolobo.com/blog/wp-content/uploads/2021/09/Modern-Sofas-That-Will-Fit-Perfectly-Your-Luxury-Living-Room.jpg",
+        "subImages": [
+          "https://cdn.home-designing.com/wp-content/uploads/2023/08/Beige-Mid-century-modern-sofa-1024x1024.jpg",
+          "https://cdn.home-designing.com/wp-content/uploads/2023/08/Beige-Mid-century-modern-sofa-1024x1024.jpg",
+          "https://cdn.home-designing.com/wp-content/uploads/2023/08/Beige-Mid-century-modern-sofa-1024x1024.jpg",
+          "https://cdn.home-designing.com/wp-content/uploads/2023/08/Beige-Mid-century-modern-sofa-1024x1024.jpg"
+        ]
+      },
+      "description": {
+        "short": "Sleek design, plush cushions, and a sturdy frame for long-lasting comfort.",
+        "full": "Crafted with high-quality fabric and a durable wooden frame, this sofa provides both elegance and durability. The soft, foam-filled cushions offer exceptional comfort, while the clean lines and neutral color make it a versatile addition to any home."
+      },
+      "rating": 4.8,
+      "reviews": 235,
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "gray",
+        "beige",
+        "charcoal"
+      ],
+      "tags": [
+        "sofa",
+        "furniture",
+        "living room",
+        "modern"
+      ]
+    },
+    {
+      "SKU": "TABLE-DINING-DT05",
+      "name": "Oak Dining Table",
+      "category": "Dining Room",
+      "price": 8500000,
+      "unit": "VND",
+      "stock": 30,
+      "isNew": false,
+      "discount": 15,
+      "intendedUse": "A sturdy and classic dining table, perfect for family meals and gatherings.",
+      "images": {
+        "mainImage": "https://www.thefurnituremarket.co.uk/media/catalog/product/cache/e87de9c08ea8cd93ad1e6aad80c8118c/r/c/rc60-cotswold-rustic-oak-1.8m-dining-table-1.jpg",
+        "subImages": [
+          "https://www.lafurniturestore.com/media/catalog/product/cache/6d4faa98f2b48c05dae02148ead85f2f/w/a/washington.jpg",
+          "https://www.lafurniturestore.com/media/catalog/product/cache/6d4faa98f2b48c05dae02148ead85f2f/w/a/washington.jpg",
+          "https://www.lafurniturestore.com/media/catalog/product/cache/6d4faa98f2b48c05dae02148ead85f2f/w/a/washington.jpg",
+          "https://www.lafurniturestore.com/media/catalog/product/cache/6d4faa98f2b48c05dae02148ead85f2f/w/a/washington.jpg"
+        ]
+      },
+      "description": {
+        "short": "Handcrafted from solid oak, this table combines timeless design with exceptional strength.",
+        "full": "This dining table is a statement piece for any dining room. The solid oak construction ensures long-term durability, and the natural wood grain adds a touch of rustic charm. It comfortably seats six to eight people."
+      },
+      "rating": 4.6,
+      "reviews": 180,
+      "size": [
+        "S",
+        "L"
+      ],
+      "colors": [
+        "natural wood"
+      ],
+      "tags": [
+        "dining table",
+        "furniture",
+        "wood",
+        "classic"
+      ]
+    },
+    {
+      "SKU": "BED-QUEEN-BQ10",
+      "name": "Queen Size Bed Frame",
+      "category": "Bedroom",
+      "price": 9800000,
+      "unit": "VND",
+      "stock": 45,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A minimalist and elegant bed frame designed for a peaceful night's sleep.",
+      "images": {
+        "mainImage": "https://images.thdstatic.com/productImages/449a6596-9c03-45b5-82e9-e6750f87533f/svn/brown-oak-nexera-platform-beds-403058-64_600.jpg",
+        "subImages": [
+          "https://i5.walmartimages.com/seo/Homfa-Queen-Size-4-Storage-Drawers-Bed-Frame-Square-Tufted-Upholstered-Platform-Bed-with-Adjustable-Headboard-Black_e9943444-e29e-49d2-9035-48f516f2ecc9.102435355a79f5986f4ca657cb45c912.png",
+          "https://i5.walmartimages.com/seo/Homfa-Queen-Size-4-Storage-Drawers-Bed-Frame-Square-Tufted-Upholstered-Platform-Bed-with-Adjustable-Headboard-Black_e9943444-e29e-49d2-9035-48f516f2ecc9.102435355a79f5986f4ca657cb45c912.png",
+          "https://i5.walmartimages.com/seo/Homfa-Queen-Size-4-Storage-Drawers-Bed-Frame-Square-Tufted-Upholstered-Platform-Bed-with-Adjustable-Headboard-Black_e9943444-e29e-49d2-9035-48f516f2ecc9.102435355a79f5986f4ca657cb45c912.png",
+          "https://i5.walmartimages.com/seo/Homfa-Queen-Size-4-Storage-Drawers-Bed-Frame-Square-Tufted-Upholstered-Platform-Bed-with-Adjustable-Headboard-Black_e9943444-e29e-49d2-9035-48f516f2ecc9.102435355a79f5986f4ca657cb45c912.png"
+        ]
+      },
+      "description": {
+        "short": "Simple, sleek design with a sturdy metal frame and silent support system.",
+        "full": "Elevate your bedroom with this sleek and modern bed frame. The strong metal construction provides excellent support for your mattress, and the minimalist design fits seamlessly into any decor. Assembly is quick and easy."
+      },
+      "rating": 4.9,
+      "reviews": 310,
+      "size": [
+        "Queen"
+      ],
+      "colors": [
+        "black",
+        "white"
+      ],
+      "tags": [
+        "bed",
+        "bedroom",
+        "frame",
+        "metal"
+      ]
+    },
+    {
+      "SKU": "CHAIR-ARM-AC03",
+      "name": "Velvet Armchair",
+      "category": "Accent Chair",
+      "price": 4200000,
+      "unit": "VND",
+      "stock": 60,
+      "isNew": false,
+      "discount": 25,
+      "intendedUse": "A luxurious and comfortable armchair, perfect for adding a pop of color and style to any room.",
+      "images": {
+        "mainImage": "https://cdn11.bigcommerce.com/s-3zraqrbbb6/images/stencil/1280w/products/5808/396587/Jolene-Navy-Velvet-Arm-Chair-1__63608.1723827813.jpg?c=1",
+        "subImages": [
+          "https://m.media-amazon.com/images/I/71r1TqtGsML._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/71r1TqtGsML._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/71r1TqtGsML._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/71r1TqtGsML._UF894,1000_QL80_.jpg"
+        ]
+      },
+      "description": {
+        "short": "Soft velvet upholstery and a stylish design for a touch of elegance.",
+        "full": "This armchair is a perfect blend of style and comfort. The soft velvet fabric feels luxurious to the touch, and the cushioned seat provides a cozy spot for reading or relaxing. Its compact size makes it ideal for smaller spaces."
+      },
+      "rating": 4.7,
+      "reviews": 95,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "emerald green",
+        "navy blue",
+        "blush pink"
+      ],
+      "tags": [
+        "armchair",
+        "chair",
+        "velvet",
+        "accent",
+        "furniture"
+      ]
+    },
+    {
+      "SKU": "LAMP-TABLE-TL08",
+      "name": "Minimalist Table Lamp",
+      "category": "Lighting",
+      "price": 1500000,
+      "unit": "VND",
+      "stock": 80,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A sleek and functional table lamp to provide focused light for work or reading.",
+      "images": {
+        "mainImage": "https://images-na.ssl-images-amazon.com/images/I/61xxhaeUKIL.jpg",
+        "subImages": [
+          "https://m.media-amazon.com/images/I/61kQdqhPkZL._UF1000,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/61kQdqhPkZL._UF1000,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/61kQdqhPkZL._UF1000,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/61kQdqhPkZL._UF1000,1000_QL80_.jpg"
+        ]
+      },
+      "description": {
+        "short": "Clean lines and a modern design that fits perfectly on a desk or nightstand.",
+        "full": "Illuminate your space with this minimalist table lamp. It features a durable metal body and a clean, simple design that complements any modern decor. The adjustable head allows you to direct light exactly where you need it."
+      },
+      "rating": 4.5,
+      "reviews": 112,
+      "size": [
+        "Small",
+        "Medium"
+      ],
+      "colors": [
+        "black",
+        "white",
+        "gold"
+      ],
+      "tags": [
+        "lamp",
+        "lighting",
+        "desk",
+        "minimalist"
+      ]
+    },
+    {
+      "SKU": "RUG-AREA-AR15",
+      "name": "Geometric Area Rug",
+      "category": "Decor",
+      "price": 3800000,
+      "unit": "VND",
+      "stock": 25,
+      "isNew": false,
+      "discount": 10,
+      "intendedUse": "A decorative rug to define a space and add warmth and texture to any room.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/81x+lwsV9ML._UF894,1000_QL80_.jpg",
+        "subImages": [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s"
+        ]
+      },
+      "description": {
+        "short": "Bold geometric patterns and a soft, durable weave to brighten up your floor.",
+        "full": "Made from a blend of high-quality wool and cotton, this area rug is both soft underfoot and resistant to wear. The striking geometric pattern adds a modern touch and can serve as a focal point in your living room or bedroom."
+      },
+      "rating": 4.4,
+      "reviews": 75,
+      "size": [
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "colors": [
+        "blue/white",
+        "black/gray"
+      ],
+      "tags": [
+        "rug",
+        "decor",
+        "home",
+        "geometric"
+      ]
+    },
+    {
+      "SKU": "COFFEE-TABLE-CT07",
+      "name": "Marble Coffee Table",
+      "category": "Living Room",
+      "price": 15000000,
+      "unit": "VND",
+      "stock": 15,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A luxurious and elegant coffee table to be the centerpiece of your living room.",
+      "images": {
+        "mainImage": "https://assets.sohohome.com/cdn-cgi/image/fit=crop%2Cformat=auto%2Cquality=75%2Cwidth=1100%2Cheight=1222%2Ctrim=444%3B0%3B445%3B0/images/original/127181-sh-glamour-eldon-and-oxley-0245-f1jpg.jpg",
+        "subImages": [
+          "https://www.mcgeeandco.com/cdn/shop/files/studiomcgee-Fall-20250520-0053.jpg?crop=center&height=1200&v=1753826789&width=1200",
+          "https://www.mcgeeandco.com/cdn/shop/files/studiomcgee-Fall-20250520-0053.jpg?crop=center&height=1200&v=1753826789&width=1200",
+          "https://www.mcgeeandco.com/cdn/shop/files/studiomcgee-Fall-20250520-0053.jpg?crop=center&height=1200&v=1753826789&width=1200",
+          "https://www.mcgeeandco.com/cdn/shop/files/studiomcgee-Fall-20250520-0053.jpg?crop=center&height=1200&v=1753826789&width=1200"
+        ]
+      },
+      "description": {
+        "short": "Genuine marble top with a sturdy metal base, a blend of luxury and stability.",
+        "full": "This exquisite coffee table features a beautiful, polished marble top, each with a unique veining pattern. The minimalist metal base provides robust support, creating a timeless piece that elevates any interior."
+      },
+      "rating": 5.0,
+      "reviews": 45,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "white marble",
+        "black marble"
+      ],
+      "tags": [
+        "coffee table",
+        "furniture",
+        "marble",
+        "luxury"
+      ]
+    },
+    {
+      "SKU": "SHELF-BOOK-BS12",
+      "name": "Industrial Bookshelf",
+      "category": "Storage",
+      "price": 5200000,
+      "unit": "VND",
+      "stock": 35,
+      "isNew": false,
+      "discount": 5,
+      "intendedUse": "A multi-tiered bookshelf providing ample storage with a rustic industrial look.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/81flDumgBGS._UF894,1000_QL80_.jpg",
+        "subImages": [
+          "https://i.ebayimg.com/images/g/G5gAAOSwBDle9J7L/s-l1200.png",
+          "https://i.ebayimg.com/images/g/G5gAAOSwBDle9J7L/s-l1200.png",
+          "https://i.ebayimg.com/images/g/G5gAAOSwBDle9J7L/s-l1200.png",
+          "https://i.ebayimg.com/images/g/G5gAAOSwBDle9J7L/s-l1200.png"
+        ]
+      },
+      "description": {
+        "short": "Combines distressed wood shelves with a durable black metal frame.",
+        "full": "Organize your books and decor with this stylish industrial bookshelf. The four spacious shelves are made of high-quality engineered wood, while the robust metal frame ensures stability. It’s perfect for the living room, office, or study."
+      },
+      "rating": 4.7,
+      "reviews": 102,
+      "size": [
+        "Tall",
+        "Short"
+      ],
+      "colors": [
+        "rustic brown"
+      ],
+      "tags": [
+        "bookshelf",
+        "storage",
+        "industrial",
+        "furniture"
+      ]
+    },
+    {
+      "SKU": "CUPBOARD-STORAGE-CU14",
+      "name": "Wooden Storage Cupboard",
+      "category": "Storage",
+      "price": 7500000,
+      "unit": "VND",
+      "stock": 20,
+      "isNew": true,
+      "discount": 10,
+      "intendedUse": "A classic wooden cupboard for versatile storage in any room.",
+      "images": {
+        "mainImage": "https://tribesigns.com/cdn/shop/files/wooden-storage-cabinet-sideboard-with-adjustable-shelves-and-drawer-158398.jpg?v=1752042018&width=1800",
+        "subImages": [
+          "https://www.hometown.in/cdn/shop/files/830118389.jpg?v=1753693759&width=1600",
+          "https://www.hometown.in/cdn/shop/files/830118389.jpg?v=1753693759&width=1600",
+          "https://www.hometown.in/cdn/shop/files/830118389.jpg?v=1753693759&width=1600",
+          "https://www.hometown.in/cdn/shop/files/830118389.jpg?v=1753693759&width=1600"
+        ]
+      },
+      "description": {
+        "short": "Hand-carved wooden details with ample interior space for all your essentials.",
+        "full": "This elegant storage cupboard is crafted from solid mahogany, featuring two doors with intricate hand-carved details. Inside, you'll find adjustable shelves, making it a perfect solution for storing dinnerware, linens, or clothes."
+      },
+      "rating": 4.9,
+      "reviews": 88,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "dark brown",
+        "natural wood"
+      ],
+      "tags": [
+        "cupboard",
+        "cabinet",
+        "storage",
+        "furniture"
+      ]
+    },
+    {
+      "SKU": "LAMP-FLOOR-LF20",
+      "name": "Arched Floor Lamp",
+      "category": "Lighting",
+      "price": 2800000,
+      "unit": "VND",
+      "stock": 55,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A statement floor lamp to provide soft, ambient lighting over a sofa or chair.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/81uGOoV8wZL.jpg",
+        "subImages": [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjx_XDCSjQ5ARd8-OhhoFunF-VOsQsO6d1lg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjx_XDCSjQ5ARd8-OhhoFunF-VOsQsO6d1lg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjx_XDCSjQ5ARd8-OhhoFunF-VOsQsO6d1lg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjx_XDCSjQ5ARd8-OhhoFunF-VOsQsO6d1lg&s"
+        ]
+      },
+      "description": {
+        "short": "An elegant arched design with a marble base for stability and style.",
+        "full": "This floor lamp combines form and function with its graceful arched design. The heavy marble base ensures it remains stable, while the large linen shade diffuses light beautifully, creating a warm and inviting atmosphere."
+      },
+      "rating": 4.8,
+      "reviews": 67,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "black",
+        "brushed silver"
+      ],
+      "tags": [
+        "floor lamp",
+        "lighting",
+        "living room",
+        "decor"
+      ]
+    },
+    {
+      "SKU": "TABLE-SIDE-ST09",
+      "name": "Round Side Table",
+      "category": "Living Room",
+      "price": 1800000,
+      "unit": "VND",
+      "stock": 90,
+      "isNew": false,
+      "discount": 10,
+      "intendedUse": "A small, functional table for holding drinks, books, or a lamp next to a sofa or bed.",
+      "images": {
+        "mainImage": "https://cdn.cloudinary.com/dc5ztdzeo/image/upload/c_fill,g_auto,w_800/dpr_auto/e_sharpen:50/f_webp,q_auto:good/products_fixed/SLFST02/franki-round-hardwood-side-table-rustic-walnut%20%2801%29.jpg",
+        "subImages": [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsebTybDYQeC02SWOtHRsZW_rAYb9tsnwNsg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsebTybDYQeC02SWOtHRsZW_rAYb9tsnwNsg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsebTybDYQeC02SWOtHRsZW_rAYb9tsnwNsg&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsebTybDYQeC02SWOtHRsZW_rAYb9tsnwNsg&s"
+        ]
+      },
+      "description": {
+        "short": "Compact and sleek design with a metal frame and wood top.",
+        "full": "This round side table is the perfect companion for your sofa or bed. Its minimalist design and mix of materials make it a versatile piece that complements a wide range of styles. The tabletop is easy to clean, and the sturdy frame holds up to daily use."
+      },
+      "rating": 4.6,
+      "reviews": 150,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "black/walnut",
+        "white/oak"
+      ],
+      "tags": [
+        "side table",
+        "furniture",
+        "living room",
+        "bedroom"
+      ]
+    },
+    {
+      "SKU": "CHAIR-OFFICE-OC05",
+      "name": "Ergonomic Office Chair",
+      "category": "Home Office",
+      "price": 6500000,
+      "unit": "VND",
+      "stock": 40,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A comfortable and supportive chair for long hours of work or study.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/71m901lXArL._UF894,1000_QL80_.jpg",
+        "subImages": [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR48kEDp9rmBLaGPj0thzEaYc0IS_HBQKNvw3KR62VkfdVsL0QLOY5aHqLwaoIJGs-u7fQ&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR48kEDp9rmBLaGPj0thzEaYc0IS_HBQKNvw3KR62VkfdVsL0QLOY5aHqLwaoIJGs-u7fQ&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR48kEDp9rmBLaGPj0thzEaYc0IS_HBQKNvw3KR62VkfdVsL0QLOY5aHqLwaoIJGs-u7fQ&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR48kEDp9rmBLaGPj0thzEaYc0IS_HBQKNvw3KR62VkfdVsL0QLOY5aHqLwaoIJGs-u7fQ&usqp=CAU"
+        ]
+      },
+      "description": {
+        "short": "Adjustable features and lumbar support to promote good posture and reduce fatigue.",
+        "full": "Designed with your comfort in mind, this ergonomic office chair features a breathable mesh back and a height-adjustable seat. The lumbar support helps to maintain a healthy posture, and the smooth-rolling casters allow for easy movement around your workspace."
+      },
+      "rating": 4.9,
+      "reviews": 288,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "black",
+        "gray"
+      ],
+      "tags": [
+        "office chair",
+        "chair",
+        "ergonomic",
+        "home office"
+      ]
+    },
+    {
+      "SKU": "MIRROR-WALL-WM11",
+      "name": "Decorative Wall Mirror",
+      "category": "Decor",
+      "price": 2200000,
+      "unit": "VND",
+      "stock": 65,
+      "isNew": false,
+      "discount": 15,
+      "intendedUse": "A stylish mirror to add light and the illusion of space to any room.",
+      "images": {
+        "mainImage": "https://homafy.com/wp-content/uploads/2023/09/Dillan-Decorative-Wall-Mirror.jpg",
+        "subImages": [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tGehaV5jM80s0IAjpEsmcn1cLuHDtuhURA&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tGehaV5jM80s0IAjpEsmcn1cLuHDtuhURA&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tGehaV5jM80s0IAjpEsmcn1cLuHDtuhURA&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tGehaV5jM80s0IAjpEsmcn1cLuHDtuhURA&s"
+        ]
+      },
+      "description": {
+        "short": "Framed with an elegant gold-finished metal for a sophisticated look.",
+        "full": "This beautiful wall mirror is perfect for entryways, living rooms, or bedrooms. The thin, sleek metal frame in a stunning gold finish adds a touch of modern elegance. It's easy to hang and instantly brightens up your space."
+      },
+      "rating": 4.7,
+      "reviews": 92,
+      "size": [
+        "Medium",
+        "Large"
+      ],
+      "colors": [
+        "gold",
+        "black"
+      ],
+      "tags": [
+        "mirror",
+        "decor",
+        "wall decor",
+        "home"
+      ]
+    },
+    {
+      "SKU": "COAT-RACK-CR16",
+      "name": "Wall-Mounted Coat Rack",
+      "category": "Storage",
+      "price": 850000,
+      "unit": "VND",
+      "stock": 110,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A simple and effective solution for hanging coats, bags, and scarves in an entryway.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/61kEkIi2HOL._UF894,1000_QL80_.jpg",
+        "subImages": [
+          "https://m.media-amazon.com/images/I/810YrbCVw8L.jpg",
+          "https://m.media-amazon.com/images/I/810YrbCVw8L.jpg",
+          "https://m.media-amazon.com/images/I/810YrbCVw8L.jpg",
+          "https://m.media-amazon.com/images/I/810YrbCVw8L.jpg"
+        ]
+      },
+      "description": {
+        "short": "Made from solid wood with five sturdy metal hooks.",
+        "full": "Keep your entryway organized with this functional and stylish coat rack. Crafted from smooth, finished wood, it features five durable metal hooks that can hold multiple items. Its wall-mounted design saves floor space, making it ideal for small apartments."
+      },
+      "rating": 4.5,
+      "reviews": 78,
+      "size": [
+        "One Size"
+      ],
+      "colors": [
+        "natural wood",
+        "black"
+      ],
+      "tags": [
+        "coat rack",
+        "storage",
+        "entryway"
+      ]
+    },
+    {
+      "SKU": "OTTOMAN-STOOL-OS22",
+      "name": "Padded Ottoman Stool",
+      "category": "Living Room",
+      "price": 1600000,
+      "unit": "VND",
+      "stock": 70,
+      "isNew": false,
+      "discount": 20,
+      "intendedUse": "A versatile piece of furniture that can be used as a footrest or an extra seat.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/919HiC0gX-L.jpg",
+        "subImages": [
+          "https://m.media-amazon.com/images/I/81DBiOAIT+L._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/81DBiOAIT+L._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/81DBiOAIT+L._UF894,1000_QL80_.jpg",
+          "https://m.media-amazon.com/images/I/81DBiOAIT+L._UF894,1000_QL80_.jpg"
+        ]
+      },
+      "description": {
+        "short": "Soft, durable fabric and a lightweight design for easy movement.",
+        "full": "Add a touch of comfort to your living room with this padded ottoman stool. It's filled with high-density foam for a firm yet comfortable feel and is upholstered in a durable fabric that stands up to daily use. Perfect for resting your feet or as a temporary seat."
+      },
+      "rating": 4.7,
+      "reviews": 115,
+      "size": [
+        "Small",
+        "Medium"
+      ],
+      "colors": [
+        "light gray",
+        "dark blue"
+      ],
+      "tags": [
+        "ottoman",
+        "stool",
+        "living room",
+        "furniture"
+      ]
+    },
+    {
+      "SKU": "SHELF-FLOATING-FS25",
+      "name": "Floating Wall Shelves",
+      "category": "Decor",
+      "price": 950000,
+      "unit": "VND",
+      "stock": 95,
+      "isNew": true,
+      "discount": 0,
+      "intendedUse": "A simple and minimalist way to display books, plants, or small decorations.",
+      "images": {
+        "mainImage": "https://m.media-amazon.com/images/I/71rglzW-+RL.jpg",
+        "subImages": [
+          "https://i.pinimg.com/736x/ee/9b/18/ee9b18dcf2d7d07db986f0701e359296.jpg",
+          "https://i.pinimg.com/736x/ee/9b/18/ee9b18dcf2d7d07db986f0701e359296.jpg",
+          "https://i.pinimg.com/736x/ee/9b/18/ee9b18dcf2d7d07db986f0701e359296.jpg",
+          "https://i.pinimg.com/736x/ee/9b/18/ee9b18dcf2d7d07db986f0701e359296.jpg"
+        ]
+      },
+      "description": {
+        "short": "A set of two sleek, modern shelves with hidden mounting hardware.",
+        "full": "Create a clean and organized look with this set of floating shelves. The seamless design appears to float on the wall, providing a modern and elegant way to display your favorite items. Made from durable MDF wood, they are easy to install and can hold a surprising amount of weight."
+      },
+      "rating": 4.8,
+      "reviews": 130,
+      "size": [
+        "Small",
+        "Medium"
+      ],
+      "colors": [
+        "white",
+        "black"
+      ],
+      "tags": [
+        "shelves",
+        "floating",
+        "storage",
+        "wall decor"
+      ]
+    }
+  ]
+}

@@ -1,131 +1,107 @@
+import { useState, useEffect } from 'react';
 import Product from "../../components/Product"
 
 function OurProducts() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/products');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); // [] đảm bảo effect chỉ chạy 1 lần khi component mount
+
+  if (loading) {
+    return <div style={{ textAlign: 'center', padding: '50px' }}>Đang tải dữ liệu sản phẩm...</div>;
+  }
+
+  if (error) {
+    return <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>Lỗi khi tải dữ liệu: {error.message}</div>;
+  }
+
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: "57px 102px 0px 102px",
-      gap: '32px',
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "57px 102px 0px 102px",
+        gap: '32px',
+      }}
+    >
       {/* Title */}
-      <p style={{
-        fontFamily: '"Poppins", sans-serif',
-        fontWeight: '700',
-        fontSize: '40px',
-        color: 'rgba(58, 58, 58, 1)',
-      }}>Our Products</p>
-      {/* Products Row 1 */}
-      <div>
-        <div style={{
+      <p
+        style={{
+          fontFamily: '"Poppins", sans-serif',
+          fontWeight: '700',
+          fontSize: '40px',
+          color: 'rgba(58, 58, 58, 1)',
+        }}
+      >
+        Our Products
+      </p>
+      {/* Products Grid */}
+      <div
+        style={{
           display: 'flex',
-          flexDirection: 'row',
+          flexWrap: 'wrap',
           gap: '32px',
-        }}>
-          <Product {...{
-            image: './src/pages/Home/images/product1.png',
-            title: 'Syltherine',
-            description: 'Stylish cafe chair',
-            price: '2.500.000',
-            oldPrice: '3.500.000',
-            discount: 50,
-            newProduct: false,
-          }}/>
-          <Product {...{
-            image: './src/pages/Home/images/product2.png',
-            title: 'Leviosa',
-            description: 'Stylish cafe chair',
-            price: '2.500.000',
-            oldPrice: null,
-            discount: null,
-            newProduct: false,
-          }} />
-          <Product {...{
-            image: './src/pages/Home/images/product3.png',
-            title: 'Lolito',
-            description: 'Luxury big sofa',
-            price: '7.000.000',
-            oldPrice: '14.000.000',
-            discount: 50,
-            newProduct: false,
-          }} />
-          <Product {...{
-            image: './src/pages/Home/images/product4.png',
-            title: 'Respira',
-            description: 'Outdoor bar table and stool',
-            price: '500.000',
-            oldPrice: null,
-            discount: null,
-            newProduct: true,
-          }} />
-        </div>
-      </div>
-      {/* Products Row 2 */}
-      <div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '32px',
-        }}>
-          <Product {...{
-            image: './src/pages/Home/images/product5.png',
-            title: 'Grifo',
-            description: 'Night lamp',
-            price: '1.500.000',
-            oldPrice: null,
-            discount: null,
-            newProduct: false,
-          }} />
-          <Product {...{
-            image: './src/pages/Home/images/product6.png',
-            title: 'Muggo',
-            description: 'Small mug',
-            price: '150.000',
-            oldPrice: null,
-            discount: null,
-            newProduct: true,
-          }} />
-          <Product {...{
-            image: './src/pages/Home/images/product7.png',
-            title: 'Pingky',
-            description: 'Cute bed set',
-            price: '7.000.000',
-            oldPrice: '14.000.000',
-            discount: 50,
-            newProduct: false,
-          }} />
-          <Product {...{
-            image: './src/pages/Home/images/product8.png',
-            title: 'Potty',
-            description: 'Minimalist flower pot',
-            price: '500.000',
-            oldPrice: null,
-            discount: null,
-            newProduct: true,
-          }} />
-        </div>
+          justifyContent: 'center',
+        }}
+      >
+        {products.map((product) => (
+          <Product
+            key={product.SKU}
+            image={product.images.mainImage}
+            name={product.name}
+            category={product.category}
+            price={product.price}
+            discount={product.discount}
+            isNew={product.isNew}
+            unit={product.unit}
+          />
+        ))}
       </div>
       {/* Show More Button */}
-      <div style={{
-        width: '245px',
-        height: '48px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        border: '1px solid rgba(184, 142, 47, 1)',
-      }}>
-        <p style={{
-          fontFamily: '"Poppins", sans-serif',
-          fontWeight: '600',
-          fontSize: '16px',
-          color: 'rgba(184, 142, 47, 1)',
-          }}>Show More
+      <div
+        style={{
+          width: '245px',
+          height: '48px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'transparent',
+          border: '1px solid rgba(184, 142, 47, 1)',
+          cursor: 'pointer',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: '600',
+            fontSize: '16px',
+            color: 'rgba(184, 142, 47, 1)',
+          }}
+        >
+          Show More
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default OurProducts
+export default OurProducts;
