@@ -6,6 +6,14 @@ function OurProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [visibleProductsCount, setVisibleProductsCount] = useState(8);
+  
+    const handleShowMore = () => {
+      setVisibleProductsCount(prevCount => prevCount + 4);
+    };
+  
+    const isAllProductsShown = visibleProductsCount >= products.length;
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -23,7 +31,7 @@ function OurProducts() {
     };
 
     fetchProducts();
-  }, []); // [] đảm bảo effect chỉ chạy 1 lần khi component mount
+  }, []); 
 
   if (loading) {
     return <div style={{ textAlign: 'center', padding: '50px' }}>Đang tải dữ liệu sản phẩm...</div>;
@@ -63,7 +71,7 @@ function OurProducts() {
           justifyContent: 'center',
         }}
       >
-        {products.map((product) => (
+        {products.slice(0, visibleProductsCount).map((product) => (
           <Product
             key={product.SKU}
             image={product.images.mainImage}
@@ -73,34 +81,37 @@ function OurProducts() {
             discount={product.discount}
             isNew={product.isNew}
             unit={product.unit}
-            productData={product} 
+            productData={product}
           />
         ))}
       </div>
       {/* Show More Button */}
-      <div
-        style={{
-          width: '245px',
-          height: '48px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'transparent',
-          border: '1px solid rgba(184, 142, 47, 1)',
-          cursor: 'pointer',
-        }}
-      >
-        <p
+      {!isAllProductsShown &&(
+        <div
+          onClick={handleShowMore}
           style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: '600',
-            fontSize: '16px',
-            color: 'rgba(184, 142, 47, 1)',
+            width: '245px',
+            height: '48px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'transparent',
+            border: '1px solid rgba(184, 142, 47, 1)',
+            cursor: 'pointer',
           }}
         >
-          Show More
-        </p>
-      </div>
+          <p
+            style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: '600',
+              fontSize: '16px',
+              color: 'rgba(184, 142, 47, 1)',
+            }}
+          >
+            Show More
+          </p>
+        </div>
+      )}
     </div>
   );
 }
