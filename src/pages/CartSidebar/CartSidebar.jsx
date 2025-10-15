@@ -1,6 +1,10 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import CartItem from '../../components/CartItem'
-function CartSidebar({ onClose }){
+import { CartContext } from '../../contexts/CartContext';
+import { useContext } from "react";
+function CartSidebar(){
+  const { cartItems, closeCart } = useContext(CartContext);
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   return (
     <div style={{
       zIndex: 1000,  
@@ -35,7 +39,7 @@ function CartSidebar({ onClose }){
               color: 'rgba(0,0,0,1',
               marginRight: '160px'
             }}>Shopping Cart</p>
-            <button onClick={onClose} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+            <button onClick={closeCart} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
               <img src="/src/pages/CartSidebar/images/Group.png" style={{
                 height: '19px',
                 objectFit: 'cover'
@@ -51,18 +55,15 @@ function CartSidebar({ onClose }){
           }}></div>
           {/** 3*/}
           <div>
-            <CartItem {...{
-              image: '/src/pages/CartSidebar/images/Asgaard sofa 5 (1).png',
-              name: 'Asgaard sofa',
-              quantity: 1,
-              price: '250,000.00'
-            }} />
-            <CartItem {...{
-              image: '/src/pages/CartSidebar/images/Asgaard sofa 5.png',
-              name: 'Casaliving Wood',
-              quantity: 1,
-              price: '270,000.00'
-            }} />
+            {cartItems.map(item => (
+              <CartItem
+                key={item.SKU}
+                image={item.images.mainImage}
+                name={item.name}
+                quantity={item.quantity}
+                price={item.price.toLocaleString('vi-VN')}
+              />
+            ))}
           </div>
         </div>
 
@@ -89,7 +90,7 @@ function CartSidebar({ onClose }){
               fontWeight: 600,
               fontSize: '16px',
               color: 'rgba(184,142,47,1)'
-            }}>Rs.520,000.00</p>
+            }}>VND {subtotal.toLocaleString('vi-VN')}</p>
           </div>
 
           <div style={{
@@ -121,6 +122,7 @@ function CartSidebar({ onClose }){
                 fontWeight: 400,
                 fontSize: 12
               }}
+              onClick={closeCart}
             >
               Cart
             </Link>
@@ -140,6 +142,7 @@ function CartSidebar({ onClose }){
                 fontSize: '12px',
                 color: 'rgba(0,0,0,1)'
               }}
+              onClick={closeCart}
             >
               Checkout
             </Link>
@@ -160,6 +163,7 @@ function CartSidebar({ onClose }){
                 fontSize: '12px',
                 color: 'rgba(0,0,0,1)'
               }}
+              onClick={closeCart}
               >Comparison
             </Link>
           </div>

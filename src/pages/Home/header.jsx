@@ -1,5 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-function Header({ onOpenCart }) {
+import { CartContext } from '../../contexts/CartContext';
+import { useContext } from "react";
+function Header() {
+  const { toggleCart } = useContext(CartContext);
   return (
     <>
       <div style={{
@@ -95,7 +98,7 @@ function Header({ onOpenCart }) {
             width: 28,
             height: 28,
           }} />
-          <button onClick={onOpenCart} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+          <button onClick={toggleCart} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
             <img src="./src/pages/Home/images/ant-design_shopping-cart-outlined.png" style={{
               width: 28,
               height: 28,

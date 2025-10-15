@@ -1,13 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from '../contexts/CartContext';
 
 function Product({ image, name, category, price, discount, isNew, unit, productData}) {
   const [hovered, setHovered] = useState(false);
+  const { addToCart, toggleCart } = useContext(CartContext);
 
   // Tính toán giá mới và định dạng ngay trong component
   const discountedPrice = price * (1 - discount / 100);
   const formattedPrice = price.toLocaleString('vi-VN');
   const formattedDiscountedPrice = discountedPrice.toLocaleString('vi-VN');
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); 
+    e.preventDefault();
+    addToCart(productData);
+    toggleCart();
+  };
 
   const navigate = useNavigate();
   const handleCompareClick = () => {
@@ -209,6 +218,7 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
           }}
         >
           <div
+            onClick={handleAddToCart}
             style={{
               width: '202px',
               height: '48px',
@@ -216,6 +226,7 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              cursor: 'pointer'
             }}
           >
             <p
