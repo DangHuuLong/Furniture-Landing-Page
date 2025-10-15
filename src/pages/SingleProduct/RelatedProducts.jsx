@@ -1,5 +1,14 @@
 import Product from "../../components/Product"
-function RelatedProducts(){
+import React, { useState } from 'react';
+function RelatedProducts({ products }){
+  const [visibleProductsCount, setVisibleProductsCount] = useState(4);
+
+  const handleShowMore = () => {
+    setVisibleProductsCount(prevCount => prevCount + 4);
+  };
+
+  const isAllProductsShown = visibleProductsCount >= products.length;
+
   return (
     <div style={{
       width: '100%',
@@ -20,62 +29,47 @@ function RelatedProducts(){
         gap: '32px',
         marginTop: '26px',
         marginBottom: '44px',
+        flexWrap: 'wrap',
+        justifyContent: 'center', 
       }}>
-        <Product {...{
-          image: '/src/pages/Home/images/product1.png',
-          title: 'Syltherine',
-          description: 'Stylish cafe chair',
-          price: '2.500.000',
-          oldPrice: '3.500.000',
-          discount: 50,
-          newProduct: false,
-        }} />
-        <Product {...{
-          image: '/src/pages/Home/images/product2.png',
-          title: 'Leviosa',
-          description: 'Stylish cafe chair',
-          price: '2.500.000',
-          oldPrice: null,
-          discount: null,
-          newProduct: false,
-        }} />
-        <Product {...{
-          image: '/src/pages/Home/images/product3.png',
-          title: 'Lolito',
-          description: 'Luxury big sofa',
-          price: '7.000.000',
-          oldPrice: '14.000.000',
-          discount: 50,
-          newProduct: false,
-        }} />
-        <Product {...{
-          image: '/src/pages/Home/images/product4.png',
-          title: 'Respira',
-          description: 'Outdoor bar table and stool',
-          price: '500.000',
-          oldPrice: null,
-          discount: null,
-          newProduct: true,
-        }} />
+        {products.slice(0, visibleProductsCount).map((product) => (
+          <Product
+            key={product.SKU}
+            image={product.images.mainImage}
+            name={product.name}
+            category={product.category}
+            price={product.price}
+            discount={product.discount}
+            isNew={product.isNew}
+            unit={product.unit}
+            productData={product}
+          />
+        ))}
+
       </div>
       {/* Show More Button */}
-      <div style={{
-        width: '245px',
-        height: '48px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        border: '1px solid rgba(184, 142, 47, 1)',
-      }}>
-        <p style={{
-          fontFamily: '"Poppins", sans-serif',
-          fontWeight: '600',
-          fontSize: '16px',
-          color: 'rgba(184, 142, 47, 1)',
-        }}>Show More
-        </p>
-      </div>
+      {!isAllProductsShown && (
+        <div
+          onClick={handleShowMore}
+          style={{
+            width: '245px',
+            height: '48px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'transparent',
+            border: '1px solid rgba(184, 142, 47, 1)',
+            cursor: 'pointer',
+          }}
+        >
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: '600',
+            fontSize: '16px',
+            color: 'rgba(184, 142, 47, 1)',
+          }}>Show More</p>
+        </div>
+      )}
     </div>
   )
 }
