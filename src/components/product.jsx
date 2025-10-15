@@ -1,13 +1,18 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function Product({ image, name, category, price, discount, isNew, unit }) {
+function Product({ image, name, category, price, discount, isNew, unit, productData}) {
   const [hovered, setHovered] = useState(false);
 
   // Tính toán giá mới và định dạng ngay trong component
   const discountedPrice = price * (1 - discount / 100);
   const formattedPrice = price.toLocaleString('vi-VN');
   const formattedDiscountedPrice = discountedPrice.toLocaleString('vi-VN');
+
+  const navigate = useNavigate();
+  const handleCompareClick = () => {
+    navigate('/shop/singleProduct', { state: { product: productData } });
+  };
 
   return (
     <>
@@ -262,11 +267,13 @@ function Product({ image, name, category, price, discount, isNew, unit }) {
               </p>
             </div>
             <div
+              onClick={handleCompareClick} 
               style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: '2px',
+                cursor: 'pointer',
               }}
             >
               <img
@@ -276,12 +283,8 @@ function Product({ image, name, category, price, discount, isNew, unit }) {
                   height: '16px',
                 }}
               />
-              <Link
-                to="/shop/singleProduct"
+              <p
                 style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  font: 'inherit',
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: '600',
                   fontSize: '16px',
@@ -289,7 +292,7 @@ function Product({ image, name, category, price, discount, isNew, unit }) {
                 }}
               >
                 Compare
-              </Link>
+              </p>
             </div>
             <div
               style={{

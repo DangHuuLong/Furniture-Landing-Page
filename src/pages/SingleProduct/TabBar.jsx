@@ -1,4 +1,4 @@
-function TabBar() {
+function TabBar({product}) {
   return (
     <div style={{
       height: '100px',
@@ -43,7 +43,7 @@ function TabBar() {
         fontWeight: 400,
         fontSize: 16,
         color: 'rgba(0, 0, 0, 1)',
-      }}>Asgaard sofa</p>
+      }}>{product.name}</p>
     </div>
   )
 }

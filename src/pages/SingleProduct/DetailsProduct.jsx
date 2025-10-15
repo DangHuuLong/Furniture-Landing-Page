@@ -1,4 +1,8 @@
-function DetailsProduct() {
+function DetailsProduct({ product }) {
+  if (!product) return null;
+
+  const formattedPrice = product.price.toLocaleString('vi-VN');
+  const formattedDiscountedPrice = (product.price * (1 - product.discount / 100)).toLocaleString('vi-VN');
   return (
     <div style={{
       width: '100%',
@@ -18,62 +22,23 @@ function DetailsProduct() {
           flexDirection: 'column',
           gap: '32px'
         }}>
-          <div style={{
-            width: '76px',
-            height: '80px',
-            borderRadius: '10px',
-            backgroundColor: 'rgba(249, 241, 231, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <img src="/src/pages/SingleProduct/images/Outdoor sofa set 2.png" style={{
-              width: '100%',
-              objectFit: 'cover',
-            }}/>
-          </div>
-          <div style={{
-            width: '76px',
-            height: '80px',
-            borderRadius: '10px',
-            backgroundColor: 'rgba(249, 241, 231, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <img src="/src/pages/SingleProduct/images/Outdoor sofa set_2 1.png" style={{
-              width: '100%',
-              objectFit: 'cover',
-            }} />
-          </div>
-          <div style={{
-            width: '76px',
-            height: '80px',
-            borderRadius: '10px',
-            backgroundColor: 'rgba(249, 241, 231, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <img src="/src/pages/SingleProduct/images/Stuart sofa 1.png" style={{
-              width: '100%',
-              objectFit: 'cover',
-            }} />
-          </div>
-          <div style={{
-            width: '76px',
-            height: '80px',
-            borderRadius: '10px',
-            backgroundColor: 'rgba(249, 241, 231, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <img src="/src/pages/SingleProduct/images/Maya sofa three seater (1).png" style={{
-              width: '100%',
-              objectFit: 'cover',
-            }} />
-          </div>
+          {product.images.subImages.map((subImage, index) => (
+            <div key={index} style={{
+              width: '76px',
+              height: '80px',
+              borderRadius: '10px',
+              backgroundColor: 'rgba(249, 241, 231, 1)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              overflow: 'hidden'
+            }}>
+              <img src={subImage} style={{
+                width: '100%',
+                objectFit: 'cover',
+              }} />
+            </div>
+          ))}
         </div>
         {/*Big Image*/ }
         <div style={{
@@ -84,8 +49,9 @@ function DetailsProduct() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          overflow: 'hidden'
         }}>
-          <img src="/src/pages/SingleProduct/images/Asgaard sofa 3.png" style={{
+          <img src={product.images.mainImage} style={{ 
             width: '100%',
             objectFit: 'cover',
           }} />
@@ -101,13 +67,13 @@ function DetailsProduct() {
           fontWeight: '400',
           fontSize: '42px',
           color: 'rgba(0, 0, 0, 1)',
-        }}>Asgaard sofa</p>
+        }}>{product.name}</p>
         <p style={{
           fontFamily: '"Poppins", sans-serif',
           fontWeight: '500',
           fontSize: '24px',
           color: 'rgba(159, 159, 159, 1)',
-        }}>Rs. 250,000.00</p>
+        }}>{product.unit} {product.discount > 0 ? formattedDiscountedPrice : formattedPrice}</p>
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -119,11 +85,10 @@ function DetailsProduct() {
             gap: '6px',
             marginRight: '18px',
           }}>
-            <img src="/src/pages/SingleProduct/images/dashicons_star-filled.png" />
-            <img src="/src/pages/SingleProduct/images/dashicons_star-filled.png" />
-            <img src="/src/pages/SingleProduct/images/dashicons_star-filled.png" />
-            <img src="/src/pages/SingleProduct/images/dashicons_star-filled.png" />
-            <img src="/src/pages/SingleProduct/images/carbon_star-half.png" />
+            {Array.from({ length: 5 }).map((_, index) => {
+              const starType = index + 1 <= Math.floor(product.rating) ? 'full' : (index < product.rating ? 'half' : 'empty');
+              return <img key={index} src={`/src/pages/SingleProduct/images/star-${starType}.png`} alt={`${starType} star`} />;
+            })}
           </div>
           <div style={{
             width: '1px',
@@ -136,7 +101,7 @@ function DetailsProduct() {
             fontWeight: '400',
             fontSize: '13px',
             color: 'rgba(159, 159, 159, 1)',
-          }}>5 Customer Review</p>
+          }}>{product.reviews} Customer Review</p>
         </div>
         {/*Description*/ }
         <p style={{
@@ -148,7 +113,7 @@ function DetailsProduct() {
           fontSize: '13px',
           color: 'rgba(0, 0, 0, 1)',
         }}>
-          Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
+          {product.intendedUse}
         </p>
 
         {/*Size*/ }
@@ -166,59 +131,24 @@ function DetailsProduct() {
             gap: '16px',
             marginTop: '12px',
           }}>
-            {/*Size L*/ }
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '5px',
-              backgroundColor: 'rgba(184, 142, 47, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: '400',
-                fontSize: '13px',
-                color: 'rgba(255, 255, 255, 1)',
-              }}>L</p>
-            </div>
-
-            {/*Size XL*/ }
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '5px',
-              backgroundColor: 'rgba(249, 241, 231, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: '400',
-                fontSize: '13px',
-                color: 'rgba(0, 0, 0, 1)',
-              }}>XL</p>
-            </div>
-
-            {/*Size XS*/}
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '5px',
-              backgroundColor: 'rgba(249, 241, 231, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: '400',
-                fontSize: '13px',
-                color: 'rgba(0, 0, 0, 1)',
-              }}>XS</p>
-            </div>
+            {product.size.map((s, index) => (
+              <div key={index} style={{
+                width: '30px',
+                height: '30px',
+                borderRadius: '5px',
+                backgroundColor: 'rgba(184, 142, 47, 1)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: '400',
+                  fontSize: '13px',
+                  color: 'rgba(255, 255, 255, 1)',
+                }}>{s}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -237,34 +167,17 @@ function DetailsProduct() {
             gap: '16px',
             marginTop: '12px',
           }}>
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(129, 109, 250, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}></div>
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(0, 0, 0, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}></div>
-            <div style={{
-              width: '30px',
-              height: '30px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(184, 142, 47, 1)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}></div>
-
+            {product.colors.map((c, index) => (
+              <div key={index} style={{
+                width: '30px',
+                height: '30px',
+                borderRadius: '50%',
+                backgroundColor: c, 
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}></div>
+            ))}
           </div>
         </div>
 
@@ -440,19 +353,21 @@ function DetailsProduct() {
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(159, 159, 159, 1)',
-            }}>SS001</p>
+            }}>{product.SKU}</p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(159, 159, 159, 1)',
-            }}>Sofas</p>
+            }}>{product.category}</p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(159, 159, 159, 1)',
-            }}>Sofa, Chair, Home, Shop</p>
+            }}>
+              {product.tags.join(', ')}
+            </p>
             <div style={{
               display: 'flex',
               gap: '25px',

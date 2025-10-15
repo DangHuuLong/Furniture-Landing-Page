@@ -113,6 +113,7 @@ function ListProduct() {
               discount={product.discount}
               isNew={product.isNew}
               unit={product.unit}
+              productData={product} 
             />
           ))}
         </div>
