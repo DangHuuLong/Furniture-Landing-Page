@@ -40,7 +40,37 @@
         "furniture",
         "living room",
         "modern"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 sectional sofa",
+        "Model Number": "TFCBLIGRBL6SRHS",
+        "Secondary Material": "Solid Wood",
+        "Configuration": "L-shaped",
+        "Upholstery Material": "Fabric + Cotton",
+        "Upholstery Color": "Bright Grey & Lion"
+      },
+      "Product": {
+        "Filling Material": "Foam",
+        "Finish Type": "Bright Grey & Lion",
+        "Adjustable Headrest": "No",
+        "Maximum Load Capacity": "280 KG",
+        "Origin of Manufacture": "India"
+      },
+      "Dimensions": {
+        "Width": "265.32 cm",
+        "Height": "76 cm",
+        "Depth": "167.76 cm",
+        "Weight": "45 KG",
+        "Seat Height": "41.52 cm",
+        "Leg Height": "5.46 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Manufacturing Warranty",
+        "Warranty Service Type": "For Warranty Claims or Any Product Related Issues Please Email at operations@trevifurniture.com",
+        "Covered in Warranty": "Warranty Against Manufacturing Defect",
+        "Not Covered in Warranty": "The Warranty Does Not Cover Damages Due To Usage Of The Product Beyond Its Intended Use And Wear & Tear In The Natural Course Of Product Usage.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "TABLE-DINING-DT05",
@@ -79,7 +109,37 @@
         "furniture",
         "wood",
         "classic"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Three Seater, 2 Single Seater",
+        "Model Number": "DTUBLIGRBL568",
+        "Secondary Material": "Solid Wood",
+        "Configuration": "L-shaped",
+        "Upholstery Material": "Fabric + Cotton",
+        "Upholstery Color": "Bright Grey & Lion"
+      },
+      "Product": {
+        "Filling Material": "Matte",
+        "Finish Type": "Bright Grey & Lion",
+        "Adjustable Headrest": "Yes",
+        "Maximum Load Capacity": "300 KG",
+        "Origin of Manufacture": "India"
+      },
+      "Dimensions": {
+        "Width": "265.32 cm",
+        "Height": "76 cm",
+        "Depth": "167.76 cm",
+        "Weight": "65 KG",
+        "Seat Height": "41.52 cm",
+        "Leg Height": "5.46 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1.2 Year Manufacturing Warranty",
+        "Warranty Service Type": "For Warranty Claims or Any Product Related Issues Please Email at support@xyz.com",
+        "Covered in Warranty": "Warranty of the product is limited to manufacturing defects only.",
+        "Not Covered in Warranty": "The Warranty Does Not Cover Damages Due To Usage Of The Product Beyond Its Intended Use And Wear & Tear In The Natural Course Of Product Usage.",
+        "Domestic Warranty": "3 Months"
+      }
     },
     {
       "SKU": "BED-QUEEN-BQ10",
@@ -118,7 +178,37 @@
         "bedroom",
         "frame",
         "metal"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Queen Size Bed Frame",
+        "Model Number": "BQ-801",
+        "Secondary Material": "Metal & Wood",
+        "Configuration": "Platform",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Matte Black",
+        "Adjustable Headrest": "No",
+        "Maximum Load Capacity": "350 KG",
+        "Origin of Manufacture": "Vietnam"
+      },
+      "Dimensions": {
+        "Width": "160 cm",
+        "Height": "100 cm",
+        "Depth": "200 cm",
+        "Weight": "40 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "15 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "2 Year Structural Warranty",
+        "Warranty Service Type": "Customer Support via phone or email for any issues.",
+        "Covered in Warranty": "Structural defects in the frame and material.",
+        "Not Covered in Warranty": "Damage from misuse, normal wear and tear, or accidental damage.",
+        "Domestic Warranty": "2 Years"
+      }
     },
     {
       "SKU": "CHAIR-ARM-AC03",
@@ -159,7 +249,37 @@
         "velvet",
         "accent",
         "furniture"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Armchair",
+        "Model Number": "AC-987",
+        "Secondary Material": "Solid Wood & Foam",
+        "Configuration": "Single Seater",
+        "Upholstery Material": "Velvet",
+        "Upholstery Color": "Navy Blue"
+      },
+      "Product": {
+        "Filling Material": "Foam & Fiber",
+        "Finish Type": "Smooth Velvet",
+        "Adjustable Headrest": "No",
+        "Maximum Load Capacity": "120 KG",
+        "Origin of Manufacture": "Malaysia"
+      },
+      "Dimensions": {
+        "Width": "80 cm",
+        "Height": "90 cm",
+        "Depth": "85 cm",
+        "Weight": "25 KG",
+        "Seat Height": "45 cm",
+        "Leg Height": "10 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Fabric & Structural Warranty",
+        "Warranty Service Type": "Contact retailer for service requests.",
+        "Covered in Warranty": "Manufacturing defects in frame and fabric.",
+        "Not Covered in Warranty": "Fading, pilling, or damage from spills and tears.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "LAMP-TABLE-TL08",
@@ -200,7 +320,37 @@
         "lighting",
         "desk",
         "minimalist"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Table Lamp, 1 Bulb",
+        "Model Number": "TL-801",
+        "Secondary Material": "Metal",
+        "Configuration": "Adjustable",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Matte Finish",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "N/A",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "15 cm",
+        "Height": "40 cm",
+        "Depth": "15 cm",
+        "Weight": "1 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "6 Months Electrical Warranty",
+        "Warranty Service Type": "Contact seller for service.",
+        "Covered in Warranty": "Manufacturing defects in electrical components.",
+        "Not Covered in Warranty": "Damage from misuse or breakage.",
+        "Domestic Warranty": "6 Months"
+      }
     },
     {
       "SKU": "RUG-AREA-AR15",
@@ -218,7 +368,7 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s",
-          "https://encrypted.tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s"
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TNGfCkRZcQjt5OXZmV4qjKZhvGrAEK0fOg&s"
         ]
       },
       "description": {
@@ -241,7 +391,37 @@
         "decor",
         "home",
         "geometric"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Area Rug",
+        "Model Number": "AR-15-GEO",
+        "Secondary Material": "Cotton & Wool Blend",
+        "Configuration": "Rectangular",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Soft Weave",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "N/A",
+        "Origin of Manufacture": "Turkey"
+      },
+      "Dimensions": {
+        "Width": "160 cm",
+        "Height": "0.5 cm",
+        "Depth": "230 cm",
+        "Weight": "10 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "3 Months Manufacturing Warranty",
+        "Warranty Service Type": "Customer Support via email for product issues.",
+        "Covered in Warranty": "Loose stitching or unraveling.",
+        "Not Covered in Warranty": "Stains, tears, or fading from sun exposure.",
+        "Domestic Warranty": "3 Months"
+      }
     },
     {
       "SKU": "COFFEE-TABLE-CT07",
@@ -280,7 +460,37 @@
         "furniture",
         "marble",
         "luxury"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Coffee Table",
+        "Model Number": "CT-701",
+        "Secondary Material": "Metal",
+        "Configuration": "Rectangular",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Polished Marble & Matte Black Metal",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "50 KG",
+        "Origin of Manufacture": "Italy"
+      },
+      "Dimensions": {
+        "Width": "120 cm",
+        "Height": "45 cm",
+        "Depth": "60 cm",
+        "Weight": "40 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "40 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Warranty on Structure",
+        "Warranty Service Type": "Manufacturer contact for claims.",
+        "Covered in Warranty": "Structural defects and material flaws.",
+        "Not Covered in Warranty": "Scratches, chips, or damage to the marble top from impact.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "SHELF-BOOK-BS12",
@@ -319,7 +529,37 @@
         "storage",
         "industrial",
         "furniture"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Bookshelf",
+        "Model Number": "BS-998",
+        "Secondary Material": "Metal Frame",
+        "Configuration": "Multi-tiered",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Distressed Wood & Matte Black",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "100 KG (per shelf)",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "100 cm",
+        "Height": "180 cm",
+        "Depth": "30 cm",
+        "Weight": "30 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "10 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Manufacturing Warranty",
+        "Warranty Service Type": "Email support for claims.",
+        "Covered in Warranty": "Manufacturing defects and structural flaws.",
+        "Not Covered in Warranty": "Damage from improper assembly, misuse, or accidental damage.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "CUPBOARD-STORAGE-CU14",
@@ -358,7 +598,37 @@
         "cabinet",
         "storage",
         "furniture"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Storage Cupboard",
+        "Model Number": "CU-14",
+        "Secondary Material": "Engineered Wood",
+        "Configuration": "2-door, Multi-shelf",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Wood Grain Finish",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "50 KG",
+        "Origin of Manufacture": "Malaysia"
+      },
+      "Dimensions": {
+        "Width": "100 cm",
+        "Height": "150 cm",
+        "Depth": "45 cm",
+        "Weight": "40 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "10 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Manufacturing Warranty",
+        "Warranty Service Type": "On-site repair for structural defects.",
+        "Covered in Warranty": "Structural defects, hardware failures.",
+        "Not Covered in Warranty": "Water damage, scratches, or wear and tear.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "LAMP-FLOOR-LF20",
@@ -397,9 +667,38 @@
         "lighting",
         "living room",
         "decor"
-      ]
-    },
-    {
+      ],
+      "General": {
+        "Sales Package": "1 Floor Lamp, 1 Shade",
+        "Model Number": "LF-20",
+        "Secondary Material": "Metal",
+        "Configuration": "Arched",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Matte Black",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "N/A",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "150 cm",
+        "Height": "200 cm",
+        "Depth": "40 cm",
+        "Weight": "15 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Electrical Warranty",
+        "Warranty Service Type": "Contact retailer for claims.",
+        "Covered in Warranty": "Electrical defects in wiring and bulb socket.",
+        "Not Covered in Warranty": "Broken shade, bulb, or damage to the base.",
+        "Domestic Warranty": "1 Year"
+      }
+    },{
       "SKU": "TABLE-SIDE-ST09",
       "name": "Round Side Table",
       "category": "Living Room",
@@ -436,7 +735,37 @@
         "furniture",
         "living room",
         "bedroom"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Side Table",
+        "Model Number": "ST-901",
+        "Secondary Material": "Metal",
+        "Configuration": "Round",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Wood Top, Matte Metal Base",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "15 KG",
+        "Origin of Manufacture": "India"
+      },
+      "Dimensions": {
+        "Width": "45 cm",
+        "Height": "55 cm",
+        "Depth": "45 cm",
+        "Weight": "5 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "50 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "6 Months Structural Warranty",
+        "Warranty Service Type": "Contact retailer for claims.",
+        "Covered in Warranty": "Structural defects in the frame.",
+        "Not Covered in Warranty": "Scratches, dents, or damage to the tabletop.",
+        "Domestic Warranty": "6 Months"
+      }
     },
     {
       "SKU": "CHAIR-OFFICE-OC05",
@@ -475,7 +804,37 @@
         "chair",
         "ergonomic",
         "home office"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Office Chair",
+        "Model Number": "OC-501",
+        "Secondary Material": "Steel & Plastic",
+        "Configuration": "Adjustable Height",
+        "Upholstery Material": "Mesh",
+        "Upholstery Color": "Black"
+      },
+      "Product": {
+        "Filling Material": "Foam",
+        "Finish Type": "Smooth Plastic & Matte Steel",
+        "Adjustable Headrest": "Yes",
+        "Maximum Load Capacity": "150 KG",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "65 cm",
+        "Height": "110-120 cm (adjustable)",
+        "Depth": "60 cm",
+        "Weight": "18 KG",
+        "Seat Height": "45-55 cm (adjustable)",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "2 Year Parts Warranty",
+        "Warranty Service Type": "Manufacturer support for parts replacement.",
+        "Covered in Warranty": "Defects in hydraulic cylinder, casters, and base.",
+        "Not Covered in Warranty": "Normal wear of fabric, scratches, or damage from improper use.",
+        "Domestic Warranty": "2 Years"
+      }
     },
     {
       "SKU": "MIRROR-WALL-WM11",
@@ -515,7 +874,37 @@
         "decor",
         "wall decor",
         "home"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Wall Mirror",
+        "Model Number": "WM-11",
+        "Secondary Material": "Glass & Metal",
+        "Configuration": "Round",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Polished Gold Metal",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "N/A",
+        "Origin of Manufacture": "India"
+      },
+      "Dimensions": {
+        "Width": "80 cm",
+        "Height": "80 cm",
+        "Depth": "2 cm",
+        "Weight": "7 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "3 Months Warranty against glass defects",
+        "Warranty Service Type": "Manufacturer contact for claims.",
+        "Covered in Warranty": "Structural defects, discoloration of glass.",
+        "Not Covered in Warranty": "Breakage of glass, damage to frame from impact.",
+        "Domestic Warranty": "3 Months"
+      }
     },
     {
       "SKU": "COAT-RACK-CR16",
@@ -553,9 +942,38 @@
         "coat rack",
         "storage",
         "entryway"
-      ]
-    },
-    {
+      ],
+      "General": {
+        "Sales Package": "1 Coat Rack",
+        "Model Number": "CR-16",
+        "Secondary Material": "Metal",
+        "Configuration": "Wall-mounted",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Natural Wood",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "10 KG",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "60 cm",
+        "Height": "10 cm",
+        "Depth": "8 cm",
+        "Weight": "1.5 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Manufacturing Warranty",
+        "Warranty Service Type": "Email support for claims.",
+        "Covered in Warranty": "Structural defects and loose hooks.",
+        "Not Covered in Warranty": "Improper installation, damage from heavy loads, or water damage.",
+        "Domestic Warranty": "1 Year"
+      }
+    },{
       "SKU": "OTTOMAN-STOOL-OS22",
       "name": "Padded Ottoman Stool",
       "category": "Living Room",
@@ -593,7 +1011,37 @@
         "stool",
         "living room",
         "furniture"
-      ]
+      ],
+      "General": {
+        "Sales Package": "1 Ottoman Stool",
+        "Model Number": "OS-22",
+        "Secondary Material": "Solid Wood",
+        "Configuration": "Round",
+        "Upholstery Material": "Fabric",
+        "Upholstery Color": "Light Gray"
+      },
+      "Product": {
+        "Filling Material": "High-Density Foam",
+        "Finish Type": "Fabric Upholstery",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "100 KG",
+        "Origin of Manufacture": "Vietnam"
+      },
+      "Dimensions": {
+        "Width": "50 cm",
+        "Height": "40 cm",
+        "Depth": "50 cm",
+        "Weight": "8 KG",
+        "Seat Height": "40 cm",
+        "Leg Height": "5 cm"
+      },
+      "Warranty": {
+        "Warranty Summary": "1 Year Fabric & Structural Warranty",
+        "Warranty Service Type": "Contact retailer for claims.",
+        "Covered in Warranty": "Structural defects in the frame, fabric defects.",
+        "Not Covered in Warranty": "Stains, tears, and damage from misuse.",
+        "Domestic Warranty": "1 Year"
+      }
     },
     {
       "SKU": "SHELF-FLOATING-FS25",
@@ -633,7 +1081,37 @@
         "floating",
         "storage",
         "wall decor"
-      ]
+      ],
+      "General": {
+        "Sales Package": "2 Floating Shelves",
+        "Model Number": "FS-25",
+        "Secondary Material": "MDF Wood",
+        "Configuration": "Wall-mounted",
+        "Upholstery Material": "N/A",
+        "Upholstery Color": "N/A"
+      },
+      "Product": {
+        "Filling Material": "N/A",
+        "Finish Type": "Matte White",
+        "Adjustable Headrest": "N/A",
+        "Maximum Load Capacity": "10 KG (per shelf)",
+        "Origin of Manufacture": "China"
+      },
+      "Dimensions": {
+        "Width": "60 cm",
+        "Height": "4 cm",
+        "Depth": "20 cm",
+        "Weight": "3 KG",
+        "Seat Height": "N/A",
+        "Leg Height": "N/A"
+      },
+      "Warranty": {
+        "Warranty Summary": "30-Day Money Back Guarantee",
+        "Warranty Service Type": "Customer service for returns.",
+        "Covered in Warranty": "Shipping damage or manufacturing defects.",
+        "Not Covered in Warranty": "Improper installation, damage from heavy loads, or water damage.",
+        "Domestic Warranty": "30 Days"
+      }
     }
   ]
 }

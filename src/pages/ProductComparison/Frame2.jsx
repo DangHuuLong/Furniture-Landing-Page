@@ -1,61 +1,62 @@
-function Frame2() {
+function Frame2({ productsToCompare }) {
+  const product1 = productsToCompare[0];
+  const product2 = productsToCompare[1];
   const sections = [
     {
       title: "General",
       rows: [
-        { label: "Sales Package", left: "1 sectional sofa", right: "1 Three Seater, 2 Single Seater" },
-        { label: "Model Number", left: "TFCBLIGRBL6SRHS", right: "DTUBLIGRBL568" },
-        { label: "Secondary Material", left: "Solid Wood", right: "Solid Wood" },
-        { label: "Configuration", left: "L-shaped", right: "L-shaped" },
-        { label: "Upholstery Material", left: "Fabric + Cotton", right: "Fabric + Cotton" },
-        { label: "Upholstery Color", left: "Bright Grey & Lion", right: "Bright Grey & Lion" },
+        { label: "Sales Package" },
+        { label: "Model Number" },
+        { label: "Secondary Material" },
+        { label: "Configuration" },
+        { label: "Upholstery Material" },
+        { label: "Upholstery Color" },
       ],
     },
     {
       title: "Product",
       rows: [
-        { label: "Filling Material", left: "Foam", right: "Matte" },
-        { label: "Finish Type", left: "Bright Grey & Lion", right: "Bright Grey & Lion" },
-        { label: "Adjustable Headrest", left: "No", right: "Yes" },
-        { label: "Maximum Load Capacity", left: "280 KG", right: "300 KG" },
-        { label: "Origin of Manufacture", left: "India", right: "India" },
+        { label: "Filling Material" },
+        { label: "Finish Type" },
+        { label: "Adjustable Headrest" },
+        { label: "Maximum Load Capacity" },
+        { label: "Origin of Manufacture" },
       ],
     },
     {
       title: "Dimensions",
       rows: [
-        { label: "Width", left: "265.32 cm", right: "265.32 cm" },
-        { label: "Height", left: "76 cm", right: "76 cm" },
-        { label: "Depth", left: "167.76 cm", right: "167.76 cm" },
-        { label: "Weight", left: "45 KG", right: "65 KG" },
-        { label: "Seat Height", left: "41.52 cm", right: "41.52 cm" },
-        { label: "Leg Height", left: "5.46 cm", right: "5.46 cm" },
+        { label: "Width" },
+        { label: "Height" },
+        { label: "Depth" },
+        { label: "Weight" },
+        { label: "Seat Height" },
+        { label: "Leg Height" },
       ],
     },
     {
       title: "Warranty",
       rows: [
-        { label: "Warranty Summary", left: "1 Year Manufacturing Warranty", right: "1.2 Year Manufacturing Warranty" },
-        { label: "Warranty Service Type", left: "For Warranty Claims or Any Product Related Issues Please Email at operations@trevifurniture.com", right: "For Warranty Claims or Any Product Related Issues Please Email at support@xyz.com" },
-        { label: "Covered in Warranty", left: "Warranty Against Manufacturing Defect", right: "Warranty of the product is limited to manufacturing defects only." },
-        { label: "Not Covered in Warranty", left: "The Warranty Does Not Cover Damages Due To Usage Of The Product Beyond Its Intended Use And Wear & Tear In The Natural Course Of Product Usage.", right: "The Warranty Does Not Cover Damages Due To Usage Of The Product Beyond Its Intended Use And Wear & Tear In The Natural Course Of Product Usage." },
-        { label: "Domestic Warranty", left: "1 Year", right: "3 Months" },
+        { label: "Warranty Summary" },
+        { label: "Warranty Service Type" },
+        { label: "Covered in Warranty" },
+        { label: "Not Covered in Warranty" },
+        { label: "Domestic Warranty" },
       ],
-    }
+    },
   ];
 
   return (
     <div style={{ marginTop: '64px', width: '100%', borderTop: '1px solid rgba(232,232,232,1)' }}>
       {sections.map((sec) => (
         <div key={sec.title}>
-          {/* dòng kẻ cột trên cùng */}
+          {/* Dòng kẻ và tiêu đề section không thay đổi */}
           <div style={{ display: 'flex', paddingLeft: '42px', height: '42px' }}>
             <div style={{ width: '300px', borderRight: '1px solid rgba(232,232,232,1)' }} />
             <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }} />
             <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }} />
           </div>
 
-          {/* tiêu đề section */}
           <div style={{ display: 'flex', paddingLeft: '42px' }}>
             <div style={{ width: '300px', borderRight: '1px solid rgba(232,232,232,1)' }}>
               <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500, fontSize: '28px', color: 'rgba(0,0,0,1)' }}>
@@ -66,7 +67,7 @@ function Frame2() {
             <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }} />
           </div>
 
-          {/* các dòng nội dung */}
+          {/* Các dòng nội dung */}
           {sec.rows.map((r) => (
             <div key={r.label}>
               {/* line mỏng giữa các hàng */}
@@ -76,28 +77,32 @@ function Frame2() {
                 <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }} />
               </div>
 
-              {/* row */}
+              {/* Dòng so sánh */}
               <div style={{ display: 'flex', paddingLeft: '42px' }}>
                 <div style={{ width: '300px', borderRight: '1px solid rgba(232,232,232,1)' }}>
                   <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(0,0,0,1)' }}>
                     {r.label}
                   </p>
                 </div>
+
+                {/* Cột dữ liệu sản phẩm 1: Sử dụng optional chaining để an toàn */}
                 <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }}>
                   <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(0,0,0,1)', paddingLeft: '42px' }}>
-                    {r.left}
+                    {product1 ? product1[sec.title][r.label] : '-'}
                   </p>
                 </div>
+
+                {/* Cột dữ liệu sản phẩm 2: Tương tự với sản phẩm 2 */}
                 <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }}>
                   <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(0,0,0,1)', paddingLeft: '42px' }}>
-                    {r.right}
+                    {product2 ? product2[sec.title][r.label] : '-'}
                   </p>
                 </div>
               </div>
-
             </div>
           ))}
-          {/* khoảng cách dưới mỗi hàng */}
+
+          {/* Khoảng cách dưới mỗi hàng */}
           <div style={{ display: 'flex', paddingLeft: '42px', height: '54px' }}>
             <div style={{ width: '300px', borderRight: '1px solid rgba(232,232,232,1)' }} />
             <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }} />

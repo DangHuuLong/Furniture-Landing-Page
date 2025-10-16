@@ -5,13 +5,16 @@ import App from './App.jsx'
 import { CartProvider } from "./contexts/CartContext";
 import { ToastProvider } from './contexts/ToastContext';
 import ToastContainer from './components/ToastContainer';
+import { ComparisonProvider } from './contexts/ComparisonContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ToastProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <ComparisonProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </ComparisonProvider>
       <ToastContainer />
     </ToastProvider>
   </StrictMode>,
