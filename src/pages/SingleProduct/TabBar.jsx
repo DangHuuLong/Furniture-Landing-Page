@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function TabBar({product}) {
   return (
     <div style={{
@@ -14,7 +15,7 @@ function TabBar({product}) {
         fontSize: 16,
         color: 'rgba(159, 159, 159, 1)',
         marginRight: 14,
-      }}>Home</p> 
+      }}><Link to="/" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link></p> 
       <img src="/src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
         width: 20,
         height: 20,
@@ -26,7 +27,7 @@ function TabBar({product}) {
         fontSize: 16,
         color: 'rgba(159, 159, 159, 1)',
         marginRight: 14,
-      }}>Shop</p>
+      }}><Link to="/shop" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Shop</Link></p>
       <img src="/src/pages/SingleProduct/images/dashicons_arrow-down-alt2.png" style={{
         width: 20,
         height: 20,

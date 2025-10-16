@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Banner({name}) {
   return (
     <div style={{
@@ -35,7 +36,7 @@ function Banner({name}) {
             fontWeight: '500',
             fontSize: '16px',
             color: '000000',
-          }}>Home</p>
+          }}><Link to="/" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link></p>
           <img src="/src/pages/Shop/images/dashicons_arrow-down-alt2.png" style={{
             width: "20px",
             height: "20px",
@@ -45,7 +46,7 @@ function Banner({name}) {
             fontWeight: '300',
             fontSize: '16px',
             color: '000000',
-          }}>{name}</p>
+          }}><Link to={`/${name}`} style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>{name}</Link></p>
         </div>
       </div>
     </div>
