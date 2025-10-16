@@ -1,6 +1,10 @@
 import Banner from '../Shop/Banner'
 import FeaturesBar from '../Shop/FeaturesBar'
-function Checkout(){
+import { CartContext } from '../../contexts/CartContext';
+import { useContext } from "react";
+function Checkout() {
+  const { cartItems } = useContext(CartContext);
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   return (
     <>
       <Banner name='Checkout'/>
@@ -341,42 +345,49 @@ function Checkout(){
 
             <div style={{
               display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '100%'
+              flexDirection: 'column'
             }}>
-              <div style={{
-                display: 'flex',
-                gap: '11px',
-                alignItems: 'center',
-                marginBottom: '22px'
-              }}>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 400,
-                  fontSize: '16px',
-                  color: 'rgba(159,159,159,1)',
-                }}>Asgaard sofa</p>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 500,
-                  fontSize: '12px',
-                  color: 'rgba(0,0,0,1)',
-                }}>X</p>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 500,
-                  fontSize: '12px',
-                  color: 'rgba(0,0,0,1)',
-                }}>1</p>
-              </div>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 300,
-                fontSize: '16px',
-                color: 'rgba(0,0,0,1)',
-                marginBottom: '22px'
-              }}>Rs. 250,000.00</p>
+              {cartItems.map(cartItem => (
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  width: '100%'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    gap: '11px',
+                    alignItems: 'center',
+                    marginBottom: '22px'
+                  }}>
+                    <p style={{
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 400,
+                      fontSize: '16px',
+                      color: 'rgba(159,159,159,1)',
+                    }}>{cartItem.name}</p>
+                    <p style={{
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 500,
+                      fontSize: '12px',
+                      color: 'rgba(0,0,0,1)',
+                    }}>X</p>
+                    <p style={{
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 500,
+                      fontSize: '12px',
+                      color: 'rgba(0,0,0,1)',
+                    }}>{cartItem.quantity}</p>
+                  </div>
+                  <p style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: 'rgba(0,0,0,1)',
+                    marginBottom: '22px'
+                  }}>{cartItem.unit}. {cartItem.price.toLocaleString('vi-VN')}</p>
+                </div>
+              ))}
             </div>
 
             <div style={{
@@ -398,7 +409,7 @@ function Checkout(){
                 fontSize: '16px',
                 color: 'rgba(0,0,0,1)',
                 marginBottom: '22px'
-              }}>Rs. 250,000.00</p>
+              }}>VND. {subtotal.toLocaleString('vi-VN')}</p>
             </div>
 
             <div style={{
@@ -420,7 +431,7 @@ function Checkout(){
                 fontSize: '24px',
                 color: 'rgba(184,142,47,1)',
                 marginBottom: '22px'
-              }}>Rs. 250,000.00</p>
+              }}>VND. {subtotal.toLocaleString('vi-VN')}</p>
             </div>
           </div>
           <div style={{

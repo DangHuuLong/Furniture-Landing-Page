@@ -94,7 +94,7 @@ function CartSidebar(){
               fontWeight: 600,
               fontSize: '16px',
               color: 'rgba(184,142,47,1)'
-            }}>VND {subtotal.toLocaleString('vi-VN')}</p>
+            }}>VND. {subtotal.toLocaleString('vi-VN')}</p>
           </div>
 
           <div style={{
