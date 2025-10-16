@@ -54,7 +54,10 @@ function CartSidebar(){
             marginBottom: '42px'
           }}></div>
           {/** 3*/}
-          <div>
+          <div style={{
+            overflowY: 'auto',
+            maxHeight: '450px'
+          }}>
             {cartItems.map(item => (
               <CartItem
                 key={item.SKU}
