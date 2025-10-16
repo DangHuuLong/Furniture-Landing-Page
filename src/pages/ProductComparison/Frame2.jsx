@@ -1,6 +1,20 @@
+import { CartContext } from '../../contexts/CartContext';
+import { useToast } from '../../contexts/ToastContext';
+import { useContext } from "react";
 function Frame2({ productsToCompare }) {
   const product1 = productsToCompare[0];
   const product2 = productsToCompare[1];
+  
+    const { addToCart } = useContext(CartContext);
+    const { showToast } = useToast();
+
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart(product, 1);
+    showToast('Đã thêm sản phẩm vào giỏ hàng.', 'success');
+  };
+
   const sections = [
     {
       title: "General",
@@ -116,31 +130,38 @@ function Frame2({ productsToCompare }) {
           
         </div>
         <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }}>
-          <div style={{
-            width: '215px',
-            height: '64px',
-            backgroundColor: 'rgba(184, 142, 47, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginLeft: '42px',
-          }}>
-            <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(255,255,255,1)'}}>Add To Cart</p>
-          </div>
-          
+          {product1 && (
+            <div style={{
+              width: '215px',
+              height: '64px',
+              backgroundColor: 'rgba(184, 142, 47, 1)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: '42px',
+              cursor: 'pointer'
+            }}
+              onClick={(e) => handleAddToCart(e, product1)}>
+              <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(255,255,255,1)' }}>Add To Cart</p>
+            </div>
+          )}
         </div>
         <div style={{ width: '344px', borderRight: '1px solid rgba(232,232,232,1)' }}>
-          <div style={{
-            width: '215px',
-            height: '64px',
-            backgroundColor: 'rgba(184, 142, 47, 1)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginLeft: '42px',
-          }}>
-            <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(255,255,255,1)'}}>Add To Cart</p>
-          </div>
+          {product2 && (
+            <div style={{
+              width: '215px',
+              height: '64px',
+              backgroundColor: 'rgba(184, 142, 47, 1)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: '42px',
+              cursor: 'pointer'
+            }}
+              onClick={(e) => handleAddToCart(e, product2)}>
+              <p style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: '20px', color: 'rgba(255,255,255,1)' }}>Add To Cart</p>
+            </div>
+          )}
         </div>
       </div>
 
