@@ -1113,5 +1113,103 @@
         "Domestic Warranty": "30 Days"
       }
     }
+  ],
+  "blogs": [
+    {
+      "image": "https://mona.media/wp-content/uploads/2023/03/toi-uu-noi-dung-blog.jpg",
+      "user": "Admin",
+      "date": "18 Oct 2022",
+      "tag": "Interior",
+      "title": "Cozy corners: small spaces, big vibes",
+      "content": "Tận dụng những góc nhỏ trong nhà có thể mang lại cảm giác ấm cúng và thư giãn hơn bao giờ hết. Hãy thử thêm ghế bành, đèn đọc sách và tấm thảm mềm để tạo nên một không gian riêng tư hoàn hảo cho những buổi chiều yên tĩnh."
+    },
+    {
+      "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_6_638401635491997334_viet-blog-la-gi-huong-dan-cach-viet-blog-ca-nhan-hap-dan-cho-nguoi-moi-bat-dau.jpg",
+      "user": "Admin",
+      "date": "26 Oct 2022",
+      "tag": "Handmade",
+      "title": "The art of slow crafting at home",
+      "content": "Thủ công không chỉ là sở thích mà còn là cách để kết nối lại với sự kiên nhẫn và tỉ mỉ. Dành thời gian tự tay làm một món đồ gốm hay dệt khăn len sẽ giúp bạn cảm nhận được giá trị của từng chi tiết nhỏ."
+    },
+    {
+      "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2023_12_18_638385137515105222_blog-la-gi.jpg",
+      "user": "Admin",
+      "date": "02 Nov 2022",
+      "tag": "Wood",
+      "title": "Sustainable wood choices for modern homes",
+      "content": "Chọn gỗ bền vững không chỉ giúp bảo vệ môi trường mà còn mang lại vẻ đẹp tự nhiên cho không gian sống. Gỗ tre, gỗ tần bì hay gỗ óc chó là những lựa chọn vừa thẩm mỹ vừa thân thiện."
+    },
+    {
+      "image": "https://odoocdn.com/openerp_website/static/src/img/apps/blog/banner.webp",
+      "user": "Admin",
+      "date": "11 Nov 2022",
+      "tag": "Minimal",
+      "title": "Minimalist living: keeping style, cutting clutter",
+      "content": "Phong cách tối giản không có nghĩa là trống rỗng. Đó là sự tinh gọn, chọn lọc những vật dụng thật sự cần thiết, để mỗi món đồ đều có ý nghĩa và câu chuyện riêng."
+    },
+    {
+      "image": "https://www.advantageclub.ai/_next/image?url=https%3A%2F%2Fblog.advantageclub.co%2Fwp-content%2Fuploads%2F2023%2F01%2Fezgif.com-gif-maker-18.webp&w=3840&q=75",
+      "user": "Admin",
+      "date": "19 Nov 2022",
+      "tag": "DIY",
+      "title": "Weekend DIY: upcycling basics for beginners",
+      "content": "Tận dụng đồ cũ để tạo ra sản phẩm mới là một cách tuyệt vời để thể hiện sự sáng tạo. Một chiếc bàn cà phê từ gỗ pallet hay khung tranh từ thùng carton đều mang nét riêng biệt của bạn."
+    },
+    {
+      "image": "https://cdn-jdbmd.nitrocdn.com/yEMHtyTSADNOgebFqynalakIQNihDGqu/assets/images/optimized/rev-80fa023/www.officernd.com/wp-content/uploads/2023/07/word-image-25179-1.png",
+      "user": "Admin",
+      "date": "28 Nov 2022",
+      "tag": "Lighting",
+      "title": "Lighting tricks to transform your mood at home",
+      "content": "Ánh sáng có thể thay đổi hoàn toàn không gian. Đèn vàng tạo cảm giác ấm áp, trong khi ánh sáng trắng giúp căn phòng sáng sủa và rộng hơn. Hãy thử phối hợp nhiều nguồn sáng để đạt hiệu quả tối đa."
+    },
+    {
+      "image": "https://promova.com/content/types_of_furniture_9868b65b6c.png",
+      "user": "Admin",
+      "date": "06 Dec 2022",
+      "tag": "Textile",
+      "title": "Layering textiles: warmth without the bulk",
+      "content": "Phối nhiều lớp vải giúp tạo chiều sâu và cảm giác ấm áp mà không làm căn phòng trở nên nặng nề. Chăn len, gối nhung và rèm linen là sự kết hợp hoàn hảo cho mùa đông."
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000",
+      "user": "Admin",
+      "date": "15 Dec 2022",
+      "tag": "Vintage",
+      "title": "Mixing vintage finds with new pieces",
+      "content": "Đồ cổ không hề lỗi thời nếu biết cách kết hợp. Một chiếc ghế gỗ cũ cạnh sofa hiện đại có thể tạo điểm nhấn độc đáo và kể một câu chuyện về quá khứ."
+    },
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe_OlHEe2L-0VtexCxjIV5tc0dLor3wd57Yg&s",
+      "user": "Admin",
+      "date": "22 Dec 2022",
+      "tag": "Ceramic",
+      "title": "Hand-thrown ceramics to elevate your table",
+      "content": "Đồ gốm thủ công không chỉ đẹp mà còn mang hơi thở của người thợ làm ra nó. Mỗi đường vân, mỗi vết chạm đều kể câu chuyện riêng, khiến bữa ăn trở nên tinh tế hơn."
+    },
+    {
+      "image": "https://www.apa.org/images/2025-10-cover-tile_tcm7-342176.jpg",
+      "user": "Admin",
+      "date": "04 Jan 2023",
+      "tag": "Metal",
+      "title": "Brushed metal accents for a subtle shine",
+      "content": "Kim loại xước nhẹ là lựa chọn hoàn hảo nếu bạn muốn thêm điểm nhấn sang trọng mà không quá chói. Từ chân bàn, tay nắm tủ đến khung gương, mọi chi tiết đều có thể toả sáng."
+    },
+    {
+      "image": "https://cdn.royalcanin-weshare-online.io/ZGkgPmYBG95Xk-RBBd3W/v1/ec8h-the-cost-of-owning-a-cat-hero-cat",
+      "user": "Admin",
+      "date": "13 Jan 2023",
+      "tag": "Scandinavian",
+      "title": "Scandi calm: pale woods & soft textures",
+      "content": "Phong cách Bắc Âu nổi bật nhờ gam màu sáng, vật liệu tự nhiên và ánh sáng tự nhiên dồi dào. Đây là cách tuyệt vời để tạo nên không gian an yên, thoáng đãng."
+    },
+    {
+      "image": "https://images.accentuate.io/?c_options=w_1000&image=https://cdn.accentuate.io/79564800046/1651036205678/Jardan_Thursday_Sofa_Hero_26.jpg?v=1741665197294",
+      "user": "Admin",
+      "date": "24 Jan 2023",
+      "tag": "Greenery",
+      "title": "Indoor plants that thrive in low light",
+      "content": "Không cần ánh nắng trực tiếp, nhiều loại cây như lưỡi hổ, trầu bà hay lan ý vẫn phát triển tốt. Chúng không chỉ lọc không khí mà còn mang lại năng lượng xanh cho căn phòng."
+    }
   ]
 }

@@ -75,6 +75,14 @@ function Header() {
           }}>
             <Link to="/contact" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Contact</Link>
           </p>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 500,
+            fontSize: 16,
+            color: '#000000ff',
+          }}>
+            <Link to="/blog" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Blog</Link>
+          </p>
         </div>
 
         {/* Icons Section */}
@@ -88,12 +96,10 @@ function Header() {
             width: 28,
             height: 28,
           }} />
-          <Link to="/blog" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>
-            <img src="./src/pages/Home/images/akar-icons_search.png" style={{
-              width: 28,
-              height: 28,
-            }} />
-          </Link>
+          <img src="./src/pages/Home/images/akar-icons_search.png" style={{
+            width: 28,
+            height: 28,
+          }} />
           <img src="./src/pages/Home/images/akar-icons_heart.png" style={{
             width: 28,
             height: 28,

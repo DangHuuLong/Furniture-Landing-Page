@@ -1,32 +1,7 @@
 import Banner from '../Shop/Banner'
 import FeaturesBar from '../Shop/FeaturesBar'
+import { useState, useEffect } from 'react';
 function Blog(){
-  const blogs = [
-    {
-      image: "Rectangle 68.png",
-      user: "Admin",
-      date: "14 Oct 2022",
-      tag: "Wood",
-      title: "Going all-in with millennial design",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum."
-    },
-    {
-      image: "Rectangle 68 (1).png",
-      user: "Admin",
-      date: "14 Oct 2022",
-      tag: "Handmade",
-      title: "Exploring new ways of decorating",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum."
-    },
-    {
-      image: "Rectangle 68 (2).png",
-      user: "Admin",
-      date: "14 Oct 2022",
-      tag: "Wood",
-      title: "Handmade pieces that took time to make",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum."
-    },
-  ]
   const categories = [
     { name: "Crafts", quantity: 2 },
     { name: "Design", quantity: 8 },
@@ -35,33 +10,88 @@ function Blog(){
     { name: "Wood", quantity: 6 },
   ];
 
-  const posts = [
-    {
-      title: 'Going all-in with millennial design',
-      date: '03 Aug 2022',
-      image: 'Rectangle 69.png',
-    },
-    {
-      title: 'Exploring new ways of decorating',
-      date: '03 Aug 2022',
-      image: 'Rectangle 69 (1).png',
-    },
-    {
-      title: 'Handmade pieces that took time to make',
-      date: '03 Aug 2022',
-      image: 'Rectangle 69 (2).png',
-    },
-    {
-      title: 'Modern home in Milan',
-      date: '03 Aug 2022',
-      image: 'Rectangle 69 (3).png',
-    },
-    {
-      title: 'Colorful office redesign',
-      date: '03 Aug 2022',
-      image: 'Rectangle 69 (4).png',
-    },
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      const fetchBlogs = async () => {
+        try {
+          const response = await fetch('http://localhost:3001/blogs');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          setBlogs(data);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+    fetchBlogs();
+    }, []);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 3;
+
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentbBogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <div
+          key={i}
+          onClick={() => paginate(i)}
+          style={{
+            width: "60px",
+            height: "60px",
+            borderRadius: "10px",
+            backgroundColor: currentPage === i ? "rgba(184, 142, 47, 1)" : "rgba(249, 241, 231, 1)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: currentPage === i ? "rgba(255,255,255,1)" : "rgba(0,0,0,1)",
+            }}
+          >
+            {i}
+          </p>
+        </div>
+      );
+    }
+    return pageNumbers;
+  };
+
+  if (loading) {
+    return <div style={{ textAlign: 'center', padding: '50px' }}>Đang tải dữ liệu sản phẩm...</div>;
+  }
+
+  if (error) {
+    return <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>Lỗi khi tải dữ liệu: {error.message}</div>;
+  }
 
   return (
     <>
@@ -80,9 +110,9 @@ function Blog(){
           flexDirection: 'column',
           gap: '54px'
         }}>
-          {blogs.map((blog)=>(
-            <div>
-              <img src={`/src/pages/Blog/images/${blog.image}`} style={{
+          {currentbBogs.map((blog, index)=>(
+            <div key={index}>
+              <img src={blog.image} style={{
                 width: '100%',
                 objectFit: 'cover',
                 marginBottom: '18px'
@@ -192,70 +222,29 @@ function Blog(){
             gap: "38px",
             justifyContent: 'flex-end'
           }}>
-            <div style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "10px",
-              backgroundColor: "rgba(184, 142, 47, 1)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}>
-              <p style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "400",
-                fontSize: "20px",
-                color: "rgba(255,255,255,1)",
-              }}>1</p>
-            </div>
-            <div style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "10px",
-              backgroundColor: "rgba(249, 241, 231, 1)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}>
-              <p style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "400",
-                fontSize: "20px",
-                color: "rgba(0,0,0,1)",
-              }}>2</p>
-            </div>
-            <div style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "10px",
-              backgroundColor: "rgba(249, 241, 231, 1)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}>
-              <p style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "400",
-                fontSize: "20px",
-                color: "rgba(0,0,0,1)",
-              }}>3</p>
-            </div>
-            <div style={{
-              width: "98px",
-              height: "60px",
-              borderRadius: "10px",
-              backgroundColor: "rgba(249, 241, 231, 1)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}>
-              <p style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "400",
-                fontSize: "20px",
-                color: "rgba(0,0,0,1)",
-              }}>Next</p>
-            </div>
+            {renderPageNumbers()}
+            {currentPage < totalPages && (
+              <div
+                onClick={handleNextPage}
+                style={{
+                  width: "98px",
+                  height: "60px",
+                  borderRadius: "10px",
+                  backgroundColor: "rgba(249, 241, 231, 1)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <p style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "20px",
+                  color: "rgba(0,0,0,1)",
+                }}>Next</p>
+              </div>
+            )}
           </div>
         </div>
         {/**Right */}
@@ -293,8 +282,8 @@ function Blog(){
                 color: 'rgba(0,0,0,1)',
                 marginBottom: '33px'
               }}>Categories</p>
-              {categories.map((categorie=>(
-                <div style={{
+              {categories.map(((categorie, index)=>(
+                <div key={index} style={{
                   width: '100%',
                   justifyContent: 'space-between',
                   alignItems: 'center',
@@ -337,13 +326,13 @@ function Blog(){
               flexDirection: 'column',
               gap: '39px'
             }}>
-              {posts.map((post)=>(
-                <div style={{
+              {blogs.map((post, index)=>(
+                <div key={index} style={{
                   display: 'flex',
                   gap: '12px',
                   alignItems: 'center'
                 }}>
-                  <img src={`/src/pages/Blog/images/${post.image}`} style={{
+                  <img src={post.image} style={{
                     width: '80px',
                     height: '80px',
                     borderRadius: '10px',
