@@ -1,7 +1,13 @@
 import { useContext } from "react"
 import { CartContext } from "../contexts/CartContext"
+import { useToast } from '../contexts/ToastContext';
 function CartItem({image, name, quantity, price, SKU}){
   const { removeFromCart } = useContext(CartContext)
+  const { showToast } = useToast();
+  const handleRemoveItem = () => {
+    removeFromCart(SKU);
+    showToast('Đã xóa sản phẩm khỏi giỏ hàng.', 'success'); 
+  };
   return (
     <div style={{
       display: "flex",
@@ -68,7 +74,10 @@ function CartItem({image, name, quantity, price, SKU}){
       </div>
       {/*3*/}
       <div
-        onClick={() => removeFromCart(SKU)}>
+        style={{
+          cursor: 'pointer'
+        }}
+        onClick={handleRemoveItem}>
         <img src="/src/pages/CartSidebar/images/Vector.png" style={{
           width: '20px',
           height: '20px'

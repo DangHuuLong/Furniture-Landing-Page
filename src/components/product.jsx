@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { CartContext } from '../contexts/CartContext';
+import { useToast } from '../contexts/ToastContext';
 
 function Product({ image, name, category, price, discount, isNew, unit, productData}) {
   const [hovered, setHovered] = useState(false);
   const { addToCart, toggleCart } = useContext(CartContext);
+  const { showToast } = useToast();
 
   // Tính toán giá mới và định dạng ngay trong component
   const discountedPrice = price * (1 - discount / 100);
@@ -15,6 +17,7 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
     e.stopPropagation(); 
     e.preventDefault();
     addToCart(productData);
+    showToast('Đã thêm sản phẩm vào giỏ hàng.', 'success');
   };
 
   const navigate = useNavigate();
