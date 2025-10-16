@@ -15,7 +15,6 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
     e.stopPropagation(); 
     e.preventDefault();
     addToCart(productData);
-    toggleCart();
   };
 
   const navigate = useNavigate();

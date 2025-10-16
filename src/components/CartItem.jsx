@@ -1,4 +1,7 @@
-function CartItem({image, name, quantity, price}){
+import { useContext } from "react"
+import { CartContext } from "../contexts/CartContext"
+function CartItem({image, name, quantity, price, SKU}){
+  const { removeFromCart } = useContext(CartContext)
   return (
     <div style={{
       display: "flex",
@@ -24,7 +27,11 @@ function CartItem({image, name, quantity, price}){
         display: 'flex', 
         flexDirection: 'column',
         marginBottom: '8px',
-        marginRight: '60px'
+        marginRight: '60px',
+        whitespace: 'nowrap',
+        overflow: 'hidden',
+        textoverflow: 'ellipsis',
+        width: '180px'
       }}>
         <p style={{
           fontFamily: '"Poppins", sans-serif',
@@ -56,14 +63,17 @@ function CartItem({image, name, quantity, price}){
             fontWeight: 500,
             fontSize: '12px',
             color: 'rgba(184,142,47,1)',
-          }}>Rs. {price}</p>
+          }}>VND. {price}</p>
         </div>
       </div>
       {/*3*/}
-      <img src="/src/pages/CartSidebar/images/Vector.png" style={{
-        width: '20px',
-        height: '20px'
-      }}/>
+      <div
+        onClick={() => removeFromCart(SKU)}>
+        <img src="/src/pages/CartSidebar/images/Vector.png" style={{
+          width: '20px',
+          height: '20px'
+        }} />
+      </div>
     </div>
   )
 }

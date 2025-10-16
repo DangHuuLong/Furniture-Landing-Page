@@ -62,6 +62,7 @@ function CartSidebar(){
                 name={item.name}
                 quantity={item.quantity}
                 price={item.price.toLocaleString('vi-VN')}
+                SKU={item.SKU}
               />
             ))}
           </div>
