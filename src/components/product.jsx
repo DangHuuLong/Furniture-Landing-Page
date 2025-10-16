@@ -5,7 +5,7 @@ import { useToast } from '../contexts/ToastContext';
 
 function Product({ image, name, category, price, discount, isNew, unit, productData}) {
   const [hovered, setHovered] = useState(false);
-  const { addToCart, toggleCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const { showToast } = useToast();
 
   // Tính toán giá mới và định dạng ngay trong component
@@ -16,7 +16,7 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
   const handleAddToCart = (e) => {
     e.stopPropagation(); 
     e.preventDefault();
-    addToCart(productData);
+    addToCart(productData,1);
     showToast('Đã thêm sản phẩm vào giỏ hàng.', 'success');
   };
 

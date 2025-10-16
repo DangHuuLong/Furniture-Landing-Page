@@ -1,8 +1,20 @@
+import { useContext, useState } from "react"
+import { CartContext } from "../../contexts/CartContext";
+import { useToast } from "../../contexts/ToastContext";
 function DetailsProduct({ product }) {
   if (!product) return null;
-
+  const { addToCart } = useContext(CartContext)
+  const [quantity, setQuantity] = useState(1)
+  const {showToast} = useToast()
   const formattedPrice = product.price.toLocaleString('vi-VN');
   const formattedDiscountedPrice = (product.price * (1 - product.discount / 100)).toLocaleString('vi-VN');
+
+  const handleAddToCart = (e, quantity) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart(product, quantity);
+    showToast('Đã thêm sản phẩm vào giỏ hàng.', 'success');
+  };
   return (
     <div style={{
       width: '100%',
@@ -199,8 +211,12 @@ function DetailsProduct({ product }) {
             paddingInline: '15px',
             marginRight: '18px',
           }}>
-            <p style={{
+            <p
+            onClick={quantity > 1 ? () => setQuantity(quantity - 1) : null} 
+            style={{
               fontFamily: '"Poppins", sans-serif',
+              padding: '5px 10px',
+              cursor: 'pointer',
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(0, 0, 0, 1)',
@@ -210,16 +226,22 @@ function DetailsProduct({ product }) {
               fontWeight: '500',
               fontSize: '16px',
               color: 'rgba(0, 0, 0, 1)',
-            }}>1</p>
-            <p style={{
+            }}>{quantity}</p>
+            <p
+            onClick={()=>setQuantity(quantity+1)} 
+            style={{
               fontFamily: '"Poppins", sans-serif',
+              padding: '5px 10px',
+              cursor: 'pointer',
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(0, 0, 0, 1)',
             }}>+</p>
           </div>
           {/*Add to Cart Button*/ }
-          <div style={{
+          <div 
+            onClick={(e)=>handleAddToCart(e,quantity)}
+          style={{
             width: '215px',
             height: '64px',
             borderRadius: '15px',
@@ -229,6 +251,7 @@ function DetailsProduct({ product }) {
             justifyContent: 'center',
             alignItems: 'center',
             marginRight: '10px',
+            cursor: 'pointer'
           }}>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
