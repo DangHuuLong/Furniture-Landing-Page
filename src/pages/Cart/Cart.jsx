@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import Banner from '../Shop/Banner'
 import FeaturesBar from '../Shop/FeaturesBar'
-function Cart(){
+import { CartContext } from '../../contexts/CartContext';
+import { useContext } from "react";
+function Cart() {
+  const { cartItems, removeFromCart } = useContext(CartContext);
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   return (
     <>
       <Banner {...{ name: 'Cart' }} />
@@ -50,73 +54,85 @@ function Cart(){
           </div>
 
           <div style={{
-            width: '820px',
-            height: '55px',
             display: 'flex',
-            alignItems: 'center'
+            flexDirection: 'column',
+            gap: '10px'
           }}>
-            <div style={{
-              width: '105px',
-              height: '105px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'rgba(184,142,47,0.22)',
-              borderRadius: '10px'
-            }}>
-              <img src='/src/pages/Cart/images/Asgaard sofa 5.png' style={{
-                width: '111px',
-                objectFit: 'cover'
-              }} />
-            </div>
-            <p style={{
-              width: '177px',
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: '16px',
-              color: 'rgba(159,159,159,1)',
-              marginLeft: '34px'
-            }}>Asgaard sofa</p>
-            <p style={{
-              width: '177px',
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: '16px',
-              color: 'rgba(159,159,159,1)',
-            }}>Rs. 250,000.00</p>
-            <div style={{
-              width: '92px'
-            }}>
+            {cartItems.map((cartItem => (
               <div style={{
-                width: '32px',
-                height: '32px',
-                backgroundColor: 'transparent',
-                borderRadius: '5px',
-                border: '1px solid rgba(159, 159, 159, 1)',
+                width: '820px',
+                height: '105px',
                 display: 'flex',
-                justifyContent: 'center',
                 alignItems: 'center'
               }}>
+                <div style={{
+                  width: '105px',
+                  height: '105px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(184,142,47,0.22)',
+                  borderRadius: '10px',
+                  overflow: 'hidden'
+                }}>
+                  <img src={cartItem.images.mainImage} style={{
+                    width: '100%',
+                    objectFit: 'cover'
+                  }} />
+                </div>
+                <p style={{
+                  width: '177px',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: 'rgba(159,159,159,1)',
+                  marginLeft: '34px'
+                }}>{cartItem.name}</p>
+                <p style={{
+                  width: '177px',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: 'rgba(159,159,159,1)',
+                }}>{cartItem.unit}. {cartItem.price.toLocaleString('vi-VN')}</p>
+                <div style={{
+                  width: '92px'
+                }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    backgroundColor: 'transparent',
+                    borderRadius: '5px',
+                    border: '1px solid rgba(159, 159, 159, 1)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                    <p style={{
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 400,
+                      fontSize: '16px',
+                      color: 'rgba(0,0,0,1)',
+                    }}>{cartItem.quantity}</p>
+                  </div>
+                </div>
                 <p style={{
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: 400,
                   fontSize: '16px',
                   color: 'rgba(0,0,0,1)',
-                }}>1</p>
+                }}>{cartItem.unit}. {(cartItem.price * cartItem.quantity).toLocaleString('vi-VN')}</p>
+                <img src="/src/pages/Cart/images/ant-design_delete-filled.png" 
+                  onClick={() => removeFromCart(cartItem.SKU)}
+                style={{
+                  width: '28px',
+                  height: '28px',
+                  marginRight: '26px',
+                  marginLeft: 'auto',
+                  cursor: 'pointer'
+                }} />
               </div>
-            </div>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: '16px',
-              color: 'rgba(0,0,0,1)',
-            }}>Rs. 250,000.00</p>
-            <img src="/src/pages/Cart/images/ant-design_delete-filled.png" style={{
-              width: '28px',
-              height: '28px',
-              marginRight: '26px',
-              marginLeft: 'auto'
-            }} />
+            )))}
           </div>
         </div>
         <div style={{
@@ -153,7 +169,7 @@ function Cart(){
               fontWeight: 400,
               fontSize: '16px',
               color: 'rgba(159,159,159,1)',
-            }} >Rs. 250,000.00</p>
+            }} >VND. {subtotal}</p>
           </div>
 
           <div style={{
@@ -174,7 +190,7 @@ function Cart(){
               fontWeight: 400,
               fontSize: '16px',
               color: 'rgba(159,159,159,1)',
-            }}>Rs. 250,000.00</p>
+            }}>VND. {subtotal}</p>
           </div>
 
           <Link

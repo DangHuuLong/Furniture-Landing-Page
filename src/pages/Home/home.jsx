@@ -1,5 +1,4 @@
 import Browse from "./Browse";
-import Header from "./Header";
 import Inspirations from "./Inspirations";
 import MaskGroup from "./MaskGroup";
 import OurProducts from "./OurProducts";
