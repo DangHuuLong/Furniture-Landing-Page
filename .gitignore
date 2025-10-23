@@ -7,12 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node & build
 node_modules
 dist
 dist-ssr
 *.local
+.eslintcache
 
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,6 +25,20 @@ dist-ssr
 *.sln
 *.sw?
 
+# Monorepo ignores
 /frontend/node_modules
+/frontend/dist
+/frontend/.env
+/frontend/.env.*  
+
 /server/node_modules
+/server/.env
+
+# Root env 
 .env
+.env.*            
+
+# BUT keep sample envs
+!.env.example
+!/frontend/.env.example
+!/server/.env.example
