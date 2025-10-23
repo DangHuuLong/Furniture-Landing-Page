@@ -22,7 +22,7 @@ function Product({ image, name, category, price, discount, isNew, unit, productD
 
   const navigate = useNavigate();
   const handleCompareClick = () => {
-    navigate('/shop/singleProduct', { state: { product: productData } });
+    navigate('/shop/product/' + productData.SKU);
   };
 
   return (

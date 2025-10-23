@@ -1,32 +1,41 @@
-import { useLocation } from 'react-router-dom'; 
-import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'; 
+import { useState, useEffect } from 'react';
 import TabBar from "./TabBar";
 import DetailsProduct from "./DetailsProduct";
 import DescriptionReviews from "./DescriptionReviews";
 import RelatedProducts from "./RelatedProducts";
 
 function SingleProduct() {
-  const location = useLocation();
-  const product = location.state?.product;
-
+  const { sku } = useParams();
+  const [product, setProduct] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
-    const fetchAllProducts = async () => {
+    let mounted = true;
+    async function run() {
       try {
-        const response = await fetch('http://localhost:3001/products');
-        const data = await response.json();
-        setAllProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch all products:", error);
+        const [pRes, listRes] = await Promise.all([
+          fetch('http://localhost:3001/products/' + sku),
+          fetch('http://localhost:3001/products'),
+        ]);
+        if (!pRes.ok) throw new Error('Product not found');
+        const p = await pRes.json();
+        const list = await listRes.json();
+        if (mounted) {
+          setProduct(p);
+          setAllProducts(list);
+        }
+      } catch (e) {
+        console.error(e);
       } finally {
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
-    };
-    fetchAllProducts();
-  }, []);
+    }
+    run();
+    return () => { mounted = false; };
+  }, [sku]);
 
   if (!product || loading) {
     return <div>Đang tải dữ liệu...</div>;

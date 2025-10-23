@@ -1,4 +1,4 @@
-import Product from "../../components/Product"
+import Product from "../../components/product"
 import React, { useState } from 'react';
 function RelatedProducts({ products }){
   const [visibleProductsCount, setVisibleProductsCount] = useState(4);
