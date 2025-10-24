@@ -1211,5 +1211,12 @@
       "title": "Indoor plants that thrive in low light",
       "content": "Không cần ánh nắng trực tiếp, nhiều loại cây như lưỡi hổ, trầu bà hay lan ý vẫn phát triển tốt. Chúng không chỉ lọc không khí mà còn mang lại năng lượng xanh cho căn phòng."
     }
+  ],
+  "users": [
+    {
+      "email": "test@gmail.com",
+      "password": "123qwe!@#",
+      "role": "customer"
+    }
   ]
 }
