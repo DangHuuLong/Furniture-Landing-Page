@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import Footer from './pages/Home/Footer';
 import Header from './pages/Home/Header';
@@ -11,14 +11,24 @@ import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import Contact from "./pages/Contact/Contact";
 import Blog from "./pages/Blog/Blog";
-import { CartContext } from './contexts/CartContext'; 
+import { CartContext } from './contexts/CartContext';
+import Login from "./pages/Auth/login";
+import SignUp from "./pages/Auth/signup";
 
-function App() {
+function Shell() {
   const { isCartOpen, toggleCart, closeCart } = useContext(CartContext);
+  const location = useLocation();
+
+  // Ẩn header/footer cho /login và /signup (kể cả có query string)
+  const hideChrome =
+    location.pathname.startsWith("/login") ||
+    location.pathname.startsWith("/signup");
+
   return (
-    <BrowserRouter>
-      <Header toggleCart={toggleCart} />
+    <>
+      {!hideChrome && <Header toggleCart={toggleCart} />}
       {isCartOpen && <CartSidebar onClose={closeCart} />}
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<Shop />} />
@@ -28,8 +38,19 @@ function App() {
         <Route path='/comparison' element={<ProductComparison />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/blog' element={<Blog />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
-      <Footer />
+
+      {!hideChrome && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Shell />
     </BrowserRouter>
   );
 }
