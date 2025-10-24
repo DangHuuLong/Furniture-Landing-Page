@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import OutlinedInput from "../../../components/outlined_input";
-import SocialButton from "../../../components/social_button";
 
-function ForgotPassword() {
-  const [email, setEmail] = useState("");
+function VerifyCode() {
+  const [code, setCode] = useState("");
+  const [showCode, setShowCode] = useState(false);
   return (
     <div
       style={{
@@ -89,7 +89,7 @@ function ForgotPassword() {
               color: 'rgba(49,49,49,1)',
               marginBottom: 16
             }}>
-              Forgot your password?
+              Verify code
             </p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
@@ -97,84 +97,56 @@ function ForgotPassword() {
               fontSize: 16,
               color: 'rgba(49,49,49,1)',
               textWrap: 'wrap',
-              marginBottom: 48
+              marginBottom: '48px'
             }}>
-              Don’t worry, happens to all of us. Enter your email below to recover your password
+              An authentication code has been sent to your email.
             </p>
 
             {/**Form */}
             <OutlinedInput
-              label="Email"
-              type="email"
-              placeholder="john.doe@gmail.com"
-              onChange={(e) => setEmail(e.target.value)} />
+              label="Password"
+              type={showCode ? "text" : "password"}
+              icon={showCode
+                ? "/src/pages/Auth/images/eye-off.png"
+                : "/src/pages/Auth/images/eye.png"}
+              onIconClick={() => setShowCode((v) => !v)}
+              onChange={(e) => setCode(e.target.value)} />
+
+            <p style={{
+              width: '100%',
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 500,
+              fontSize: 14,
+              color: 'rgba(49,49,49,1)',
+              marginBottom: '32px'
+            }}>
+              Didn’t receive a code? <span style={{ color: 'rgba(255,134,130,1)' }}>Resend</span>
+            </p>
 
             {/**Button login */}
-            <Link
-              to="/login/verifycode"
-              style={{
-                width: '100%', height: '48px',
-                backgroundColor: 'rgba(81,93,239,1)',
-                borderRadius: '4px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '16px', textDecoration: 'none'
-              }}
-            >
-              <span style={{
+            <div style={{
+              width: '100%',
+              height: '48px',
+              backgroundColor: 'rgba(81,93,239,1)',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '16px'
+            }}>
+              <p style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>
-                Submit
-              </span>
-            </Link>
-
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '40px',
-              gap: '16px'
-            }}>
-              <div style={{
-                height: '1px',
-                width: '100%',
-                backgroundColor: 'rgba(49,49,49,0.25)'
-              }}>
-              </div>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 14,
-                color: 'rgba(49,49,49,0.25)',
-                textWrap: 'nowrap'
-              }}>Or login with</p>
-              <div style={{
-                height: '1px',
-                width: '100%',
-                backgroundColor: 'rgba(49,49,49,0.25)'
-              }}>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-              gap: '16px'
-            }}>
-              <SocialButton iconPath="/src/pages/Auth/images/facebook.png" />
-              <SocialButton iconPath="/src/pages/Auth/images/google.png" />
-              <SocialButton iconPath="/src/pages/Auth/images/apple.png" />
+              }}>Verify</p>
             </div>
           </div>
 
           {/**Right */}
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <img
-              src="/src/pages/Auth/images/forgot_password.png"
+              src="/src/pages/Auth/images/login.png"
               alt="login"
               style={{ display: 'block', width: '100%', height: 'auto' }}
             />
@@ -185,4 +157,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default VerifyCode;

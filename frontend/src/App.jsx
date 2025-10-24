@@ -15,6 +15,7 @@ import { CartContext } from './contexts/CartContext';
 import Login from "./pages/Auth/login";
 import SignUp from "./pages/Auth/signup";
 import ForgotPassword from "./pages/Auth/forgot_password/forgot_password";
+import VerifyCode from "./pages/Auth/forgot_password/verify_code";
 
 function Shell() {
   const { isCartOpen, toggleCart, closeCart } = useContext(CartContext);
@@ -23,7 +24,9 @@ function Shell() {
   // Ẩn header/footer cho /login và /signup (kể cả có query string)
   const hideChrome =
     location.pathname.startsWith("/login") ||
-    location.pathname.startsWith("/signup");
+    location.pathname.startsWith("/signup") ||
+    location.pathname.startsWith("/login/forgotpassword") ||
+    location.pathname.startsWith("/login/verifycode");
 
   return (
     <>
@@ -42,6 +45,7 @@ function Shell() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login/forgotpassword' element={<ForgotPassword />} />
+        <Route path='/login/verifycode' element={<VerifyCode />} />
       </Routes>
 
       {!hideChrome && <Footer />}
