@@ -14,6 +14,7 @@ import Blog from "./pages/Blog/Blog";
 import { CartContext } from './contexts/CartContext';
 import Login from "./pages/Auth/login";
 import SignUp from "./pages/Auth/signup";
+import ForgotPassword from "./pages/Auth/forgot_password/forgot_password";
 
 function Shell() {
   const { isCartOpen, toggleCart, closeCart } = useContext(CartContext);
@@ -40,6 +41,7 @@ function Shell() {
         <Route path='/blog' element={<Blog />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/login/forgotpassword' element={<ForgotPassword />} />
       </Routes>
 
       {!hideChrome && <Footer />}

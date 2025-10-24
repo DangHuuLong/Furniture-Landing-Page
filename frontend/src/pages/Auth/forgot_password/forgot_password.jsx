@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import OutlinedInput from "../../components/outlined_input";
-import SocialButton from "../../components/social_button";
+import OutlinedInput from "../../../components/outlined_input";
+import SocialButton from "../../../components/social_button";
 
-function Login() {
+function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [showPwd, setShowPwd] = useState(false);
@@ -12,10 +12,10 @@ function Login() {
       style={{
         position: 'relative',
         width: '100vw',
-        minHeight: '100vh',  
+        minHeight: '100vh',
         margin: 0,
         display: 'grid',
-        gridTemplateAreas: '"stack"', 
+        gridTemplateAreas: '"stack"',
       }}
     >
       {/* Logo */}
@@ -27,8 +27,8 @@ function Login() {
           gap: 14,
           paddingTop: 52,
           paddingLeft: 62,
-          placeSelf: 'start start',   
-          zIndex: 2,                
+          placeSelf: 'start start',
+          zIndex: 2,
         }}
       >
         <img src="/src/pages/Auth/images/logo.png" alt="logo" />
@@ -62,6 +62,28 @@ function Login() {
           <div style={{
             width: '512px',
           }}>
+            <Link
+              to="/login"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
+                textDecoration: 'none',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 500,
+                fontSize: 14,
+                color: 'rgba(49,49,49,1)',
+                cursor: 'pointer',
+              }}
+              aria-label="Back to login"
+            >
+              <img
+                src="/src/pages/Auth/images/arrow_left.png"
+                alt=""
+                style={{ display: 'block' }}
+              />
+              <span>Back to login</span>
+            </Link>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 600,
@@ -69,16 +91,17 @@ function Login() {
               color: 'rgba(49,49,49,1)',
               marginBottom: 16
             }}>
-              Login
+              Forgot your password?
             </p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,
               fontSize: 16,
               color: 'rgba(49,49,49,1)',
+              textWrap: 'wrap',
               marginBottom: 36
             }}>
-              Login to access your travelwise account
+              Don’t worry, happens to all of us. Enter your email below to recover your password
             </p>
 
             {/**Form */}
@@ -87,44 +110,6 @@ function Login() {
               type="email"
               placeholder="john.doe@gmail.com"
               onChange={(e) => setEmail(e.target.value)} />
-            <OutlinedInput
-              label="Password"
-              type={showPwd ? "text" : "password"}
-              icon={showPwd
-                ? "/src/pages/Auth/images/eye-off.png"
-                : "/src/pages/Auth/images/eye.png"}
-              onIconClick={() => setShowPwd((v) => !v)}
-              onChange={(e) => setPwd(e.target.value)} />
-
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '40px'
-            }}>
-              <div style={{
-                display: 'flex',
-                gap: 8
-              }}>
-                <input type="checkbox" style={{
-                  width: '24px',
-                  height: '24px',
-                }} />
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 500,
-                  fontSize: 14,
-                  color: 'rgba(49,49,49,1)',
-                }}>Remember me</p>
-              </div>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 500,
-                fontSize: 14,
-                color: 'rgba(255,134,130,1)',
-              }}><Link to="/login/forgotpassword" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Forgot Password</Link></p>
-            </div>
 
             {/**Button login */}
             <div style={{
@@ -142,20 +127,8 @@ function Login() {
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>Login</p>
+              }}>Submit</p>
             </div>
-
-            <p style={{
-              width: '100%',
-              textAlign: 'center',
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 500,
-              fontSize: 14,
-              color: 'rgba(49,49,49,1)',
-              marginBottom: '40px'
-            }}>
-              Don’t have an account? <Link to="/signup" style={{ textDecoration: "none", color: "inherit", font: "inherit", color: 'rgba(255,134,130,1)' }}>Sign up</Link>
-            </p>
 
             <div style={{
               width: '100%',
@@ -201,39 +174,15 @@ function Login() {
           {/**Right */}
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <img
-              src="/src/pages/Auth/images/login.png"
+              src="/src/pages/Auth/images/forgot_password.png"
               alt="login"
               style={{ display: 'block', width: '100%', height: 'auto' }}
             />
-
-            {/* Indicator */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 24,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                display: 'flex',
-                gap: 8,
-                alignItems: 'center',
-              }}
-            >
-              <div style={{
-                width: 32, height: 10, borderRadius: 5, backgroundColor: 'rgba(81,93,239,1)'
-              }} />
-              <div style={{
-                width: 10, height: 10, borderRadius: 5, backgroundColor: 'rgba(255,255,255,1)'
-              }} />
-              <div style={{
-                width: 10, height: 10, borderRadius: 5, backgroundColor: 'rgba(255,255,255,1)'
-              }} />
-            </div>
           </div>
-
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default ForgotPassword;
