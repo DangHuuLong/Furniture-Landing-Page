@@ -16,6 +16,7 @@ import Login from "./pages/Auth/login";
 import SignUp from "./pages/Auth/signup";
 import ForgotPassword from "./pages/Auth/forgot_password/forgot_password";
 import VerifyCode from "./pages/Auth/forgot_password/verify_code";
+import SetNewPassword from "./pages/Auth/forgot_password/set_new_password";
 
 function Shell() {
   const { isCartOpen, toggleCart, closeCart } = useContext(CartContext);
@@ -46,6 +47,7 @@ function Shell() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login/forgotpassword' element={<ForgotPassword />} />
         <Route path='/login/verifycode' element={<VerifyCode />} />
+        <Route path='/login/setnewpassword' element={<SetNewPassword />} />
       </Routes>
 
       {!hideChrome && <Footer />}

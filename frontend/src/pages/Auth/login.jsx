@@ -154,7 +154,7 @@ function Login() {
               color: 'rgba(49,49,49,1)',
               marginBottom: '40px'
             }}>
-              Don’t have an account? <Link to="/signup" style={{ textDecoration: "none", color: "inherit", font: "inherit", color: 'rgba(255,134,130,1)' }}>Sign up</Link>
+              Don’t have an account? <Link to="/signup" style={{ textDecoration: "none", font: "inherit", color: 'rgba(255,134,130,1)' }}>Sign up</Link>
             </p>
 
             <div style={{

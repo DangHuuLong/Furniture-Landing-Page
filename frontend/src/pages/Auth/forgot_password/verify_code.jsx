@@ -72,6 +72,7 @@ function VerifyCode() {
                 fontSize: 14,
                 color: 'rgba(49,49,49,1)',
                 cursor: 'pointer',
+                marginBottom: 16
               }}
               aria-label="Back to login"
             >
@@ -104,7 +105,7 @@ function VerifyCode() {
 
             {/**Form */}
             <OutlinedInput
-              label="Password"
+              label="Enter Code"
               type={showCode ? "text" : "password"}
               icon={showCode
                 ? "/src/pages/Auth/images/eye-off.png"
@@ -124,23 +125,25 @@ function VerifyCode() {
             </p>
 
             {/**Button login */}
-            <div style={{
-              width: '100%',
-              height: '48px',
-              backgroundColor: 'rgba(81,93,239,1)',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '16px'
-            }}>
-              <p style={{
+            <Link
+              to="/login/setnewpassword"
+              style={{
+                width: '100%', height: '48px',
+                backgroundColor: 'rgba(81,93,239,1)',
+                borderRadius: '4px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: '16px', textDecoration: 'none'
+              }}
+            >
+              <span style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>Verify</p>
-            </div>
+              }}>
+                Verify
+              </span>
+            </Link>
           </div>
 
           {/**Right */}

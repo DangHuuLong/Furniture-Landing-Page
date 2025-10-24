@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import OutlinedInput from "../../../components/outlined_input";
-import SocialButton from "../../../components/social_button";
 
-function ForgotPassword() {
-  const [email, setEmail] = useState("");
+function SetNewPassword() {
+  const [pwd, setPwd] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
+  const [rePwd, setRePwd] = useState("");
+  const [showRePwd, setShowRePwd] = useState(false);
   return (
     <div
       style={{
@@ -72,7 +74,6 @@ function ForgotPassword() {
                 fontSize: 14,
                 color: 'rgba(49,49,49,1)',
                 cursor: 'pointer',
-                marginBottom: 16
               }}
               aria-label="Back to login"
             >
@@ -90,7 +91,7 @@ function ForgotPassword() {
               color: 'rgba(49,49,49,1)',
               marginBottom: 16
             }}>
-              Forgot your password?
+              Set a password
             </p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
@@ -98,84 +99,54 @@ function ForgotPassword() {
               fontSize: 16,
               color: 'rgba(49,49,49,1)',
               textWrap: 'wrap',
-              marginBottom: 48
+              marginBottom: '48px'
             }}>
-              Don’t worry, happens to all of us. Enter your email below to recover your password
+              Your previous password has been reseted. Please set a new password for your account.
             </p>
 
             {/**Form */}
             <OutlinedInput
-              label="Email"
-              type="email"
-              placeholder="john.doe@gmail.com"
-              onChange={(e) => setEmail(e.target.value)} />
+              label="Create Password"
+              type={showPwd ? "text" : "password"}
+              icon={showPwd
+                ? "/src/pages/Auth/images/eye-off.png"
+                : "/src/pages/Auth/images/eye.png"}
+              onIconClick={() => setShowPwd((v) => !v)}
+              onChange={(e) => setPwd(e.target.value)} />
+
+            <OutlinedInput
+              label="Re-enter Password"
+              type={showRePwd ? "text" : "password"}
+              icon={showRePwd
+                ? "/src/pages/Auth/images/eye-off.png"
+                : "/src/pages/Auth/images/eye.png"}
+              onIconClick={() => setShowRePwd((v) => !v)}
+              onChange={(e) => setRePwd(e.target.value)} />
 
             {/**Button login */}
-            <Link
-              to="/login/verifycode"
-              style={{
-                width: '100%', height: '48px',
-                backgroundColor: 'rgba(81,93,239,1)',
-                borderRadius: '4px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '48px', textDecoration: 'none'
-              }}
-            >
-              <span style={{
+            <div style={{
+              width: '100%',
+              height: '48px',
+              backgroundColor: 'rgba(81,93,239,1)',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '16px'
+            }}>
+              <p style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>
-                Submit
-              </span>
-            </Link>
-
-            <div style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '48px',
-              gap: '16px'
-            }}>
-              <div style={{
-                height: '1px',
-                width: '100%',
-                backgroundColor: 'rgba(49,49,49,0.25)'
-              }}>
-              </div>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 14,
-                color: 'rgba(49,49,49,0.25)',
-                textWrap: 'nowrap'
-              }}>Or login with</p>
-              <div style={{
-                height: '1px',
-                width: '100%',
-                backgroundColor: 'rgba(49,49,49,0.25)'
-              }}>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-              gap: '16px'
-            }}>
-              <SocialButton iconPath="/src/pages/Auth/images/facebook.png" />
-              <SocialButton iconPath="/src/pages/Auth/images/google.png" />
-              <SocialButton iconPath="/src/pages/Auth/images/apple.png" />
+              }}>Set password</p>
             </div>
           </div>
 
           {/**Right */}
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <img
-              src="/src/pages/Auth/images/forgot_password.png"
+              src="/src/pages/Auth/images/set_new_password.png"
               alt="login"
               style={{ display: 'block', width: '100%', height: 'auto' }}
             />
@@ -186,4 +157,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default SetNewPassword;
