@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OutlinedInput from "../../components/outlined_input";
 import SocialButton from "../../components/social_button";
+import { useToast } from "../../contexts/ToastContext";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("")
@@ -12,6 +13,55 @@ function SignUp() {
   const [showPwd, setShowPwd] = useState(false);
   const [confPwd, setConfPwd] = useState("");
   const [showConfPwd, setShowConfPwd] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [agree, setAgree] = useState(false);
+
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+
+  const handleCreateAccount = async(e) => {
+    e?.preventDefault?.();
+    if(!firstName || !lastName || !email || !phone || !pwd || !confPwd){
+      showToast("Please fill full textfield", "warning")
+      return
+    }
+    if (pwd != confPwd) {
+      showToast("Confirm password is not the same as password", "warning")
+      return
+    }
+    if (!agree) {
+      showToast("You must agree to the Terms and Privacy Policies", "warning");
+      return;
+    }
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          password: pwd,     
+          role: "customer"
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        showToast(data?.message || "Register failed", "error");
+        return;
+      }
+      showToast("Register successful", "success");
+      navigate("/");
+    } catch(_err){
+      showToast("Network error. Please try again", "error");
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <div
       style={{
@@ -173,10 +223,14 @@ function SignUp() {
               gap: 8,
               marginBottom: '40px'
             }}>
-              <input type="checkbox" style={{
-                width: '24px',
-                height: '24px',
-              }} />
+              <input 
+                type="checkbox"
+                onChange={(e) => setAgree(e.target.checked)} 
+                style={{
+                  width: '24px',
+                  height: '24px',
+                }} 
+              />
               <p style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 500,
@@ -186,7 +240,7 @@ function SignUp() {
             </div>
 
             {/**Button login */}
-            <div style={{
+            <button style={{
               width: '100%',
               height: '48px',
               backgroundColor: 'rgba(81,93,239,1)',
@@ -194,15 +248,22 @@ function SignUp() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '16px'
-            }}>
+              marginBottom: '16px',
+              border: "none",
+              cursor: (loading || !agree) ? "not-allowed" : "pointer",
+              opacity: (loading || !agree) ? 0.7 : 1
+            }} 
+              onClick={handleCreateAccount}
+              disabled={loading || !agree}>
               <p style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>Create account</p>
-            </div>
+              }}>
+                {loading ? "Creating account…" : "Create account"}
+              </p>
+            </button>
 
             <p style={{
               width: '100%',

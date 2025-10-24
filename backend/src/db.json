@@ -1232,10 +1232,10 @@
       "phone": "0912345678"
     },
     {
-      "firstName": "1",
-      "lastName": "1",
-      "email": "1",
-      "phone": "1",
+      "firstName": "Long",
+      "lastName": "Dang",
+      "email": "dhl@gmail.com",
+      "phone": "110101001",
       "password": "1",
       "role": "customer"
     }

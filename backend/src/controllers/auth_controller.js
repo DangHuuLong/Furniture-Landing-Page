@@ -1,4 +1,5 @@
 const { readDB } = require('../utils/read_database')
+const { writeDB } = require('../utils/write_database')
 
 async function login(req, res) {
   const db = await readDB()
@@ -20,4 +21,34 @@ async function login(req, res) {
   return res.status(200).json({ message: 'Login successful', user: safeUser })
 }
 
-module.exports = { login }
+async function register(req, res) {
+  const db = await readDB();
+  const { firstName, lastName, email, phone, password, role } = req.body || {};
+
+  if (!firstName || !lastName || !email || !phone || !password) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  const exists = db.users?.some(u => u.email === email);
+  if (exists) {
+    return res.status(409).json({ message: 'User already exists' });
+  }
+
+  const newUser = {
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    role
+  };
+
+  db.users = db.users || [];
+  db.users.push(newUser);
+  await writeDB(db);
+
+  const { password: _pw, ...safeUser } = newUser;
+  return res.status(201).json({ message: 'Register successful', user: safeUser });
+}
+
+module.exports = { login, register }

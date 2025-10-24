@@ -37,8 +37,15 @@ function Login() {
       }
 
       if (data?.token) localStorage.setItem("authToken", data.token);
-      showToast("Login successful", "success");
-      navigate("/home");
+      if (data?.user) localStorage.setItem("user", JSON.stringify(data.user));
+
+      const role = data?.user?.role;
+      if (role === "customer") {
+        showToast("Login successful", "success");
+        navigate("/home");
+      } else {
+        showToast("Login successful. No landing page for this role.", "warning");
+      }
     } catch (_err) {
       showToast("Network error. Please try again", "error");
     } finally {
