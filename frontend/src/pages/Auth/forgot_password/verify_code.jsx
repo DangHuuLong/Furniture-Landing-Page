@@ -61,7 +61,7 @@ function VerifyCode() {
             width: '512px',
           }}>
             <Link
-              to="/login"
+              to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -126,7 +126,7 @@ function VerifyCode() {
 
             {/**Button login */}
             <Link
-              to="/login/setnewpassword"
+              to="/setnewpassword"
               style={{
                 width: '100%', height: '48px',
                 backgroundColor: 'rgba(81,93,239,1)',

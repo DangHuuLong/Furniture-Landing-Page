@@ -213,7 +213,7 @@ function SignUp() {
               color: 'rgba(49,49,49,1)',
               marginBottom: '40px'
             }}>
-              Already have an account? <Link to="/login" style={{ textDecoration: "none", font: "inherit", color: 'rgba(255,134,130,1)' }}>Login</Link>
+              Already have an account? <Link to="/" style={{ textDecoration: "none", font: "inherit", color: 'rgba(255,134,130,1)' }}>Login</Link>
             </p>
 
             <div style={{

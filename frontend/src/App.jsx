@@ -22,12 +22,13 @@ function Shell() {
   const { isCartOpen, toggleCart, closeCart } = useContext(CartContext);
   const location = useLocation();
 
-  // Ẩn header/footer cho /login và /signup (kể cả có query string)
+  const p = location.pathname;
   const hideChrome =
-    location.pathname.startsWith("/login") ||
-    location.pathname.startsWith("/signup") ||
-    location.pathname.startsWith("/login/forgotpassword") ||
-    location.pathname.startsWith("/login/verifycode");
+    p === "/" ||
+    p.startsWith("/signup") ||
+    p.startsWith("/forgotpassword") ||
+    p.startsWith("/verifycode") ||
+    p.startsWith("/setnewpassword");
 
   return (
     <>
@@ -35,7 +36,7 @@ function Shell() {
       {isCartOpen && <CartSidebar onClose={closeCart} />}
 
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/shop' element={<Shop />} />
         <Route path="/shop/product/:sku" element={<SingleProduct />} />
         <Route path='/cart' element={<Cart />} />
@@ -43,11 +44,11 @@ function Shell() {
         <Route path='/comparison' element={<ProductComparison />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/blog' element={<Blog />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/login/forgotpassword' element={<ForgotPassword />} />
-        <Route path='/login/verifycode' element={<VerifyCode />} />
-        <Route path='/login/setnewpassword' element={<SetNewPassword />} />
+        <Route path='/forgotpassword' element={<ForgotPassword />} />
+        <Route path='/verifycode' element={<VerifyCode />} />
+        <Route path='/setnewpassword' element={<SetNewPassword />} />
       </Routes>
 
       {!hideChrome && <Footer />}

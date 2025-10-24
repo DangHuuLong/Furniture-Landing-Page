@@ -63,7 +63,7 @@ function SetNewPassword() {
             width: '512px',
           }}>
             <Link
-              to="/login"
+              to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

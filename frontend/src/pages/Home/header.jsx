@@ -49,7 +49,7 @@ function Header() {
             fontSize: 16,
             color: '#000000ff',                        
           }}>
-            <Link to="/" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link>
+            <Link to="/home" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link>
           </p>
           <p style={{
             fontFamily: '"Poppins", sans-serif',

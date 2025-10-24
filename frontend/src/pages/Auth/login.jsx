@@ -123,7 +123,7 @@ function Login() {
                 fontWeight: 500,
                 fontSize: 14,
                 color: 'rgba(255,134,130,1)',
-              }}><Link to="/login/forgotpassword" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Forgot Password</Link></p>
+              }}><Link to="/forgotpassword" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Forgot Password</Link></p>
             </div>
 
             {/**Button login */}

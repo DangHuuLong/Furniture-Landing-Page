@@ -61,7 +61,7 @@ function ForgotPassword() {
             width: '512px',
           }}>
             <Link
-              to="/login"
+              to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -112,7 +112,7 @@ function ForgotPassword() {
 
             {/**Button login */}
             <Link
-              to="/login/verifycode"
+              to="/verifycode"
               style={{
                 width: '100%', height: '48px',
                 backgroundColor: 'rgba(81,93,239,1)',
