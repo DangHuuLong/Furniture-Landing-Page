@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import CustomerLayout from "../layouts/CustomerLayout";
 import AuthLayout from "../layouts/AuthLayout";
-// import AdminLayout from "../layouts/AdminLayout";
+import AdminLayout from "../layouts/AdminLayout";
 
 // AUTH pages 
 import Login from "../modules/Auth/pages/login";
@@ -45,8 +45,8 @@ export default function AppRoutes() {
       </Route>
 
       {/* ADMIN */}
-      {/* <Route path="/admin" element={<AdminLayout />}>
-      </Route> */}
+      <Route path="/admin" element={<AdminLayout />}>
+      </Route>
 
       {/* 404 đơn giản */}
       <Route path="*" element={<div>404 Not Found</div>} />
