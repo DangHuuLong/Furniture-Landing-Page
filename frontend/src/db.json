@@ -1245,7 +1245,15 @@
       "email": "danghuulong394@gmail.com",
       "phone": "0101010101",
       "password": "3",
-      "role": "customer"
+      "role": "customer",
+      "reset": {
+        "code": "808033",
+        "resetToken": "db74ecd7be51633fa2bccb04e59ca21d",
+        "expiresAt": 1761403020792,
+        "verified": true,
+        "attempts": 0,
+        "sentAt": 1761402420792
+      }
     }
   ]
 }
