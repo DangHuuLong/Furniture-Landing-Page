@@ -1,10 +1,41 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../../../contexts/ToastContext";
 import OutlinedInput from "../../../components/outlined_input";
 
 function VerifyCode() {
   const [code, setCode] = useState("");
   const [showCode, setShowCode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
+  const navigate = useNavigate();
+
+  const handleVerify = async () => {
+    const email = localStorage.getItem("fp_email");
+    if (!email) { showToast("Missing email context. Start over.", "warning"); return; }
+    if (!code) { showToast("Please enter the code", "warning"); return; }
+
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:3001/auth/verify-reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) { showToast(data?.message || "Verification failed", "error"); return; }
+
+      localStorage.setItem("fp_token", data.resetToken);
+      showToast("Code verified", "success");
+      navigate("/setnewpassword");
+    } catch {
+      showToast("Network error. Please try again", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <div
       style={{
@@ -125,14 +156,20 @@ function VerifyCode() {
             </p>
 
             {/**Button login */}
-            <Link
+            <button
+              onClick={handleVerify}
               to="/setnewpassword"
               style={{
                 width: '100%', height: '48px',
                 backgroundColor: 'rgba(81,93,239,1)',
                 borderRadius: '4px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '16px', textDecoration: 'none'
+                marginBottom: '16px', textDecoration: 'none',
+                outline: 'none',
+                boxShadow: 'none', 
+                cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading ? 0.6 : 1,
+                border: 'none',
               }}
             >
               <span style={{
@@ -143,7 +180,7 @@ function VerifyCode() {
               }}>
                 Verify
               </span>
-            </Link>
+            </button>
           </div>
 
           {/**Right */}

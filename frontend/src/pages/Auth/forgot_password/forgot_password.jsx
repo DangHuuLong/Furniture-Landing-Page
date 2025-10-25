@@ -1,10 +1,36 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../../../contexts/ToastContext";
 import OutlinedInput from "../../../components/outlined_input";
 import SocialButton from "../../../components/social_button";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (!email) { showToast("Please enter your email", "warning"); return; }
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:3001/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) { showToast(data?.message || "Failed to send code", "error"); return; }
+
+      localStorage.setItem("fp_email", email);
+      showToast("Verification code sent to your email", "success");
+      navigate("/verifycode");
+    } catch {
+      showToast("Network error. Please try again", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div
       style={{
@@ -111,14 +137,22 @@ function ForgotPassword() {
               onChange={(e) => setEmail(e.target.value)} />
 
             {/**Button login */}
-            <Link
+            <button
+              disabled={loading}
+              onClick={handleSubmit}
               to="/verifycode"
               style={{
-                width: '100%', height: '48px',
+                width: '100%', 
+                height: '48px',
+                border: 'none',
                 backgroundColor: 'rgba(81,93,239,1)',
                 borderRadius: '4px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '48px', textDecoration: 'none'
+                marginBottom: '48px', textDecoration: 'none',
+                outline: 'none',
+                boxShadow: 'none', 
+                cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading ? 0.6 : 1,
               }}
             >
               <span style={{
@@ -127,9 +161,9 @@ function ForgotPassword() {
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
               }}>
-                Submit
+              {loading ? "Sending code..." : "Submit"}
               </span>
-            </Link>
+            </button> 
 
             <div style={{
               width: '100%',

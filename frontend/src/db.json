@@ -1238,6 +1238,14 @@
       "phone": "1",
       "password": "1",
       "role": "customer"
+    },
+    {
+      "firstName": "Long",
+      "lastName": "Dang",
+      "email": "danghuulong394@gmail.com",
+      "phone": "0101010101",
+      "password": "3",
+      "role": "customer"
     }
   ]
 }

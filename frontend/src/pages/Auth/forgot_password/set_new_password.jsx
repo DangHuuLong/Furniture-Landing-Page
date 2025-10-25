@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../../../contexts/ToastContext";
 import OutlinedInput from "../../../components/outlined_input";
 
 function SetNewPassword() {
@@ -7,6 +8,40 @@ function SetNewPassword() {
   const [showPwd, setShowPwd] = useState(false);
   const [rePwd, setRePwd] = useState("");
   const [showRePwd, setShowRePwd] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSetPassword = async () => {
+    if (!pwd || !rePwd) { showToast("Please fill both password fields", "warning"); return; }
+    if (pwd !== rePwd) { showToast("Passwords do not match", "warning"); return; }
+
+    const email = localStorage.getItem("fp_email");
+    const resetToken = localStorage.getItem("fp_token");
+    if (!email || !resetToken) { showToast("Reset session expired. Start over.", "warning"); return; }
+
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:3001/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, resetToken, newPassword: pwd })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) { showToast(data?.message || "Failed to reset password", "error"); return; }
+
+      // cleanup & điều hướng
+      localStorage.removeItem("fp_email");
+      localStorage.removeItem("fp_token");
+      showToast("Password updated. Please log in.", "success");
+      navigate("/");
+    } catch {
+      showToast("Network error. Please try again", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       style={{
@@ -124,23 +159,33 @@ function SetNewPassword() {
               onChange={(e) => setRePwd(e.target.value)} />
 
             {/**Button login */}
-            <div style={{
+            <button 
+              onClick={handleSetPassword}
+              disabled={loading}
+            style={{
               width: '100%',
               height: '48px',
+              outline: 'none',        
+              boxShadow: 'none',
+              border: 'none',
               backgroundColor: 'rgba(81,93,239,1)',
               borderRadius: '4px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              opacity: loading ? 0.6 : 1,
             }}>
               <p style={{
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 600,
                 fontSize: 14,
                 color: 'rgba(243,243,243,1)',
-              }}>Set password</p>
-            </div>
+              }}>
+              {loading ? "Setting password..." : "Set password"}
+              </p>
+            </button>
           </div>
 
           {/**Right */}
