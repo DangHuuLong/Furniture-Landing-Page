@@ -1,4 +1,5 @@
-import { Settings } from "lucide-react"
+import { Settings, DollarSign } from "lucide-react"
+import StatCard from "../../components/stat_card"
 
 export default function DashBorad() {
   return (
@@ -9,6 +10,7 @@ export default function DashBorad() {
       boxSizing: 'border-box',
       alignSelf: 'stretch',
     }}>
+      {/**Header */}
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -39,6 +41,16 @@ export default function DashBorad() {
             color: 'rgba(30,94,255,1)',
           }}>Manage</p>
         </div>
+      </div>
+
+      {/** */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: 24
+      }}>
+        <StatCard Icon={DollarSign} price={"$10.54"} title={"Total Revenue"} percent={22.45} increase={true}/>
+        <StatCard Icon={DollarSign} price={"1,056"} title={"Orders"} percent={15.34} increase={true} />
       </div>
     </div>
   )
