@@ -24,7 +24,14 @@ export default function AdminLayout() {
       >
         <Navigation />
 
-        <div style={{ flex: 1, minWidth: 0, overflow: 'auto' }}>
+        <div style={{
+          flex: 1,
+          minWidth: 0,
+          minHeight: 0,
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           <Outlet />
         </div>
       </div>
