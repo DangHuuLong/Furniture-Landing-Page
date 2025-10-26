@@ -1,4 +1,4 @@
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 export default function StatCard({Icon, total, title, percent, increase}) {
   return (
     <div style={{

@@ -1,6 +1,7 @@
 import { Settings, DollarSign } from "lucide-react"
 import StatCard from "../../components/stat_card"
 import BarStatCard from "../../components/bar_stat_card"
+import OrdersChart from "./orders_chart"
 
 export default function DashBorad() {
   return (
@@ -55,6 +56,14 @@ export default function DashBorad() {
         <BarStatCard total={5.420} title={"Unique Visits"} percent={10.24} increase={false} bars={[20, 30, 45, 50, 30, 40]} />
         <BarStatCard total={1.650} title={"New Users"} percent={15.34} increase={false} bars={[20, 40, 45, 30, 50, 35]} />
         <BarStatCard total={9.653} title={"Existing Users"} percent={22.45} increase={false} bars={[20, 30, 50, 40, 45, 35]} />
+      </div>
+
+      {/** */}
+      <div style={{
+        display: 'flex',
+        marginTop: 24
+      }}>
+        <OrdersChart />
       </div>
     </div>
   )

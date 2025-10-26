@@ -55,13 +55,15 @@ export default function BarStatCard({ total, title, percent, increase, bars }) {
         height: 50,
         alignItems: 'flex-end',
       }}>
-        {bars && bars.map(bar => {
-          return <div style={{
-            borderRadius: 4,
-            width: 12,
-            height: `${Math.max(4, Math.round((50 * bar) / max))}px`,
-            backgroundColor: bar === max ? maximumBarColor : otherBarColor
-          }}>
+        {bars && bars.map((bar, i) => {
+          return <div
+            key={`${title}-${i}`}  
+            style={{
+              borderRadius: 4,
+              width: 12,
+              height: `${Math.max(4, Math.round((50 * bar) / max))}px`,
+              backgroundColor: bar === max ? maximumBarColor : otherBarColor
+            }}>
           </div>
         })}
       </div>
