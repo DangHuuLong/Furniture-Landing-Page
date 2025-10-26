@@ -1,8 +1,8 @@
 import { ChevronUp } from 'lucide-react';
-export default function StatCard({Icon, price, title, percent, increase}) {
+export default function StatCard({Icon, total, title, percent, increase}) {
   return (
     <div style={{
-      width: 208,
+      width: '100%',
       height: 70,
       borderRadius: 6,
       backgroundColor: 'white',
@@ -18,7 +18,7 @@ export default function StatCard({Icon, price, title, percent, increase}) {
           fontWeight: 700,
           fontSize: 16,
           color: 'rgba(19,21,35,1)',
-        }}>{price}</p>
+        }}>{total}</p>
         <p style={{
           fontFamily: '"Poppins", sans-serif',
           fontWeight: 400,
@@ -36,7 +36,7 @@ export default function StatCard({Icon, price, title, percent, increase}) {
             fontSize: 10,
             color: increase ? 'rgba(6,165,97,1)' : 'rgba(240,20,47)',
           }}>{percent}%</p>
-          <ChevronUp size={12} color={increase ? "rgba(6,165,97,1)" : "rgba(240,20,47,1)"}/>
+          {increase ? <ChevronUp size={12} color="rgba(6,165,97,1)" /> : <ChevronDown size={12} color="rgba(240,20,47,1)" />}
         </div>
       </div>
       <div style={{
