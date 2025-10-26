@@ -4,12 +4,30 @@ import Navigation from "../modules/admin/components/navigation/navigation";
 
 export default function AdminLayout() {
   return (
-    <>
-      <Header/>
-      <div style={{display:'flex'}}>
-        <Navigation/>
-        <Outlet />
+    <div
+      style={{
+        width: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Header />
+
+      <div
+        style={{
+          display: 'flex',
+          flex: 1,          
+          minHeight: 0,
+          alignItems: 'stretch', 
+        }}
+      >
+        <Navigation />
+
+        <div style={{ flex: 1, minWidth: 0, overflow: 'auto' }}>
+          <Outlet />
+        </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
