@@ -3,7 +3,11 @@ import { NavLink } from 'react-router-dom';
 import ToggleButton from '../../components/toggle_button';
 import SizeTag from '../../components/size_tag';
 import { useState } from 'react';
+import Categories from './categories';
 export default function AddProduct(){
+  const [categories, setCategories] = useState([
+    'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
+  ])
   const [sizes, setSizes] = useState([
     { id: 1, label: 'S' },
     { id: 2, label: 'M' },
@@ -597,6 +601,15 @@ export default function AddProduct(){
               }}>This is digital item</p>
             </div>
           </div>
+        </div>
+        {/**Right */}
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 30,
+        }}>
+          <Categories categories={categories} />
         </div>
       </div>
     </div>
