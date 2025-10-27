@@ -1,5 +1,6 @@
 import { MoveLeft } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import ToggleButton from '../../components/toggle_button';
 export default function AddProduct(){
   return (
     <div style={{
@@ -75,6 +76,255 @@ export default function AddProduct(){
               fontSize: 16,
               color: 'white',
             }}>Save</p>
+          </div>
+        </div>
+      </div>
+
+      {/**Form */}
+      <div style={{
+        display: 'flex',
+        gap: 30,
+        margin: '30px 0'
+      }}>
+        <div style={{
+          flex: 2,
+          borderRadius: 6,
+          backgroundColor: 'white',
+          padding: 28,
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.12)'
+        }}>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 700,
+            fontSize: 16,
+            color: '#131523',
+          }}>Information</p>
+
+          {/**Product Name */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: 24,
+            gap: 4
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 400,
+              fontSize: 14,
+              color: '#5A607F',
+            }}>Product Name</p>
+            <input type='text' 
+              placeholder='Summer T-Shirt'
+              aria-label='Summer T-Shirt'
+            style={{
+              width: '100%',
+              height: 40,
+              borderRadius: 4,
+              backgroundColor: 'white',
+              border: '1px solid #D9E1EC',
+              padding: '8px 16px',
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 400,
+              fontSize: 16,
+              color: "#A1A7C4",
+              outline: "none",
+            }}/>
+          </div>
+
+          {/**Product Description */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: 24,
+            gap: 4
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 400,
+              fontSize: 14,
+              color: '#5A607F',
+            }}>Product Description</p>
+            <textarea 
+              placeholder='Product description'
+              aria-label='Product description'
+              style={{
+                width: '100%',
+                height: 96,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: "#A1A7C4",
+                outline: "none",
+              }} />
+          </div>
+
+          <div style={{
+            height: 1,
+            width: '100%',
+            backgroundColor: '#D7DBEC',
+            marginTop: 40
+          }}></div>
+
+          {/**Image */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24,
+            width: '100%',
+            marginTop: 40
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#131523',
+            }}>Image</p>
+            <div style={{
+              width: '100%',
+              height: 168,
+              borderRadius: 4,
+              border: '1px dashed #A1A7C4',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 12
+              }}>
+                <div style={{
+                  width: 102,
+                  height: 40,
+                  borderRadius: 4,
+                  border: '1px solid #D7DBEC',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <p style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: '#1E5EFF',
+                  }}>Add File</p>
+                </div>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Or drag and drop files</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            height: 1,
+            width: '100%',
+            backgroundColor: '#D7DBEC',
+            marginTop: 40
+          }}></div>
+          
+          {/**Price */}
+          <div style={{
+            marginTop: 28,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#131523',
+            }}>Price</p>
+            <div style={{
+              display: 'flex',
+              gap: 28
+            }}>
+              {/**Proudct Price */}
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: 24,
+                gap: 4
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Product Price</p>
+                <input type='text'
+                  placeholder='Enter price'
+                  aria-label='Enter price'
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: "#A1A7C4",
+                    outline: "none",
+                  }} />
+              </div>
+              {/**Discount Price */}
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: 24,
+                gap: 4
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Discount Price</p>
+                <input type='text'
+                  placeholder='Price at Discount'
+                  aria-label='Price at Discount'
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: "#A1A7C4",
+                    outline: "none",
+                  }} />
+              </div>
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: 12,
+              alignItems: 'center'
+            }}>
+              <ToggleButton />
+              <p style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+              }}>Add tax for this product</p>
+            </div>
           </div>
         </div>
       </div>
