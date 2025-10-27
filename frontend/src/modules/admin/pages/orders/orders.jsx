@@ -1,5 +1,5 @@
 import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
-import TableOrders from '../../components/table_orders';
+import TableOrders from './table_orders';
 import { useOutletContext } from "react-router-dom";
 export default function Orders(){
   const headers = ['Order', 'Date', 'Customer', 'Payment status', 'Order Status', 'Total']

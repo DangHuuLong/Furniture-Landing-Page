@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Pagination from './pagination';
+import Pagination from '../../components/pagination';
 
 export default function TableOrders({ headers, datas }) {
   const statusStyles = {

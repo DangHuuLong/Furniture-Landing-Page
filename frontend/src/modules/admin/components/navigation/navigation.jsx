@@ -18,7 +18,7 @@ export default function Navigation() {
     >
       <NavItem Icon={Home} title="Dashboard" to="/dashboard" />
       <NavItem Icon={List} title="Orders" to="/orders" count={16} />
-      <NavItem Icon={Tag} title="Products" to="/admin/products" />
+      <NavItem Icon={Tag} title="Products" to="/products" />
       <NavItem Icon={Folder} title="Categories" to="/admin/categories" />
       <NavItem Icon={Users} title="Customers" to="/admin/customers" />
       <NavItem Icon={BarChart3} title="Reports" to="/admin/reports" />

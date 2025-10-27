@@ -66,7 +66,7 @@ export default function DeleteItems({ open, onClose }) {
               border: 'none',
               cursor: 'pointer'
             }}
-              onClick={() => setDeleteBtn(!deleteBtn)}
+              onClick={onClose}
               >Cancel</button>
             <button style={{
               width: 98,
