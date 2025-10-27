@@ -5,6 +5,7 @@ import SizeTag from '../../components/size_tag';
 import { useState } from 'react';
 import Categories from './categories';
 import Tags from './tags';
+import SEOSettings from './SEO_settings';
 export default function AddProduct(){
   const [categories, setCategories] = useState([
     'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
@@ -615,6 +616,56 @@ export default function AddProduct(){
         }}>
           <Categories categories={categories} />
           <Tags tags={tags}/>
+          <SEOSettings />
+        </div>
+      </div>
+
+      <div style={{
+        borderTop: '1px solid #D7DBEC',
+        width: '100%',
+        height: 70,
+        marginTop: '30px',
+        display: 'flex',
+        gap: 12,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+      }}>
+        <NavLink
+          to="/products"
+          style={{
+            width: 102,
+            height: 40,
+            borderRadius: 4,
+            backgroundColor: 'white',
+            border: '1px solid #D7DBEC',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textDecoration: 'none'
+          }}>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 400,
+            fontSize: 16,
+            color: '#1E5EFF',
+          }}>Cancel</p>
+        </NavLink>
+        <div style={{
+          width: 86,
+          height: 40,
+          borderRadius: 4,
+          backgroundColor: '#1E5EFF',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginLeft: 12
+        }}>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 400,
+            fontSize: 16,
+            color: 'white',
+          }}>Save</p>
         </div>
       </div>
     </div>
