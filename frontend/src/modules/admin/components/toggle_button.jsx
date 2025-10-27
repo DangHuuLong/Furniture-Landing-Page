@@ -11,7 +11,8 @@ export default function ToggleButton(){
       backgroundColor: on ? '#1E5EFF' : '#D9E4FF',
       display: 'flex',
       border: 'none',
-      alignItems: 'center'
+      alignItems: 'center',
+      cursor: 'pointer'
     }}
       onClick={()=>setOn(!on)}>
       <div style={{

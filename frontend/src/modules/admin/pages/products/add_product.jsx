@@ -97,6 +97,7 @@ export default function AddProduct(){
         gap: 30,
         margin: '30px 0'
       }}>
+        {/**Left */}
         <div style={{
           flex: 2,
           borderRadius: 6,
@@ -399,7 +400,7 @@ export default function AddProduct(){
                   width: '100%',
                   position: 'relative'
                 }}>
-                  <input type='text'
+                  <input disabled type='text'
                     placeholder='Size'
                     aria-label='Size'
                     style={{
@@ -465,6 +466,135 @@ export default function AddProduct(){
                   </div> 
                 </div>
               </div>
+            </div>
+
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 400,
+              fontSize: 16,
+              color: '#1E5EFF',
+              marginTop: 20
+            }}>Add More</p>
+          </div>
+
+          <div style={{
+            height: 1,
+            width: '100%',
+            backgroundColor: '#D7DBEC',
+            marginTop: 40
+          }}></div>
+
+          {/**Shipping */}
+          <div style={{
+            marginTop: 28,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#131523',
+            }}>Shipping</p>
+            <div style={{
+              display: 'flex',
+              gap: 28,
+              marginTop: 24,
+            }}>
+              {/**Weight*/}
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Weight</p>
+                <input type='text'
+                  placeholder='Enter Weight'
+                  aria-label='Enter Weight'
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: "#A1A7C4",
+                    outline: "none",
+                  }} />
+              </div>
+
+              {/**Country */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+                flex: 1
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Size</p>
+                <div style={{
+                  width: '100%',
+                  position: 'relative'
+                }}>
+                  <input 
+                  disabled
+                  type='text'
+                    placeholder='Select Country'
+                    aria-label='Select Country'
+                    style={{
+                      width: '100%',
+                      height: 40,
+                      borderRadius: 4,
+                      backgroundColor: 'white',
+                      border: '1px solid #D9E1EC',
+                      padding: '8px 16px',
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 400,
+                      fontSize: 16,
+                      color: "#131523",
+                      outline: "none",
+                    }} />
+                  <ChevronDown
+                    size={20}
+                    color="#7E84A3"
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: 12,
+              alignItems: 'center'
+            }}>
+              <ToggleButton />
+              <p style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+              }}>This is digital item</p>
             </div>
           </div>
         </div>
