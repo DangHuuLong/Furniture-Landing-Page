@@ -4,6 +4,7 @@ import BarStatCard from "../../components/bar_stat_card"
 import OrdersChart from "./orders_chart"
 import Last7DaysSales from "./last_7_days_sales"
 import RecentTransactions from "./recent_transactions"
+import TopProducts from "./top_products"
 
 export default function DashBorad() {
   return (
@@ -77,6 +78,7 @@ export default function DashBorad() {
         gap: 30
       }}>
         <RecentTransactions />
+        <TopProducts />
       </div>
     </div>
   )

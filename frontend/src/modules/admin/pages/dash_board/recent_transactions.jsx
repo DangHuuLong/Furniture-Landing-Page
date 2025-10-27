@@ -66,9 +66,9 @@ export default function RecentTransactions(){
                   padding: 8,
                   flex: 1,
                   fontFamily: '"Poppins", sans-serif',
-                  fontWeight: i == 1 ? 500 : 400,
+                  fontWeight: i == 0 ? 500 : 400,
                   fontSize: 14,
-                  ...(i < 3 ? { color: '#5A607F)', } : { 
+                  ...(i < 3 ? { color: '#131523)', } : { 
                     color: data == 'Paid' ? '#06A561' : '#5A607F',
                     padding: '2px 8px',
                     backgroundColor: data == 'Paid' ? '#C4F8E2' : '#E6E9F4',
