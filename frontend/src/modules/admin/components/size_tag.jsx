@@ -3,8 +3,7 @@ import { X } from "lucide-react"
 export default function SizeTag({ id, size, onRemove }){
   return (
     <div style={{
-      width: 56,
-      height: 24,
+      padding: '2px 8px',
       borderRadius: 4,
       backgroundColor: '#E6E9F4',
       display: 'flex',

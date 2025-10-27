@@ -4,9 +4,13 @@ import ToggleButton from '../../components/toggle_button';
 import SizeTag from '../../components/size_tag';
 import { useState } from 'react';
 import Categories from './categories';
+import Tags from './tags';
 export default function AddProduct(){
   const [categories, setCategories] = useState([
     'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
+  ])
+  const [tags, setTags] = useState([
+    'T-Shirt', 'Men Clothes', 'Summer Collection'
   ])
   const [sizes, setSizes] = useState([
     { id: 1, label: 'S' },
@@ -610,6 +614,7 @@ export default function AddProduct(){
           gap: 30,
         }}>
           <Categories categories={categories} />
+          <Tags tags={tags}/>
         </div>
       </div>
     </div>
