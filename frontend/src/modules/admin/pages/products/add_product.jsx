@@ -1,7 +1,18 @@
-import { MoveLeft } from 'lucide-react';
+import { MoveLeft, ChevronDown } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import ToggleButton from '../../components/toggle_button';
+import SizeTag from '../../components/size_tag';
+import { useState } from 'react';
 export default function AddProduct(){
+  const [sizes, setSizes] = useState([
+    { id: 1, label: 'S' },
+    { id: 2, label: 'M' },
+    { id: 3, label: 'L' },
+  ]);
+  const [sizeInput, setSizeInput] = useState('');
+  const handleRemoveSize = (id) => {
+    setSizes(prev => prev.filter(s => s.id !== id));
+  };
   return (
     <div style={{
       width: '100%',
@@ -324,6 +335,136 @@ export default function AddProduct(){
                 fontSize: 16,
                 color: '#131523',
               }}>Add tax for this product</p>
+            </div>
+          </div>
+
+          <div style={{
+            height: 1,
+            width: '100%',
+            backgroundColor: '#D7DBEC',
+            marginTop: 40
+          }}></div>
+
+          {/**Different Options */}
+          <div style={{
+            marginTop: 28,
+          }}>
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#131523',
+            }}>Different Options</p>
+            <div style={{
+              display: 'flex',
+              gap: 12,
+              alignItems: 'center',
+              marginTop: 24
+            }}>
+              <ToggleButton />
+              <p style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+              }}>This product has multiple options</p>
+            </div>
+
+            <p style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#131523',
+              marginTop: 40
+            }}>Option 1</p>
+            <div style={{
+              display: 'flex',
+              marginTop: 20,
+              gap: 28
+            }}>
+              {/**Size */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+                flex: 1
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Size</p>
+                <div style={{
+                  width: '100%',
+                  position: 'relative'
+                }}>
+                  <input type='text'
+                    placeholder='Size'
+                    aria-label='Size'
+                    style={{
+                      width: '100%',
+                      height: 40,
+                      borderRadius: 4,
+                      backgroundColor: 'white',
+                      border: '1px solid #D9E1EC',
+                      padding: '8px 16px',
+                      fontFamily: '"Poppins", sans-serif',
+                      fontWeight: 400,
+                      fontSize: 16,
+                      color: "#131523",
+                      outline: "none",
+                    }} />
+                  <ChevronDown
+                    size={20}
+                    color="#7E84A3"
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/**Value */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+                flex: 1
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}>Value</p>
+                <div style={{
+                  width: '100%',
+                }}>
+                  <div 
+                    style={{
+                      width: '100%',
+                      height: 40,
+                      borderRadius: 4,
+                      backgroundColor: 'white',
+                      border: '1px solid #D9E1EC',
+                      padding: '8px 16px',
+                      outline: "none",
+                      display: 'flex',
+                      gap: 8,
+                      alignItems: 'center'
+                    }}>
+                      {/** */} 
+                      {sizes.map(s => (
+                        <SizeTag key={s.id} id={s.id} size={s.label} onRemove={handleRemoveSize} />
+                      ))}
+                  </div> 
+                </div>
+              </div>
             </div>
           </div>
         </div>
