@@ -79,7 +79,7 @@ export default function Orders(){
     ['#12523C', 'May 5, 4:04 PM', 'Angel Conner', 'Pending', 'Ready', 63.47],
     ['#51232A', 'May 5, 4:03 PM', 'Rosalie Singleton', 'Pending', 'Received', 91.63],
   ];
-  const { setDeleteItems } = useOutletContext();
+  const { setDeleteItems, setExportData } = useOutletContext();
   return (
     <div style={{
       flex: 1,
@@ -104,7 +104,7 @@ export default function Orders(){
           display: 'flex',
           gap: 12
         }}>
-          <div style={{
+          <button style={{
             width: 98,
             height: 40,
             borderRadius: 4,
@@ -112,15 +112,17 @@ export default function Orders(){
             border: '1px solid #D7DBEC',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
-          }}>
+            alignItems: 'center',
+            cursor: 'pointer'
+          }}
+          onClick={setExportData}>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,
               fontSize: 16,
               color: '#1E5EFF',
             }}>Export</p>
-          </div>
+          </button>
           <div style={{
             width: 148,
             height: 40,
