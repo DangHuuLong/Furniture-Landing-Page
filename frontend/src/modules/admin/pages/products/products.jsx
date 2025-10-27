@@ -1,6 +1,6 @@
 import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
 import TableProducts from './table_products';
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, NavLink } from "react-router-dom";
 export default function Products() {
   const headers = ['Product', 'Inventory', 'Color', 'Price', 'Rating']
   const datas = [
@@ -234,6 +234,7 @@ export default function Products() {
       alignSelf: 'stretch',
       backgroundColor: '#F5F6FA',
       padding: '28px 40px 40px 40px',
+      position: 'relative'
     }}>
       {/**Header */}
       <div style={{
@@ -270,15 +271,21 @@ export default function Products() {
               color: '#1E5EFF',
             }}>Export</p>
           </button>
-          <div style={{
+          <NavLink
+          to="/products/addproduct"
+          style={{
             width: 148,
             height: 40,
             borderRadius: 4,
             backgroundColor: '#1E5EFF',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
-          }}>
+            alignItems: 'center',
+            border: 'none',
+            textDecoration: "none",
+            cursor: 'pointer'
+          }}
+            onClick={() => setAddProduct(!addProduct)}>
             <Plus size={14} color='white' />
             <p style={{
               fontFamily: '"Poppins", sans-serif',
@@ -287,7 +294,7 @@ export default function Products() {
               color: 'white',
               marginLeft: 10
             }}>Add Product</p>
-          </div>
+          </NavLink>
         </div>
       </div>
 

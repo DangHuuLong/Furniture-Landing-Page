@@ -24,6 +24,7 @@ import Blog from "../modules/customer/pages/Blog/Blog";
 import DashBorad from "../modules/admin/pages/dash_board/dash_board";
 import Orders from "../modules/admin/pages/orders/orders";
 import Products from "../modules/admin/pages/products/products";
+import AddProduct from "../modules/admin/pages/products/add_product";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -53,6 +54,7 @@ export default function AppRoutes() {
         <Route path="/dashboard" element={<DashBorad />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/addproduct" element={<AddProduct />} />
       </Route>
 
       {/* 404 đơn giản */}
