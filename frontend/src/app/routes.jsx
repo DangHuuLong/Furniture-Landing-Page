@@ -22,6 +22,7 @@ import Blog from "../modules/customer/pages/Blog/Blog";
 
 // ADMIN pages
 import DashBorad from "../modules/admin/pages/dash_board/dash_board";
+import Orders from "../modules/admin/pages/orders/orders";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -49,6 +50,7 @@ export default function AppRoutes() {
       {/* ADMIN */}
       <Route element={<AdminLayout />}>
         <Route path="/dashboard" element={<DashBorad />} />
+        <Route path="/orders" element={<Orders />} />
       </Route>
 
       {/* 404 đơn giản */}
