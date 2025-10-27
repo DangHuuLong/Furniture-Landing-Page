@@ -3,6 +3,7 @@ import StatCard from "../../components/stat_card"
 import BarStatCard from "../../components/bar_stat_card"
 import OrdersChart from "./orders_chart"
 import Last7DaysSales from "./last_7_days_sales"
+import RecentTransactions from "./recent_transactions"
 
 export default function DashBorad() {
   return (
@@ -67,6 +68,15 @@ export default function DashBorad() {
       }}>
         <OrdersChart />
         <Last7DaysSales />
+      </div>
+
+      {/** */}
+      <div style={{
+        display: 'flex',
+        marginTop: 24,
+        gap: 30
+      }}>
+        <RecentTransactions />
       </div>
     </div>
   )
