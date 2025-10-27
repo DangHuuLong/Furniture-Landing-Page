@@ -1,12 +1,30 @@
 import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
+import TableOrders from '../../components/table_orders';
 export default function Orders(){
+  const headers = ['Order', 'Date', 'Customer', 'Payment status', 'Order Status', 'Total']
+  const datas = [
+    ['#12512B', 'May 5, 4:20 PM', 'Tom Anderson', 'Paid', 'Ready', 49.90],
+    ['#12523C', 'May 5, 4:15 PM', 'Jayden Walker', 'Paid', 'Ready', 34.36],
+    ['#51232A', 'May 5, 4:15 PM', 'Inez Kim', 'Paid', 'Ready', 5.51],
+    ['#23534D', 'May 5, 4:12 PM', 'Francisco Henry', 'Paid', 'Shipped', 29.74],
+    ['#51323C', 'May 5, 4:12 PM', 'Violet Phillips', 'Paid', 'Shipped', 23.06],
+    ['#35622A', 'May 5, 4:12 PM', 'Rosetta Becker', 'Paid', 'Shipped', 87.44],
+    ['#34232D', 'May 5, 4:10 PM', 'Dean Love', 'Paid', 'Ready', 44.55],
+    ['#56212D', 'May 5, 4:08 PM', 'Nettie Tyler', 'Paid', 'Ready', 36.79],
+    ['#76543E', 'May 5, 4:08 PM', 'Lora Weaver', 'Paid', 'Shipped', 28.78],
+    ['#12512B', 'May 5, 4:05 PM', 'Vincent Cannon', 'Paid', 'Shipped', 96.46],
+    ['#12523C', 'May 5, 4:05 PM', 'Nettie Palmer', 'Paid', 'Received', 25.53],
+    ['#23534D', 'May 5, 4:04 PM', 'Miguel Harris', 'Pending', 'Ready', 50.54],
+    ['#12523C', 'May 5, 4:04 PM', 'Angel Conner', 'Pending', 'Ready', 63.47],
+    ['#51232A', 'May 5, 4:03 PM', 'Rosalie Singleton', 'Pending', 'Received', 91.63],
+  ];
   return (
     <div style={{
       flex: 1,
       boxSizing: 'border-box',
       alignSelf: 'stretch',
       backgroundColor: '#F5F6FA',
-      padding: '28px 40px 40px 40px'
+      padding: '28px 40px 40px 40px',
     }}>
       {/**Header */}
       <div style={{
@@ -178,6 +196,9 @@ export default function Orders(){
             </div>
           </div>
         </div>
+        
+        {/**Table */}
+        <TableOrders headers={headers} datas={datas}/>
       </div>
     </div>
   )
