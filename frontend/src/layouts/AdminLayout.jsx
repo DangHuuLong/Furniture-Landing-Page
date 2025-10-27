@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Header from "../modules/admin/components/header/header";
 import Navigation from "../modules/admin/components/navigation/navigation";
+import { useState } from "react";
+import DeleteItems from "../modules/admin/notifications/delete_items";
 
 export default function AdminLayout() {
+  const [deleteItems, setDeleteItems] = useState(false)
   return (
     <div
       style={{
@@ -10,9 +13,15 @@ export default function AdminLayout() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        position: 'relative'
       }}
     >
-      <Header />
+      {deleteItems && (
+        <DeleteItems
+          open={deleteItems}
+          onClose={() => setDeleteItems(false)}
+        />
+      )}
 
       <div
         style={{
@@ -32,7 +41,7 @@ export default function AdminLayout() {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Outlet />
+          <Outlet context={{ setDeleteItems }} />
         </div>
       </div>
     </div>

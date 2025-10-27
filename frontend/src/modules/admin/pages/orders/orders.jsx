@@ -1,5 +1,6 @@
 import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
 import TableOrders from '../../components/table_orders';
+import { useOutletContext } from "react-router-dom";
 export default function Orders(){
   const headers = ['Order', 'Date', 'Customer', 'Payment status', 'Order Status', 'Total']
   const datas = [
@@ -78,6 +79,7 @@ export default function Orders(){
     ['#12523C', 'May 5, 4:04 PM', 'Angel Conner', 'Pending', 'Ready', 63.47],
     ['#51232A', 'May 5, 4:03 PM', 'Rosalie Singleton', 'Pending', 'Received', 91.63],
   ];
+  const { setDeleteItems } = useOutletContext();
   return (
     <div style={{
       flex: 1,
@@ -242,7 +244,7 @@ export default function Orders(){
             }}>
               <PenLine size={24} color='#1E5EFF' />
             </div>
-            <div style={{
+            <button style={{
               width: 40,
               height: 40,
               borderRadius: 4,
@@ -250,10 +252,12 @@ export default function Orders(){
               border: '1px solid #D7DBEC',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
-            }}>
+              alignItems: 'center',
+              cursor: 'pointer'
+            }}
+              onClick={() => setDeleteItems(true)}>
               <Trash size={24} color='#1E5EFF' />
-            </div>
+            </button>
           </div>
         </div>
         
