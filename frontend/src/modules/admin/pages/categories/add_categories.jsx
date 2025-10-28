@@ -1,14 +1,19 @@
+import { useParams } from "react-router-dom";
 import HeaderSubPage from "../../components/header_add_edit_page";
 
-export default function AddCategories({category}){
+export default function AddCategories() {
+  const { name } = useParams();
+
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      backgroundColor: '#F5F6FA',
-      padding: '30px 40px 40px 40px'
-    }}>
-      <HeaderSubPage to={'/categories'} name={category}/>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#F5F6FA",
+        padding: "30px 40px 40px 40px",
+      }}
+    >
+      <HeaderSubPage to={"/categories"} name={name} />
     </div>
-  )
+  );
 }

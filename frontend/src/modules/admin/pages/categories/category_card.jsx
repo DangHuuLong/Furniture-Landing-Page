@@ -1,8 +1,15 @@
 import { PenLine } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CategoryCard({ imagePath, productName, stock }) {
   const [hover, setHover] = useState(false);
+  const navigate = useNavigate();
+
+  function handleEditClick() {
+    navigate(`/categories/${encodeURIComponent(productName)}`);
+  }
+
 
   return (
     <div
@@ -53,9 +60,10 @@ export default function CategoryCard({ imagePath, productName, stock }) {
               alignItems: 'center',
             }}
           >
-            <div
+            <button
+              onClick={handleEditClick}
               style={{
-                width: 98,
+                width: 110,
                 height: 40,
                 borderRadius: 4,
                 backgroundColor: 'white',
@@ -64,6 +72,7 @@ export default function CategoryCard({ imagePath, productName, stock }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: 4,
+                cursor: 'pointer',
               }}
             >
               <PenLine size={24} color="#1E5EFF" />
@@ -77,7 +86,7 @@ export default function CategoryCard({ imagePath, productName, stock }) {
               >
                 Edit
               </p>
-            </div>
+            </button>
           </div>
         )}
       </div>
