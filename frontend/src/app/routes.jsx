@@ -21,10 +21,11 @@ import Contact from "../modules/customer/pages/Contact/Contact";
 import Blog from "../modules/customer/pages/Blog/Blog";
 
 // ADMIN pages
-import DashBorad from "../modules/admin/pages/dash_board/dash_board";
-import Orders from "../modules/admin/pages/orders/orders";
-import Products from "../modules/admin/pages/products/products";
+import DashBorad from "../modules/admin/pages/dash_board/dash_board_page";
 import AddProduct from "../modules/admin/pages/products/add_product";
+import OrdersPage from "../modules/admin/pages/orders/orders_page";
+import ProductsPage from "../modules/admin/pages/products/products_page";
+import CategoriesPage from "../modules/admin/pages/categories/categories_page";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -52,9 +53,10 @@ export default function AppRoutes() {
       {/* ADMIN */}
       <Route element={<AdminLayout />}>
         <Route path="/dashboard" element={<DashBorad />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/addproduct" element={<AddProduct />} />
+        <Route path="/categories" element={<CategoriesPage />} />
       </Route>
 
       {/* 404 đơn giản */}

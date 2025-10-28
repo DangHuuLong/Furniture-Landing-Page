@@ -30,7 +30,7 @@ export default function AdminLayout() {
           onClose={()=>setExportData(false)}
         />
       )}
-
+      <Header />
       <div
         style={{
           display: 'flex',

@@ -1,7 +1,7 @@
 import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
 import TableProducts from './table_products';
 import { useOutletContext, NavLink } from "react-router-dom";
-export default function Products() {
+export default function ProductsPage() {
   const headers = ['Product', 'Inventory', 'Color', 'Price', 'Rating']
   const datas = [
     [
