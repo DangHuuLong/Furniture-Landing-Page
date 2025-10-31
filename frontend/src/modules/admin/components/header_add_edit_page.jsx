@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import {MoveLeft} from 'lucide-react'
-export default function HeaderSubPage({to, name}){
+export default function HeaderSubPage({to, name, saveFunction = null}){
   return (
     <>
       <NavLink 
@@ -54,7 +54,7 @@ export default function HeaderSubPage({to, name}){
               color: '#1E5EFF',
             }}>Cancel</p>
           </NavLink>
-          <div style={{
+          <button style={{
             width: 86,
             height: 40,
             borderRadius: 4,
@@ -62,15 +62,18 @@ export default function HeaderSubPage({to, name}){
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            marginLeft: 12
-          }}>
+            marginLeft: 12,
+            border: 'none',
+            cursor: 'pointer'
+          }}
+            onClick={saveFunction}>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,
               fontSize: 16,
               color: 'white',
             }}>Save</p>
-          </div>
+          </button>
         </div>
       </div>
     </>

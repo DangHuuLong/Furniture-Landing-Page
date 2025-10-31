@@ -1,4 +1,4 @@
-import { NavLink, useParams, useLocation } from "react-router-dom";
+import { NavLink, useParams, useLocation, useOutletContext } from "react-router-dom";
 import { Plus } from 'lucide-react';
 import HeaderSubPage from "../../components/header_add_edit_page";
 import ProductCategoryCard from "./product_category_card";
@@ -10,7 +10,8 @@ export default function CategoryProductPage() {
   const location = useLocation();
   const category = location.state; 
   const products = category?.products || [];
-  
+
+  const { setImportData } = useOutletContext()
   return (
     <div
       style={{
@@ -20,7 +21,7 @@ export default function CategoryProductPage() {
         padding: "30px 40px 40px 40px",
       }}
     >
-      <HeaderSubPage to={"/categories"} name={name} />
+      <HeaderSubPage to={"/categories"} name={name} saveFunction={setImportData}/>
       <div style={{
         marginTop: 30,
         display: 'flex',
@@ -134,7 +135,7 @@ export default function CategoryProductPage() {
             color: '#1E5EFF',
           }}>Cancel</p>
         </NavLink>
-        <div style={{
+        <button style={{
           width: 86,
           height: 40,
           borderRadius: 4,
@@ -142,15 +143,18 @@ export default function CategoryProductPage() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          marginLeft: 12
-        }}>
+          marginLeft: 12,
+          border: 'none',
+          cursor: 'pointer',
+        }}
+          onClick={setImportData}>
           <p style={{
             fontFamily: '"Poppins", sans-serif',
             fontWeight: 400,
             fontSize: 16,
             color: 'white',
           }}>Save</p>
-        </div>
+        </button>
       </div>
     </div>
   );

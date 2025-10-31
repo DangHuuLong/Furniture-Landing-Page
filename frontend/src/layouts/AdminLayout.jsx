@@ -4,10 +4,12 @@ import Navigation from "../modules/admin/components/navigation/navigation";
 import { useState } from "react";
 import DeleteItems from "../modules/admin/notifications/delete_items";
 import Export from "../modules/admin/notifications/export";
+import Import from "../modules/admin/notifications/import";
 
 export default function AdminLayout() {
   const [deleteItems, setDeleteItems] = useState(false)
   const [exportData, setExportData] = useState(false)
+  const [importData, setImportData] = useState(false)
   return (
     <div
       style={{
@@ -30,6 +32,12 @@ export default function AdminLayout() {
           onClose={()=>setExportData(false)}
         />
       )}
+      {importData && (
+        <Import 
+          open={importData}
+          onClose={() => setImportData(false)}
+        />
+      )}
       <Header />
       <div
         style={{
@@ -49,7 +57,7 @@ export default function AdminLayout() {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Outlet context={{ setDeleteItems, setExportData }} />
+          <Outlet context={{ setDeleteItems, setExportData, setImportData }} />
         </div>
       </div>
     </div>

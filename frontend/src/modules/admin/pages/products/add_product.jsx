@@ -1,5 +1,5 @@
 import { MoveLeft, ChevronDown } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 import ToggleButton from '../../components/toggle_button';
 import SizeTag from '../../components/size_tag';
 import { useState } from 'react';
@@ -23,6 +23,7 @@ export default function AddProduct(){
   const handleRemoveSize = (id) => {
     setSizes(prev => prev.filter(s => s.id !== id));
   };
+  const {setImportData} = useOutletContext()
   return (
     <div style={{
       width: '100%',
@@ -30,7 +31,7 @@ export default function AddProduct(){
       backgroundColor: '#F5F6FA',
       padding: '30px 40px 40px 40px',
     }}>
-      <HeaderSubPage to={'/products'} name={'Add Product'}/>
+      <HeaderSubPage to={'/products'} name={'Add Product'} saveFunction={setImportData}/>
 
       {/**Form */}
       <div style={{
@@ -582,7 +583,7 @@ export default function AddProduct(){
             color: '#1E5EFF',
           }}>Cancel</p>
         </NavLink>
-        <div style={{
+        <button style={{
           width: 86,
           height: 40,
           borderRadius: 4,
@@ -590,15 +591,18 @@ export default function AddProduct(){
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          marginLeft: 12
-        }}>
+          marginLeft: 12,
+          border: 'none',
+          cursor: 'pointer'
+        }}
+          onClick={setImportData}>
           <p style={{
             fontFamily: '"Poppins", sans-serif',
             fontWeight: 400,
             fontSize: 16,
             color: 'white',
           }}>Save</p>
-        </div>
+        </button>
       </div>
     </div>
   )
