@@ -7,6 +7,7 @@ import Categories from './categories';
 import Tags from './tags';
 import SEOSettings from './SEO_settings';
 import HeaderAddEditPage from '../../components/header_add_edit_page';
+import FooterAddEditPage from '../../components/footer_add_edit_page';
 export default function AddProduct(){
   const [categories, setCategories] = useState([
     'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
@@ -553,57 +554,7 @@ export default function AddProduct(){
         </div>
       </div>
 
-      <div style={{
-        borderTop: '1px solid #D7DBEC',
-        width: '100%',
-        height: 70,
-        marginTop: '30px',
-        display: 'flex',
-        gap: 12,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end'
-      }}>
-        <NavLink
-          to="/products"
-          style={{
-            width: 102,
-            height: 40,
-            borderRadius: 4,
-            backgroundColor: 'white',
-            border: '1px solid #D7DBEC',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textDecoration: 'none'
-          }}>
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 400,
-            fontSize: 16,
-            color: '#1E5EFF',
-          }}>Cancel</p>
-        </NavLink>
-        <button style={{
-          width: 86,
-          height: 40,
-          borderRadius: 4,
-          backgroundColor: '#1E5EFF',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginLeft: 12,
-          border: 'none',
-          cursor: 'pointer'
-        }}
-          onClick={setImportData}>
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 400,
-            fontSize: 16,
-            color: 'white',
-          }}>Save</p>
-        </button>
-      </div>
+      <FooterAddEditPage to={"/products"} saveFunction={setImportData} />
     </div>
   )
 }
