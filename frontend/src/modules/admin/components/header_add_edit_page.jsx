@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import {MoveLeft} from 'lucide-react'
-export default function HeaderSubPage({to, name, saveFunction = null}){
+export default function HeaderAddEditPage({to, name, saveFunction = null}){
   return (
     <>
       <NavLink 

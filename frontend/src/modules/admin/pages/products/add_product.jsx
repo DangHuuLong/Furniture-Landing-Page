@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Categories from './categories';
 import Tags from './tags';
 import SEOSettings from './SEO_settings';
-import HeaderSubPage from '../../components/header_add_edit_page';
+import HeaderAddEditPage from '../../components/header_add_edit_page';
 export default function AddProduct(){
   const [categories, setCategories] = useState([
     'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
@@ -31,7 +31,7 @@ export default function AddProduct(){
       backgroundColor: '#F5F6FA',
       padding: '30px 40px 40px 40px',
     }}>
-      <HeaderSubPage to={'/products'} name={'Add Product'} saveFunction={setImportData}/>
+      <HeaderAddEditPage to={'/products'} name={'Add Product'} saveFunction={setImportData}/>
 
       {/**Form */}
       <div style={{

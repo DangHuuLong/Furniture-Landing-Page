@@ -20,10 +20,10 @@ export default function Navigation() {
       <NavItem Icon={List} title="Orders" to="/orders" count={16} />
       <NavItem Icon={Tag} title="Products" to="/products" />
       <NavItem Icon={Folder} title="Categories" to="/categories" />
-      <NavItem Icon={Users} title="Customers" to="/admin/customers" />
-      <NavItem Icon={BarChart3} title="Reports" to="/admin/reports" />
-      <NavItem Icon={Star} title="Coupons" to="/admin/coupons" />
-      <NavItem Icon={MessageSquare} title="Inbox" to="/admin/inbox" />
+      <NavItem Icon={Users} title="Customers" to="/customers" />
+      <NavItem Icon={BarChart3} title="Reports" to="/reports" />
+      <NavItem Icon={Star} title="Coupons" to="/coupons" />
+      <NavItem Icon={MessageSquare} title="Inbox" to="/inbox" />
       
       <p style={{
         marginTop: 28,

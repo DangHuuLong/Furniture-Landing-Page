@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { Plus } from 'lucide-react';
 import { useState } from "react";
 import CategoryCard from "./category_card";
+import HeaderSubPage from '../../components/header_sub_page';
 export default function CategoriesPage(){
   const [categories, setCategories] = useState([
     {
@@ -104,42 +104,7 @@ export default function CategoriesPage(){
       position: 'relative'
     }}>
       {/**Header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end'
-      }}>
-        <p style={{
-          fontFamily: '"Poppins", sans-serif',
-          fontWeight: 700,
-          fontSize: 24,
-          color: '#131523',
-        }}>Categories</p>
-        <NavLink
-          to="/products/addcategory"
-          style={{
-            width: 148,
-            height: 40,
-            borderRadius: 4,
-            backgroundColor: '#1E5EFF',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            border: 'none',
-            textDecoration: "none",
-            cursor: 'pointer'
-          }}
-          onClick={() => setAddProduct(!addProduct)}>
-          <Plus size={14} color='white' />
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 400,
-            fontSize: 16,
-            color: 'white',
-            marginLeft: 10
-          }}>Add Category</p>
-        </NavLink>
-      </div>
+      <HeaderSubPage headerTitle={'Categories'} addButtonTitle={'Category'} exportButton={false}/>
       {/** */}
       <div
         style={{

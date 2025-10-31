@@ -1,6 +1,7 @@
-import { Plus, ChevronDown, Search, PenLine, Trash } from 'lucide-react';
+import {ChevronDown, Search, PenLine, Trash } from 'lucide-react';
 import TableProducts from './table_products';
-import { useOutletContext, NavLink } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import HeaderSubPage from '../../components/header_sub_page';
 export default function ProductsPage() {
   const headers = ['Product', 'Inventory', 'Color', 'Price', 'Rating']
   const datas = [
@@ -226,7 +227,7 @@ export default function ProductsPage() {
     ],
   ];
 
-  const { setDeleteItems, setExportData } = useOutletContext();
+  const { setDeleteItems } = useOutletContext();
   return (
     <div style={{
       flex: 1,
@@ -237,66 +238,7 @@ export default function ProductsPage() {
       position: 'relative'
     }}>
       {/**Header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end'
-      }}>
-        <p style={{
-          fontFamily: '"Poppins", sans-serif',
-          fontWeight: 700,
-          fontSize: 24,
-          color: '#131523',
-        }}>Products</p>
-        <div style={{
-          display: 'flex',
-          gap: 12
-        }}>
-          <button style={{
-            width: 98,
-            height: 40,
-            borderRadius: 4,
-            backgroundColor: 'white',
-            border: '1px solid #D7DBEC',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            cursor: 'pointer'
-          }}
-            onClick={setExportData}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: 16,
-              color: '#1E5EFF',
-            }}>Export</p>
-          </button>
-          <NavLink
-          to="/products/addproduct"
-          style={{
-            width: 148,
-            height: 40,
-            borderRadius: 4,
-            backgroundColor: '#1E5EFF',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            border: 'none',
-            textDecoration: "none",
-            cursor: 'pointer'
-          }}
-            onClick={() => setAddProduct(!addProduct)}>
-            <Plus size={14} color='white' />
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: 16,
-              color: 'white',
-              marginLeft: 10
-            }}>Add Product</p>
-          </NavLink>
-        </div>
-      </div>
+      <HeaderSubPage headerTitle={'Products'} addButtonTitle={'Product'} exportButton={true} to={"/products/addproduct"} addFunction={() => setAddProduct(!addProduct)}/>
 
       {/** */}
       <div style={{

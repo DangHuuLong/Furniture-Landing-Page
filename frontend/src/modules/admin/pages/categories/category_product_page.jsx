@@ -1,6 +1,6 @@
 import { NavLink, useParams, useLocation, useOutletContext } from "react-router-dom";
 import { Plus } from 'lucide-react';
-import HeaderSubPage from "../../components/header_add_edit_page";
+import HeaderAddEditPage from "../../components/header_add_edit_page";
 import ProductCategoryCard from "./product_category_card";
 import CategoryVisibility from "./category_visibility";
 import CategoryInfo from "./category_info";
@@ -21,7 +21,7 @@ export default function CategoryProductPage() {
         padding: "30px 40px 40px 40px",
       }}
     >
-      <HeaderSubPage to={"/categories"} name={name} saveFunction={setImportData}/>
+      <HeaderAddEditPage to={"/categories"} name={name} saveFunction={setImportData}/>
       <div style={{
         marginTop: 30,
         display: 'flex',
