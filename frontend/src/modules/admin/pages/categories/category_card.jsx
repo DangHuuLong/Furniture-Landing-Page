@@ -2,12 +2,14 @@ import { PenLine } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function CategoryCard({ imagePath, productName, stock }) {
+export default function CategoryCard({ category }) {
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
 
   function handleEditClick() {
-    navigate(`/categories/${encodeURIComponent(productName)}`);
+    navigate(`/categories/${encodeURIComponent(category.categoryName)}`, {
+      state: category
+    });
   }
 
 
@@ -36,7 +38,7 @@ export default function CategoryCard({ imagePath, productName, stock }) {
         onMouseLeave={() => setHover(false)}
       >
         <img
-          src={imagePath}
+          src={category.imagePath}
           style={{
             objectFit: 'cover',
             width: '100%',
@@ -108,7 +110,7 @@ export default function CategoryCard({ imagePath, productName, stock }) {
             color: '#131523',
           }}
         >
-          {productName}
+          {category.categoryName}
         </p>
 
         <p
@@ -119,7 +121,7 @@ export default function CategoryCard({ imagePath, productName, stock }) {
             color: '#131523',
           }}
         >
-          {stock} items
+          {category.stock} items
         </p>
       </div>
     </div>
