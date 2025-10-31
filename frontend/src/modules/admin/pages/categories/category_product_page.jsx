@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import HeaderSubPage from "../../components/header_add_edit_page";
 import ProductCategoryCard from "./product_category_card";
 import CategoryVisibility from "./category_visibility";
+import CategoryInfo from "./category_info";
 
 export default function CategoryProductPage() {
   const { name } = useParams();
@@ -94,9 +95,61 @@ export default function CategoryProductPage() {
         </div>
         {/**Right */}
         <div style={{
-          flex: 1
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 30
         }}>
           <CategoryVisibility />
+          <CategoryInfo name={name}/>
+        </div>
+      </div>
+      <div style={{
+        borderTop: '1px solid #D7DBEC',
+        width: '100%',
+        height: 70,
+        marginTop: '30px',
+        display: 'flex',
+        gap: 12,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+      }}>
+        <NavLink
+          to="/categories"
+          style={{
+            width: 102,
+            height: 40,
+            borderRadius: 4,
+            backgroundColor: 'white',
+            border: '1px solid #D7DBEC',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textDecoration: 'none'
+          }}>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 400,
+            fontSize: 16,
+            color: '#1E5EFF',
+          }}>Cancel</p>
+        </NavLink>
+        <div style={{
+          width: 86,
+          height: 40,
+          borderRadius: 4,
+          backgroundColor: '#1E5EFF',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginLeft: 12
+        }}>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 400,
+            fontSize: 16,
+            color: 'white',
+          }}>Save</p>
         </div>
       </div>
     </div>
