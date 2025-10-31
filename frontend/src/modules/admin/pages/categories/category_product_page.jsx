@@ -2,6 +2,7 @@ import { NavLink, useParams, useLocation } from "react-router-dom";
 import { Plus } from 'lucide-react';
 import HeaderSubPage from "../../components/header_add_edit_page";
 import ProductCategoryCard from "./product_category_card";
+import CategoryVisibility from "./category_visibility";
 
 export default function CategoryProductPage() {
   const { name } = useParams();
@@ -94,7 +95,9 @@ export default function CategoryProductPage() {
         {/**Right */}
         <div style={{
           flex: 1
-        }}></div>
+        }}>
+          <CategoryVisibility />
+        </div>
       </div>
     </div>
   );
