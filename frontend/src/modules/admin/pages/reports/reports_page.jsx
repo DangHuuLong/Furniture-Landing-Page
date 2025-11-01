@@ -3,6 +3,7 @@ import FullWidthReports from "./full_width_reports";
 import ProgressCard from "./progress_card";
 import Header from "./header";
 import LineChartCard from "./line_chart_card";
+import Demographics from "./demographics";
 
 export default function ReportsPage(){
   return (
@@ -59,6 +60,12 @@ export default function ReportsPage(){
               }]} />
           </div>
           <LineChartCard />
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: 30
+        }}>
+          <Demographics />
         </div>
       </div>
     </div>
