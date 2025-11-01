@@ -8,6 +8,7 @@ import VisitsByDevice from "./visits_by_device";
 import OnlineSessions from "./online_sessions";
 import TopCustomers from "./top_customers";
 import TopProducts from "./top_products";
+import StoreFunnel from "./store_funnel";
 
 export default function ReportsPage(){
   return (
@@ -86,6 +87,12 @@ export default function ReportsPage(){
         }}>
           <TopCustomers />
           <TopProducts />
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: 30
+        }}>
+          <StoreFunnel />
         </div>
       </div>
     </div>
