@@ -2,6 +2,7 @@ import CustomerGrowth from "./customer_growth";
 import FullWidthReports from "./full_width_reports";
 import ProgressCard from "./progress_card";
 import Header from "./header";
+import LineChartCard from "./line_chart_card";
 
 export default function ReportsPage(){
   return (
@@ -57,7 +58,7 @@ export default function ReportsPage(){
                 value: '25%'
               }]} />
           </div>
-
+          <LineChartCard />
         </div>
       </div>
     </div>
