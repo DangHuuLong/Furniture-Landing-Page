@@ -9,7 +9,8 @@ export default function Info({ name, location, orders }) {
       height: 360,
       borderRadius: 6,
       backgroundColor: 'white',
-      padding: 28
+      padding: 28,
+      boxShadow: '0px 1px 4px 0px rgba(21, 34, 50, 0.08)'
     }}>
       <div style={{
         display: 'flex',

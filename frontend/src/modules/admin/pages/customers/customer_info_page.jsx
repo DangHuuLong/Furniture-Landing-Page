@@ -2,8 +2,9 @@ import { useLocation } from 'react-router-dom';
 import FooterAddEditPage from "../../components/footer_add_edit_page";
 import HeaderAddEditPage from "../../components/header_add_edit_page";
 import Info from './info';
+import CustomerOrders from './customer_orders';
 
-export default function CustomerInfo() {
+export default function CustomerInfoPage() {
   const { state } = useLocation();
   const name = state?.name
   const location = state?.location
@@ -35,6 +36,7 @@ export default function CustomerInfo() {
           gap: 30
         }}>
           <Info name={name} location={location} orders={orders}/>
+          <CustomerOrders />
         </div>
         {/**Right */}
         <div style={{
