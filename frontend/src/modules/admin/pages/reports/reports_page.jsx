@@ -9,6 +9,7 @@ import OnlineSessions from "./online_sessions";
 import TopCustomers from "./top_customers";
 import TopProducts from "./top_products";
 import StoreFunnel from "./store_funnel";
+import AgeDistribution from "./age_distribution";
 
 export default function ReportsPage(){
   return (
@@ -93,6 +94,7 @@ export default function ReportsPage(){
           gap: 30
         }}>
           <StoreFunnel />
+          <AgeDistribution />
         </div>
       </div>
     </div>
