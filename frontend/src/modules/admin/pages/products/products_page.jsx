@@ -238,7 +238,7 @@ export default function ProductsPage() {
       position: 'relative'
     }}>
       {/**Header */}
-      <HeaderSubPage headerTitle={'Products'} addButtonTitle={'Product'} exportButton={true} to={"/products/addproduct"} addFunction={() => setAddProduct(!addProduct)}/>
+      <HeaderSubPage headerTitle={'Products'} addButtonTitle={'Product'} exportButton={true} to={"/products/addproduct"}/>
 
       {/** */}
       <div style={{

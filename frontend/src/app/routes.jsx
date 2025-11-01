@@ -29,6 +29,7 @@ import CategoriesPage from "../modules/admin/pages/categories/categories_page";
 import CategoryProductPage from "../modules/admin/pages/categories/category_product_page";
 import CustomersPage from "../modules/admin/pages/customers/customers_page"
 import CustomerInfoPage from "../modules/admin/pages/customers/customer_info_page";
+import AddCustomerPage from "../modules/admin/pages/customers/add_customer_page"
 export default function AppRoutes() {
   return (
     <Routes>
@@ -63,6 +64,7 @@ export default function AppRoutes() {
         <Route path="/categories/:name" element={<CategoryProductPage />} />
         <Route path="/customers" element={<CustomersPage />}/>
         <Route path="/customers/customerinfo/:name" element={<CustomerInfoPage />} />
+        <Route path="/customers/addcustomer" element={<AddCustomerPage />} />
       </Route>
 
       {/* 404 đơn giản */}

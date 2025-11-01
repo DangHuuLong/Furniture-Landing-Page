@@ -48,7 +48,7 @@ export default function CustomersPage(){
       padding: '28px 40px 40px 40px',
       position: 'relative'
     }}>
-      <HeaderSubPage headerTitle={'Customers'} addButtonTitle={'Customer'} exportButton={true}/>
+      <HeaderSubPage headerTitle={'Customers'} addButtonTitle={'Customer'} to={'/customers/addcustomer'} exportButton={true}/>
       <div style={{
         width: '100%',
         backgroundColor: 'white',
