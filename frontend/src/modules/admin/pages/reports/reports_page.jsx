@@ -7,6 +7,7 @@ import Demographics from "./demographics";
 import VisitsByDevice from "./visits_by_device";
 import OnlineSessions from "./online_sessions";
 import TopCustomers from "./top_customers";
+import TopProducts from "./top_products";
 
 export default function ReportsPage(){
   return (
@@ -84,6 +85,7 @@ export default function ReportsPage(){
           gap: 30
         }}>
           <TopCustomers />
+          <TopProducts />
         </div>
       </div>
     </div>
