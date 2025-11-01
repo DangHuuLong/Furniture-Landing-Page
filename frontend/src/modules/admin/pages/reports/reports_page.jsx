@@ -1,5 +1,6 @@
 import CustomerGrowth from "./customer_growth";
 import FullWidthReports from "./full_width_reports";
+import ProgressCard from "./progress_card";
 import Header from "./header";
 
 export default function ReportsPage(){
@@ -19,6 +20,45 @@ export default function ReportsPage(){
       }}>
         <CustomerGrowth />
         <FullWidthReports />
+        <div style={{
+          display: 'flex',
+          gap: 30
+        }}>
+          <div style={{
+            display: 'flex',
+            gap: 30,
+            flex: 1
+          }}>
+            <ProgressCard title={'Sales Goal'} percent={75} color={'#FFC700'} datas={[
+              { 
+                title: 'Sold for',
+                value: '$15.000'
+              },
+              {
+                title: 'Month goal',
+                value: '$20.000'
+              },
+              {
+                title: 'Left',
+                value: '$5.000'
+              }]}/>
+
+            <ProgressCard title={'Conversion Rate'} percent={25} color={'#1FD286'} datas={[
+              {
+                title: 'Cart',
+                value: '35%'
+              },
+              {
+                title: 'Checkout',
+                value: '29%'
+              },
+              {
+                title: 'Purchase',
+                value: '25%'
+              }]} />
+          </div>
+
+        </div>
       </div>
     </div>
   )
