@@ -5,6 +5,7 @@ import Header from "./header";
 import LineChartCard from "./line_chart_card";
 import Demographics from "./demographics";
 import VisitsByDevice from "./visits_by_device";
+import OnlineSessions from "./online_sessions";
 
 export default function ReportsPage(){
   return (
@@ -74,6 +75,7 @@ export default function ReportsPage(){
             gap: 30
           }}>
             <VisitsByDevice />
+            <OnlineSessions />
           </div>
         </div>
       </div>
