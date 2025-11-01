@@ -1,4 +1,5 @@
 import CustomerGrowth from "./customer_growth";
+import FullWidthReports from "./full_width_reports";
 import Header from "./header";
 
 export default function ReportsPage(){
@@ -17,6 +18,7 @@ export default function ReportsPage(){
         gap: 30
       }}>
         <CustomerGrowth />
+        <FullWidthReports />
       </div>
     </div>
   )

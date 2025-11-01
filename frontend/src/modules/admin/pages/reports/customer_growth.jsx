@@ -45,11 +45,16 @@ export default function CustomerGrowth() {
     >
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <p style={{ fontFamily: '"Poppins"', fontWeight: 700, fontSize: 16, color: "#131523" }}>
+        <p style={{
+          fontFamily: '"Poppins", sans-serif', fontWeight: 700, fontSize: 16, color: "#131523" }}>
           Customer Growth
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <p style={{ fontFamily: '"Poppins"', fontSize: 14, color: "#5A607F" }}>Last 12 Months</p>
+          <p style={{
+            fontFamily: '"Poppins", sans-serif', 
+            fontSize: 14,
+            fontWeight: 400,
+            color: "#5A607F" }}>Last 12 Months</p>
           <ChevronDown size={24} color="#7E84A3" />
         </div>
       </div>
@@ -58,11 +63,19 @@ export default function CustomerGrowth() {
       <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 8 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 12, height: 12, borderRadius: 2, backgroundColor: "#D7DBEC" }}></div>
-          <p style={{ fontFamily: '"Poppins"', fontSize: 14, color: "#5A607F" }}>Returning customers</p>
+          <p style={{ 
+            fontFamily: '"Poppins", sans-serif', 
+            fontSize: 14,
+            fontWeight: 400,
+            color: "#5A607F" }}>Returning customers</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 12, height: 12, borderRadius: 2, backgroundColor: "#1E5EFF" }}></div>
-          <p style={{ fontFamily: '"Poppins"', fontSize: 14, color: "#5A607F" }}>New customers</p>
+          <p style={{ 
+            fontFamily: '"Poppins", sans-serif', 
+            fontSize: 14,
+            fontWeight: 400,
+            color: "#5A607F" }}>New customers</p>
         </div>
       </div>
 
@@ -83,7 +96,11 @@ export default function CustomerGrowth() {
                   height: 44,
                 }}
               >
-                <p style={{ flex: 1, fontFamily: '"Poppins"', fontSize: 12, color: "#A1A7C4" }}>{i * 100}</p>
+                <p style={{ flex: 1, 
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400, 
+                  fontSize: 12, 
+                  color: "#A1A7C4" }}>{i * 100}</p>
                 <div style={{ height: 1, flex: 22, border: "1px dashed #D9E1EC" }}></div>
               </div>
             ))}
@@ -150,7 +167,8 @@ export default function CustomerGrowth() {
             }}
           >
             {customerData.map((cell, i) => (
-              <p key={i} style={{ fontFamily: '"Poppins"', fontSize: 12, color: "#A1A7C4" }}>
+              <p key={i} style={{ 
+        fontFamily: '"Poppins", sans-serif', fontSize: 12, color: "#A1A7C4" }}>
                 {cell.month}
               </p>
             ))}
