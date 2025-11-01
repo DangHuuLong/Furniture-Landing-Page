@@ -4,6 +4,7 @@ import HeaderAddEditPage from "../../components/header_add_edit_page";
 import Info from './info';
 import CustomerOrders from './customer_orders';
 import Overview from './overview';
+import Tags from './tags';
 
 export default function CustomerInfoPage() {
   const { state } = useLocation();
@@ -47,6 +48,7 @@ export default function CustomerInfoPage() {
           gap: 30
         }}>
           <Overview/>
+          <Tags />
         </div>
       </div>
 

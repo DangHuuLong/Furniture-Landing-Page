@@ -2,7 +2,7 @@ export default function Overview(){
   const data = [
     {
       title: 'Address',
-      content: 'Panapur langa Hajipur, vaishali 844124 India'
+      content: 'Panapur langa\nHajipur, vaishali\n844124\nIndia'
     },
     {
       title: 'Email Address', 
@@ -61,7 +61,8 @@ export default function Overview(){
               fontWeight: 400,
               fontSize: 14,
               color: '#5A607F',
-              textWrap: 'wrap'
+              textWrap: 'wrap',
+              whiteSpace: 'pre-line'
             }}>{row.content}</p>
           </div>
         })}
