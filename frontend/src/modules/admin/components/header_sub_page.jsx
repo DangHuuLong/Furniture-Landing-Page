@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react"
 import { useOutletContext, NavLink } from "react-router-dom"
-export default function HeaderSubPage({headerTitle, addButtonTitle, exportButton, to}){
+export default function HeaderSubPage({headerTitle, addButtonTitle, exportButton, to, addFunc}){
   const { setExportData } = useOutletContext()
   return (
     <div style={{
@@ -38,6 +38,7 @@ export default function HeaderSubPage({headerTitle, addButtonTitle, exportButton
           }}>Export</p>
         </button>}
         <NavLink
+          onClick={addFunc}
           to={to}
           style={{
             width: 148,

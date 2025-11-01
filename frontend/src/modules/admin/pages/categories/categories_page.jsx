@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import CategoryCard from "./category_card";
 import HeaderSubPage from '../../components/header_sub_page';
@@ -94,6 +94,7 @@ export default function CategoriesPage(){
     },  
   ]);
 
+  const { setAddCategory } = useOutletContext();
   return (
     <div style={{
       flex: 1,
@@ -104,7 +105,7 @@ export default function CategoriesPage(){
       position: 'relative'
     }}>
       {/**Header */}
-      <HeaderSubPage headerTitle={'Categories'} addButtonTitle={'Category'} exportButton={false}/>
+      <HeaderSubPage headerTitle={'Categories'} addButtonTitle={'Category'} exportButton={false} addFunc={setAddCategory}/>
       {/** */}
       <div
         style={{

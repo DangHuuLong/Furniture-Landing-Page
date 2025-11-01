@@ -5,11 +5,13 @@ import { useState } from "react";
 import DeleteItems from "../modules/admin/notifications/delete_items";
 import Export from "../modules/admin/notifications/export";
 import Import from "../modules/admin/notifications/import";
+import AddCategory from "../modules/admin/notifications/add_category";
 
 export default function AdminLayout() {
   const [deleteItems, setDeleteItems] = useState(false)
   const [exportData, setExportData] = useState(false)
   const [importData, setImportData] = useState(false)
+  const [addCategory, setAddCategory] = useState(false)
   return (
     <div
       style={{
@@ -38,6 +40,12 @@ export default function AdminLayout() {
           onClose={() => setImportData(false)}
         />
       )}
+      {addCategory && (
+        <AddCategory 
+          open={addCategory}
+          onClose={() => setAddCategory(false)}
+        />
+      )}
       <Header />
       <div
         style={{
@@ -57,7 +65,7 @@ export default function AdminLayout() {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Outlet context={{ setDeleteItems, setExportData, setImportData }} />
+          <Outlet context={{ setDeleteItems, setExportData, setImportData, setAddCategory }} />
         </div>
       </div>
     </div>
