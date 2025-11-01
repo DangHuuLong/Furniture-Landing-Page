@@ -4,6 +4,7 @@ import ProgressCard from "./progress_card";
 import Header from "./header";
 import LineChartCard from "./line_chart_card";
 import Demographics from "./demographics";
+import VisitsByDevice from "./visits_by_device";
 
 export default function ReportsPage(){
   return (
@@ -66,6 +67,14 @@ export default function ReportsPage(){
           gap: 30
         }}>
           <Demographics />
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            gap: 30
+          }}>
+            <VisitsByDevice />
+          </div>
         </div>
       </div>
     </div>

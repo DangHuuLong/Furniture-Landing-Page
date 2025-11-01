@@ -87,27 +87,29 @@ export default function LineChartCard(){
         <div style={{
           position: 'relative'
         }}>
-          {Array.from({ length: roundedMax / 20 + 1 }, (_, i) => i).reverse().map((i) => (
-            <div style={{
-              display: 'flex',
-              height: 40,
-              alignItems: 'center',
-              gap: 6
-            }}>
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 12,
-                color: '#A1A7C4',
-                flex: 1
-              }}>${i * 20}</p>
-              <div style={{
-                height: 1,
-                flex: 11,
-                border: '1px dashed #D9E1EC'
-              }}></div>
-            </div>
-          ))}
+          {Array.from({ length: roundedMax / 20 + 1 }, (_, i) => i)
+            .reverse()
+            .map((i) => (
+              <div key={`grid-${i}`} style={{
+                display: 'flex',
+                height: 40,
+                alignItems: 'center',
+                gap: 6
+              }}>
+                <p style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 12,
+                  color: '#A1A7C4',
+                  flex: 1
+                }}>${i * 20}</p>
+                <div style={{
+                  height: 1,
+                  flex: 11,
+                  border: '1px dashed #D9E1EC'
+                }}></div>
+              </div>
+            ))}
           <div
             ref={barsRef} style={{
             position: 'absolute',
