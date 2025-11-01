@@ -30,6 +30,7 @@ import CategoryProductPage from "../modules/admin/pages/categories/category_prod
 import CustomersPage from "../modules/admin/pages/customers/customers_page"
 import CustomerInfoPage from "../modules/admin/pages/customers/customer_info_page";
 import AddCustomerPage from "../modules/admin/pages/customers/add_customer_page"
+import ReportsPage from "../modules/admin/pages/reports/reports_page"
 export default function AppRoutes() {
   return (
     <Routes>
@@ -65,6 +66,7 @@ export default function AppRoutes() {
         <Route path="/customers" element={<CustomersPage />}/>
         <Route path="/customers/customerinfo/:name" element={<CustomerInfoPage />} />
         <Route path="/customers/addcustomer" element={<AddCustomerPage />} />
+        <Route path="/reports" element={<ReportsPage />} />
       </Route>
 
       {/* 404 đơn giản */}
