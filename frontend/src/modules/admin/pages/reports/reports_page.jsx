@@ -1,3 +1,4 @@
+import CustomerGrowth from "./customer_growth";
 import Header from "./header";
 
 export default function ReportsPage(){
@@ -9,6 +10,14 @@ export default function ReportsPage(){
       padding: 28
     }}>
       <Header />
+      <div style={{
+        marginTop: 28,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 30
+      }}>
+        <CustomerGrowth />
+      </div>
     </div>
   )
 }
