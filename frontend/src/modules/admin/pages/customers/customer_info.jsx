@@ -1,10 +1,13 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import FooterAddEditPage from "../../components/footer_add_edit_page";
 import HeaderAddEditPage from "../../components/header_add_edit_page";
+import Info from './info';
 
 export default function CustomerInfo() {
-  const { name } = useParams();
-
+  const { state } = useLocation();
+  const name = state?.name
+  const location = state?.location
+  const orders = state?.name
   return (
     <div
       style={{
@@ -17,7 +20,31 @@ export default function CustomerInfo() {
       }}
     >
       <HeaderAddEditPage to={'/customers'} name={`Customer: ${decodeURIComponent(name)}`} />
-      {/* chỗ này bạn render info theo name */}
+      
+      <div style={{
+        marginTop: 28,
+        width: '100%',
+        display: 'flex',
+        gap: 30
+      }}>
+        {/**Left */}
+        <div style={{
+          flex: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 30
+        }}>
+          <Info name={name} location={location} orders={orders}/>
+        </div>
+        {/**Right */}
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 30
+        }}></div>
+      </div>
+
       <FooterAddEditPage />
     </div>
   );

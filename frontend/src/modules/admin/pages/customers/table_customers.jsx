@@ -58,7 +58,13 @@ export default function TableCustomers({ headers, datas }) {
           <div
             key={rowIndex}
             onClick={() =>
-              navigate(`/customers/customerinfo/${encodeURIComponent(customerName)}`)
+              navigate(`/customers/customerinfo/${encodeURIComponent(customerName)}`, {
+                state: {
+                  name: customerName,
+                  location: row[1],
+                  orders: row[2],
+                }
+              })
             }
             style={{
               width: '100%',
