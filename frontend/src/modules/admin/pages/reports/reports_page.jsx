@@ -6,6 +6,7 @@ import LineChartCard from "./line_chart_card";
 import Demographics from "./demographics";
 import VisitsByDevice from "./visits_by_device";
 import OnlineSessions from "./online_sessions";
+import TopCustomers from "./top_customers";
 
 export default function ReportsPage(){
   return (
@@ -77,6 +78,12 @@ export default function ReportsPage(){
             <VisitsByDevice />
             <OnlineSessions />
           </div>
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: 30
+        }}>
+          <TopCustomers />
         </div>
       </div>
     </div>
