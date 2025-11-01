@@ -3,6 +3,7 @@ import FooterAddEditPage from "../../components/footer_add_edit_page";
 import HeaderAddEditPage from "../../components/header_add_edit_page";
 import Info from './info';
 import CustomerOrders from './customer_orders';
+import Overview from './overview';
 
 export default function CustomerInfoPage() {
   const { state } = useLocation();
@@ -44,7 +45,9 @@ export default function CustomerInfoPage() {
           display: 'flex',
           flexDirection: 'column',
           gap: 30
-        }}></div>
+        }}>
+          <Overview/>
+        </div>
       </div>
 
       <FooterAddEditPage />
