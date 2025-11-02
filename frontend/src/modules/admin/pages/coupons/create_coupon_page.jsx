@@ -1,4 +1,6 @@
+import FooterAddEditPage from "../../components/footer_add_edit_page";
 import HeaderAddEditPage from "../../components/header_add_edit_page";
+import CouponInformation from "./coupon_information";
 
 export default function CreateCouponPage(){
   return (
@@ -9,6 +11,8 @@ export default function CreateCouponPage(){
       padding: 28
     }}>
       <HeaderAddEditPage to={'/coupons'} name={'Create Coupon'} /> 
+      <CouponInformation />
+      <FooterAddEditPage to={'/coupons'} />
     </div>
   )
 }
