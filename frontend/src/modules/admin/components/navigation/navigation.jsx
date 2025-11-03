@@ -46,7 +46,7 @@ export default function Navigation() {
         fontSize: 12,
         color: 'white'
       }}>Settings</p>
-      <NavItem Icon={User} title="Personal Settings" to="/admin/settings/personal" />
+      <NavItem Icon={User} title="Personal Settings" to="/personal-settings" />
       <NavItem Icon={Settings} title="Global Settings" to="/admin/settings/global" />
 
       <div style={{

@@ -1,24 +1,24 @@
 import { NavLink } from 'react-router-dom';
 import {MoveLeft} from 'lucide-react'
-export default function HeaderAddEditPage({to, name, saveFunction = null}){
+export default function HeaderAddEditPage({back=true, to, name, saveFunction = null}){
   return (
     <>
-      <NavLink 
-      to={to}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 4,
-        textDecoration: 'none'
-      }}>
-        <MoveLeft size={14} color='#7E84A3'/>
+      {back && <NavLink
+        to={to}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 4,
+          textDecoration: 'none'
+        }}>
+        <MoveLeft size={14} color='#7E84A3' />
         <p style={{
           fontFamily: '"Poppins", sans-serif',
           fontWeight: 400,
           fontSize: 14,
           color: '#5A607F',
         }}>Back</p>
-      </NavLink>
+      </NavLink>}
       <div style={{
         display: 'flex',
         alignItems: 'center',

@@ -38,6 +38,7 @@ import GettingStartedLayoutPage from "../modules/admin/pages/knowledge_base/gett
 import Introduction from "../modules/admin/pages/knowledge_base/gettingstarted/introduction";
 import { Inbox } from "lucide-react";
 import InboxPage from "../modules/admin/pages/inbox/inbox_page";
+import PersonalSettingsPage from "../modules/admin/pages/personal_settings/personal_settings_page";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -83,6 +84,8 @@ export default function AppRoutes() {
           <Route path="introduction" element={<Introduction />} />
         </Route>
         <Route path="/inbox" element={<InboxPage />} />
+        <Route path="/personal-settings" element={<PersonalSettingsPage />}>
+        </Route>
       </Route>
 
       {/* 404 đơn giản */}
