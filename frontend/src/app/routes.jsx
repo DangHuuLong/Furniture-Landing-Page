@@ -39,6 +39,7 @@ import Introduction from "../modules/admin/pages/knowledge_base/gettingstarted/i
 import { Inbox } from "lucide-react";
 import InboxPage from "../modules/admin/pages/inbox/inbox_page";
 import PersonalSettingsPage from "../modules/admin/pages/personal_settings/personal_settings_page";
+import Profile from "../modules/admin/pages/personal_settings/profile";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -85,6 +86,8 @@ export default function AppRoutes() {
         </Route>
         <Route path="/inbox" element={<InboxPage />} />
         <Route path="/personal-settings" element={<PersonalSettingsPage />}>
+          <Route index element={<Navigate to="profile" replace />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Route>
 
