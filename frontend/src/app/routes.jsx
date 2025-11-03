@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CustomerLayout from "../layouts/CustomerLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import AdminLayout from "../layouts/AdminLayout";
@@ -34,6 +34,8 @@ import ReportsPage from "../modules/admin/pages/reports/reports_page"
 import CouponsPage from "../modules/admin/pages/coupons/coupons_page";
 import CreateCouponPage from "../modules/admin/pages/coupons/create_coupon_page";
 import KnowledgeBasePage from "../modules/admin/pages/knowledge_base/knowledge_base_page";
+import GettingStartedLayoutPage from "../modules/admin/pages/knowledge_base/getting_started_layout_page";
+import Introduction from "../modules/admin/pages/knowledge_base/gettingstarted/introduction";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -73,6 +75,11 @@ export default function AppRoutes() {
         <Route path="/coupons" element={<CouponsPage />} />
         <Route path="/coupons/createcoupon" element={<CreateCouponPage />} />
         <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+        <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+        <Route path="/knowledge-base/getting-started" element={<GettingStartedLayoutPage />}>
+          <Route index element={<Navigate to="introduction" replace />} />
+          <Route path="introduction" element={<Introduction />} />
+        </Route>
       </Route>
 
       {/* 404 đơn giản */}

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Card({card}){
   return (
     <div style={{
@@ -39,13 +41,16 @@ export default function Card({card}){
           }}>{content}</p>
         })}
       </div>
-      <p style={{
+      <Link 
+        to={'/knowledge-base/getting-started'}
+      style={{
         marginTop: 20,
         fontFamily: '"Poppins", sans-serif',
         fontWeight: 400,
         fontSize: 14,
         color: '#1E5EFF',
-      }}>More Tutorials</p>
+        textDecoration: 'none'
+      }}>More Tutorials</Link>
     </div>
   )
 }
