@@ -41,6 +41,7 @@ import InboxPage from "../modules/admin/pages/inbox/inbox_page";
 import PersonalSettingsPage from "../modules/admin/pages/personal_settings/personal_settings_page";
 import Profile from "../modules/admin/pages/personal_settings/profile";
 import Notifications from "../modules/admin/pages/personal_settings/notifications";
+import GlobalSettingsPage from "../modules/admin/pages/global_settings/global_settings_page";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -91,6 +92,8 @@ export default function AppRoutes() {
           <Route path="profile" element={<Profile />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>
+        <Route path="/global-settings" element={<GlobalSettingsPage />} />
+
       </Route>
 
       {/* 404 đơn giản */}

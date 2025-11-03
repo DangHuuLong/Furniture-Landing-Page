@@ -47,7 +47,7 @@ export default function Navigation() {
         color: 'white'
       }}>Settings</p>
       <NavItem Icon={User} title="Personal Settings" to="/personal-settings" />
-      <NavItem Icon={Settings} title="Global Settings" to="/admin/settings/global" />
+      <NavItem Icon={Settings} title="Global Settings" to="/global-settings" />
 
       <div style={{
         backgroundImage: `url(${banner})`,
