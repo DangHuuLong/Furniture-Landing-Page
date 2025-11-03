@@ -1,6 +1,7 @@
 import {Search} from 'lucide-react'
 import Card from './card'
 import InfoCard from './info_card';
+import Questions from './questions';
 export default function KnowledgeBasePage(){
   const cards = [
     {
@@ -105,6 +106,7 @@ export default function KnowledgeBasePage(){
           return <InfoCard key={i} infoCard={infoCard} />
         })}
       </div>
+      <Questions />
     </div>
   )
 }
