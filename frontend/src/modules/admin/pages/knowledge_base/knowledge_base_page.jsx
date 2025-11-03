@@ -1,5 +1,6 @@
 import {Search} from 'lucide-react'
 import Card from './card'
+import InfoCard from './info_card';
 export default function KnowledgeBasePage(){
   const cards = [
     {
@@ -31,6 +32,19 @@ export default function KnowledgeBasePage(){
       contents: ['Add products', 'Selling guide', 'Create categories'],
     },
   ];
+
+  const infoCards = [
+    {
+      title: 'Community Forum',
+      content: 'Get help from community members, ask any questions and get answers faster.',
+      action: 'Join Community'
+    },
+    {
+      title: 'Webinars',
+      content: 'Join our series of webinars where you can ask questions live and see a presentation.',
+      action: 'Register'
+    }
+  ]
   return (
     <div style={{
       flex: 1,
@@ -80,6 +94,15 @@ export default function KnowledgeBasePage(){
       }}>
         {cards.map((card, i)=>{
           return <Card key={i} card={card}/>
+        })}
+      </div>
+      <div style={{
+        display: 'flex',
+        gap: 30,
+        marginTop: 32
+      }}>
+        {infoCards.map((infoCard, i) => {
+          return <InfoCard key={i} infoCard={infoCard} />
         })}
       </div>
     </div>
