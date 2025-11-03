@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PricingCard from "./pricing_card";
+import FrequentlyAskedQuestions from "./frequently_asked_questions";
 export default function GlobalSettingsPage(){
   const [activeIndex, setActiveIndex] = useState(0); 
   const pricings = [
@@ -150,6 +151,7 @@ export default function GlobalSettingsPage(){
           textAlign: 'center'
         }}>Cancel or upgrade your plan anytime</p>
       </div>
+      <FrequentlyAskedQuestions />
     </div>
   )
 }
