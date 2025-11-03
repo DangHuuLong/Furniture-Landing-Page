@@ -33,6 +33,7 @@ import AddCustomerPage from "../modules/admin/pages/customers/add_customer_page"
 import ReportsPage from "../modules/admin/pages/reports/reports_page"
 import CouponsPage from "../modules/admin/pages/coupons/coupons_page";
 import CreateCouponPage from "../modules/admin/pages/coupons/create_coupon_page";
+import KnowledgeBasePage from "../modules/admin/pages/knowledge_base/knowledge_base_page";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -71,6 +72,7 @@ export default function AppRoutes() {
         <Route path="/reports" element={<ReportsPage />} />
         <Route path="/coupons" element={<CouponsPage />} />
         <Route path="/coupons/createcoupon" element={<CreateCouponPage />} />
+        <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
       </Route>
 
       {/* 404 đơn giản */}

@@ -34,8 +34,8 @@ export default function Navigation() {
         fontSize: 12,
         color: 'white'
       }}>Other Information</p>
-      <NavItem Icon={HelpCircle} title="Knowledge Base" to="/admin/knowledge-base" />
-      <NavItem Icon={Ribbon} title="Product Updates" to="/admin/product-updates" />
+      <NavItem Icon={HelpCircle} title="Knowledge Base" to="/knowledge-base" />
+      <NavItem Icon={Ribbon} title="Product Updates" to="/product-updates" />
 
       <p style={{
         marginTop: 28,
