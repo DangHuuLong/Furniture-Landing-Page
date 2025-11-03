@@ -284,7 +284,11 @@ export default function CouponsPage(){
         marginTop: 28,
         padding: 28
       }}>
-        <FastFilter fastFilter={fastFilter}/>
+        <div style={{
+          marginBottom: 16,
+        }}>
+          <FastFilter fastFilter={fastFilter} color={'#4944E6'} />
+        </div>
         <Tools />
         <TableCoupons headers={headers} datas={datas}/>
       </div>

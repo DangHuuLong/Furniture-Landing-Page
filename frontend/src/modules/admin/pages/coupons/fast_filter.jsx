@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function FastFilter({ fastFilter }) {
+export default function FastFilter({ fastFilter, color }) {
   const [activeIndex, setActiveIndex] = useState(0); 
 
   return (
@@ -9,7 +9,6 @@ export default function FastFilter({ fastFilter }) {
         display: 'flex',
         alignItems: 'center',
         gap: 24,
-        marginBottom: 16,
         width: '100%',
         borderBottom: '1px solid #E6E9F4'
       }}
@@ -24,13 +23,12 @@ export default function FastFilter({ fastFilter }) {
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,
               fontSize: 16,
-              color: isActive ? '#4944E6' : '#5A607F',
+              color: isActive ? `${color}` : '#5A607F',
               paddingBottom: 14,
               borderBottom: isActive
-                ? '2px solid #4944E6'
+                ? `2px solid ${color}`
                 : 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
             }}
           >
             {option}
