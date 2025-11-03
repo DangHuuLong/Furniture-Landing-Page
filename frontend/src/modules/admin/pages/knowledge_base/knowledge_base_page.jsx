@@ -1,5 +1,36 @@
 import {Search} from 'lucide-react'
+import Card from './card'
 export default function KnowledgeBasePage(){
+  const cards = [
+    {
+      img: '/src/modules/admin/pages/knowledge_base/images/pages.png',
+      title: 'Getting Started',
+      contents: [
+        'Guide to get started faster',
+        'Video tutorials for beginners',
+        'Moving to Bolt system',
+      ],
+    },
+    {
+      img: '/src/modules/admin/pages/knowledge_base/images/users.png',
+      title: 'Personal Settings',
+      contents: [
+        'Setting up your profile',
+        'Changing business name',
+        'Changing email address',
+      ],
+    },
+    {
+      img: '/src/modules/admin/pages/knowledge_base/images/credit card.png',
+      title: 'Billing',
+      contents: ['Payment declined', 'Get a refund', 'Subscriptions'],
+    },
+    {
+      img: '/src/modules/admin/pages/knowledge_base/images/statistics.png',
+      title: 'Commerce',
+      contents: ['Add products', 'Selling guide', 'Create categories'],
+    },
+  ];
   return (
     <div style={{
       flex: 1,
@@ -41,6 +72,15 @@ export default function KnowledgeBasePage(){
         }}>
           <Search size={24} color='#7E84A3'/>
         </div>
+      </div>
+      <div style={{
+        display: 'flex',
+        gap: 30,
+        marginTop: 6
+      }}>
+        {cards.map((card, i)=>{
+          return <Card key={i} card={card}/>
+        })}
       </div>
     </div>
   )
