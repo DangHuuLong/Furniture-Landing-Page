@@ -1,9 +1,14 @@
 import HeaderAddEditPage from "../../components/header_add_edit_page";
 import FooterAddEditPage from '../../components/footer_add_edit_page'
 import FastFilter from '../coupons/fast_filter'
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 export default function PersonalSettingsPage(){
   const fastfilter = ['Profile', 'Notifications', 'Accounts', 'Security']
+  const navigate = useNavigate();                 
+  const navFunc = (option) => {
+    const path = option.toLowerCase();
+    navigate(`/personal-settings/${path}`);
+  }
   return (
     <div style={{
       width: '100%',
@@ -20,7 +25,7 @@ export default function PersonalSettingsPage(){
         backgroundColor: 'white',
         marginTop: 28
       }}>
-        <FastFilter fastFilter={fastfilter} color={'#4944E6'}/>
+        <FastFilter fastFilter={fastfilter} color={'#4944E6'} navFunc={navFunc}/>
         <Outlet />
       </div>
       <FooterAddEditPage />

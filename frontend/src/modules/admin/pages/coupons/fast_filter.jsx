@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function FastFilter({ fastFilter, color }) {
+export default function FastFilter({ fastFilter, color, navFunc = null }) {
   const [activeIndex, setActiveIndex] = useState(0); 
 
   return (
@@ -18,7 +18,10 @@ export default function FastFilter({ fastFilter, color }) {
         return (
           <p
             key={i}
-            onClick={() => setActiveIndex(i)}
+            onClick={() => {
+              setActiveIndex(i)
+              if(navFunc) navFunc(option)
+            }}
             style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: 400,

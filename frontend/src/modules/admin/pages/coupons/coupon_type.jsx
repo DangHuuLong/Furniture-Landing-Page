@@ -23,7 +23,6 @@ export default function CouponType({ types }) {
             justifyContent: 'center',
             alignItems: 'center',
             gap: 12,
-            backgroundColor: 'none',
             border: isActive ? '2px solid #1E5EFF' : '1px solid #D7DBEC',
             backgroundColor: 'white',
             borderRadius: 4,
