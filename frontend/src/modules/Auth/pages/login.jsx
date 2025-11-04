@@ -43,6 +43,9 @@ function Login() {
       if (role === "customer") {
         showToast("Login successful", "success");
         navigate("/home");
+      } else if (role === "admin") {
+        showToast("Login successful", "success");
+        navigate("/dashboard");
       } else {
         showToast("Login successful. No landing page for this role.", "warning");
       }

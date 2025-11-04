@@ -5,229 +5,230 @@ import HeaderSubPage from '../../components/header_sub_page';
 import EmptyStates from '../../components/empty_states';
 export default function ProductsPage() {
   const headers = ['Product', 'Inventory', 'Color', 'Price', 'Rating']
-  // const datas = [
-  //   [
-  //     {
-  //       image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
-  //       name: 'Men Grey Hoodie',
-  //       category: 'Hoodies'
-  //     },
-  //     96,
-  //     'Black',
-  //     49.90,
-  //     { rating: 5.0, reviews: '(32 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/vD4tN7B/women-striped.jpg',
-  //       name: 'Women Striped T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     56,
-  //     'White',
-  //     34.90,
-  //     { rating: 4.8, reviews: '(24 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/9vp3f1k/women-white.jpg',
-  //       name: 'Women White T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     78,
-  //     'White',
-  //     40.90,
-  //     { rating: 5.0, reviews: '(54 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/N1rZyxP/men-white.jpg',
-  //       name: 'Men White T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     32,
-  //     'White',
-  //     49.90,
-  //     { rating: 4.5, reviews: '(31 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/ZHGBwS3/women-red.jpg',
-  //       name: 'Women Red T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     32,
-  //     'White',
-  //     34.90,
-  //     { rating: 4.9, reviews: '(22 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
-  //       name: 'Men Grey Hoodie',
-  //       category: 'Hoodies'
-  //     },
-  //     'Out of Stock',
-  //     'Black',
-  //     49.90,
-  //     { rating: 5.0, reviews: '(32 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/vD4tN7B/women-striped.jpg',
-  //       name: 'Women Striped T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     34.90,
-  //     { rating: 4.8, reviews: '(24 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/9vp3f1k/women-white.jpg',
-  //       name: 'Women White T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     40.90,
-  //     { rating: 5.0, reviews: '(54 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/N1rZyxP/men-white.jpg',
-  //       name: 'Men White T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     49.90,
-  //     { rating: 4.5, reviews: '(31 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       image: 'https://i.ibb.co/ZHGBwS3/women-red.jpg',
-  //       name: 'Women Red T-Shirt',
-  //       category: 'T-Shirt'
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     34.90,
-  //     { rating: 4.9, reviews: '(22 Votes)' }
-  //   ],
-  //   [
-  //     {
-  //       name: 'Men Grey Hoodie',
-  //       image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
-  //       category: 'Hoodies',
-  //     },
-  //     96,
-  //     'Black',
-  //     49.90,
-  //     { rating: 5.0, reviews: '(32 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women Striped T-Shirt',
-  //       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvTnKYQKF3l5oKKkXHi-4CqJ3tgH4A-ChMig&s',
-  //       category: 'T-Shirt',
-  //     },
-  //     56,
-  //     'White',
-  //     34.90,
-  //     { rating: 4.8, reviews: '(24 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women White T-Shirt',
-  //       image: 'https://hips.hearstapps.com/hmg-prod/images/gh-white-tshirt-66059c6ec5b44.png?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*',
-  //       category: 'T-Shirt',
-  //     },
-  //     78,
-  //     'White',
-  //     40.90,
-  //     { rating: 5.0, reviews: '(54 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Men White T-Shirt',
-  //       image: 'https://www.hancockfashion.com/cdn/shop/files/2c090c5b-cfa6-477d-bfab-755f18f8e41c1715236000781-Hancock-Men-Henley-Neck-Roll-Up-Sleeves-Pure-Cotton-T-shirt--3.jpg?v=1734411577',
-  //       category: 'T-Shirt',
-  //     },
-  //     32,
-  //     'White',
-  //     49.90,
-  //     { rating: 4.5, reviews: '(31 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women Red T-Shirt',
-  //       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ869-N2rizky-6dvcHNoWR61KRWTzbC44uQ&s',
-  //       category: 'T-Shirt',
-  //     },
-  //     32,
-  //     'White',
-  //     34.90,
-  //     { rating: 4.9, reviews: '(22 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Men Grey Hoodie',
-  //       image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
-  //       category: 'Hoodies',
-  //     },
-  //     'Out of Stock',
-  //     'Black',
-  //     49.90,
-  //     { rating: 5.0, reviews: '(32 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women Striped T-Shirt',
-  //       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvTnKYQKF3l5oKKkXHi-4CqJ3tgH4A-ChMig&s',
-  //       category: 'T-Shirt',
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     34.90,
-  //     { rating: 4.8, reviews: '(24 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women White T-Shirt',
-  //       image: 'https://hips.hearstapps.com/hmg-prod/images/gh-white-tshirt-66059c6ec5b44.png?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*',
-  //       category: 'T-Shirt',
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     40.90,
-  //     { rating: 5.0, reviews: '(54 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Men White T-Shirt',
-  //       image: 'https://www.hancockfashion.com/cdn/shop/files/2c090c5b-cfa6-477d-bfab-755f18f8e41c1715236000781-Hancock-Men-Henley-Neck-Roll-Up-Sleeves-Pure-Cotton-T-shirt--3.jpg?v=1734411577',
-  //       category: 'T-Shirt',
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     49.90,
-  //     { rating: 4.5, reviews: '(31 Votes)' },
-  //   ],
-  //   [
-  //     {
-  //       name: 'Women Red T-Shirt',
-  //       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ869-N2rizky-6dvcHNoWR61KRWTzbC44uQ&s',
-  //       category: 'T-Shirt',
-  //     },
-  //     'Out of Stock',
-  //     'White',
-  //     34.90,
-  //     { rating: 4.9, reviews: '(22 Votes)' },
-  //   ],
-  // ];
-  const datas =[]
+  const datas = [
+    [
+      {
+        image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
+        name: 'Men Grey Hoodie',
+        category: 'Hoodies'
+      },
+      96,
+      'Black',
+      49.90,
+      { rating: 5.0, reviews: '(32 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/vD4tN7B/women-striped.jpg',
+        name: 'Women Striped T-Shirt',
+        category: 'T-Shirt'
+      },
+      56,
+      'White',
+      34.90,
+      { rating: 4.8, reviews: '(24 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/9vp3f1k/women-white.jpg',
+        name: 'Women White T-Shirt',
+        category: 'T-Shirt'
+      },
+      78,
+      'White',
+      40.90,
+      { rating: 5.0, reviews: '(54 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/N1rZyxP/men-white.jpg',
+        name: 'Men White T-Shirt',
+        category: 'T-Shirt'
+      },
+      32,
+      'White',
+      49.90,
+      { rating: 4.5, reviews: '(31 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/ZHGBwS3/women-red.jpg',
+        name: 'Women Red T-Shirt',
+        category: 'T-Shirt'
+      },
+      32,
+      'White',
+      34.90,
+      { rating: 4.9, reviews: '(22 Votes)' }
+    ],
+    [
+      {
+        image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
+        name: 'Men Grey Hoodie',
+        category: 'Hoodies'
+      },
+      'Out of Stock',
+      'Black',
+      49.90,
+      { rating: 5.0, reviews: '(32 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/vD4tN7B/women-striped.jpg',
+        name: 'Women Striped T-Shirt',
+        category: 'T-Shirt'
+      },
+      'Out of Stock',
+      'White',
+      34.90,
+      { rating: 4.8, reviews: '(24 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/9vp3f1k/women-white.jpg',
+        name: 'Women White T-Shirt',
+        category: 'T-Shirt'
+      },
+      'Out of Stock',
+      'White',
+      40.90,
+      { rating: 5.0, reviews: '(54 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/N1rZyxP/men-white.jpg',
+        name: 'Men White T-Shirt',
+        category: 'T-Shirt'
+      },
+      'Out of Stock',
+      'White',
+      49.90,
+      { rating: 4.5, reviews: '(31 Votes)' }
+    ],
+    [
+      {
+        image: 'https://i.ibb.co/ZHGBwS3/women-red.jpg',
+        name: 'Women Red T-Shirt',
+        category: 'T-Shirt'
+      },
+      'Out of Stock',
+      'White',
+      34.90,
+      { rating: 4.9, reviews: '(22 Votes)' }
+    ],
+    [
+      {
+        name: 'Men Grey Hoodie',
+        image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
+        category: 'Hoodies',
+      },
+      96,
+      'Black',
+      49.90,
+      { rating: 5.0, reviews: '(32 Votes)' },
+    ],
+    [
+      {
+        name: 'Women Striped T-Shirt',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvTnKYQKF3l5oKKkXHi-4CqJ3tgH4A-ChMig&s',
+        category: 'T-Shirt',
+      },
+      56,
+      'White',
+      34.90,
+      { rating: 4.8, reviews: '(24 Votes)' },
+    ],
+    [
+      {
+        name: 'Women White T-Shirt',
+        image: 'https://hips.hearstapps.com/hmg-prod/images/gh-white-tshirt-66059c6ec5b44.png?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*',
+        category: 'T-Shirt',
+      },
+      78,
+      'White',
+      40.90,
+      { rating: 5.0, reviews: '(54 Votes)' },
+    ],
+    [
+      {
+        name: 'Men White T-Shirt',
+        image: 'https://www.hancockfashion.com/cdn/shop/files/2c090c5b-cfa6-477d-bfab-755f18f8e41c1715236000781-Hancock-Men-Henley-Neck-Roll-Up-Sleeves-Pure-Cotton-T-shirt--3.jpg?v=1734411577',
+        category: 'T-Shirt',
+      },
+      32,
+      'White',
+      49.90,
+      { rating: 4.5, reviews: '(31 Votes)' },
+    ],
+    [
+      {
+        name: 'Women Red T-Shirt',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ869-N2rizky-6dvcHNoWR61KRWTzbC44uQ&s',
+        category: 'T-Shirt',
+      },
+      32,
+      'White',
+      34.90,
+      { rating: 4.9, reviews: '(22 Votes)' },
+    ],
+    [
+      {
+        name: 'Men Grey Hoodie',
+        image: 'https://www.harringtonjacketstore.co.uk/cdn/shop/products/GREY_1024x1024.png?v=1571398348',
+        category: 'Hoodies',
+      },
+      'Out of Stock',
+      'Black',
+      49.90,
+      { rating: 5.0, reviews: '(32 Votes)' },
+    ],
+    [
+      {
+        name: 'Women Striped T-Shirt',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvTnKYQKF3l5oKKkXHi-4CqJ3tgH4A-ChMig&s',
+        category: 'T-Shirt',
+      },
+      'Out of Stock',
+      'White',
+      34.90,
+      { rating: 4.8, reviews: '(24 Votes)' },
+    ],
+    [
+      {
+        name: 'Women White T-Shirt',
+        image: 'https://hips.hearstapps.com/hmg-prod/images/gh-white-tshirt-66059c6ec5b44.png?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*',
+        category: 'T-Shirt',
+      },
+      'Out of Stock',
+      'White',
+      40.90,
+      { rating: 5.0, reviews: '(54 Votes)' },
+    ],
+    [
+      {
+        name: 'Men White T-Shirt',
+        image: 'https://www.hancockfashion.com/cdn/shop/files/2c090c5b-cfa6-477d-bfab-755f18f8e41c1715236000781-Hancock-Men-Henley-Neck-Roll-Up-Sleeves-Pure-Cotton-T-shirt--3.jpg?v=1734411577',
+        category: 'T-Shirt',
+      },
+      'Out of Stock',
+      'White',
+      49.90,
+      { rating: 4.5, reviews: '(31 Votes)' },
+    ],
+    [
+      {
+        name: 'Women Red T-Shirt',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ869-N2rizky-6dvcHNoWR61KRWTzbC44uQ&s',
+        category: 'T-Shirt',
+      },
+      'Out of Stock',
+      'White',
+      34.90,
+      { rating: 4.9, reviews: '(22 Votes)' },
+    ],
+  ];
+  
+  // const datas =[]
   const { setDeleteItems } = useOutletContext();
   return (
     <div style={{
