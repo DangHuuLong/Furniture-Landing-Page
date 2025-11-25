@@ -290,9 +290,3 @@ Deploy frontend (e.g. Vercel/Netlify) and backend (Render/ Railway / VPS).
 License
 This project currently does not define a license.
 Until a license is added, all rights are reserved by the author.
-
-
-Nếu bạn muốn mình tinh chỉnh thêm (ví dụ ghi rõ PORT thật, đường base URL API, hay mô tả chi tiết từng endpoint `/auth`, `/products`, `/blogs`), bạn có thể gửi thêm 1–2 file controller/route và mình sẽ update README cho khớp 100%.
-::contentReference[oaicite:0]{index=0}
-Nếu bạn muốn mình tinh chỉnh thêm (ví dụ ghi rõ PORT thật, đường base URL API, hay mô tả chi tiết từng endpoint `/auth`, `/products`, `/blogs`), bạn có thể gửi thêm 1–2 file controller/route và mình sẽ update README cho khớp 100%.
-::contentReference[oaicite:0]{index=0}
