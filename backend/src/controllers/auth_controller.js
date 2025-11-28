@@ -1,82 +1,94 @@
-const { readDB } = require('../utils/read_database')
-const { writeDB } = require('../utils/write_database')
+// backend/src/controllers/auth_controller.js
 const crypto = require('crypto');
 const { sendMail } = require('../utils/mailer');
-
-async function login(req, res) {
-  const db = await readDB()
-  const { email, password } = req.body || {}
-
-  if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required' })
-  }
-
-  const user = db.users?.find(u => u.email === email)
-  if (!user) {
-    return res.status(404).json({ message: 'User does not exist' })
-  }
-  if (user.password !== password) {
-    return res.status(401).json({ message: 'Incorrect email or password' })
-  }
-
-  const { password: _pw, ...safeUser } = user
-  return res.status(200).json({ message: 'Login successful', user: safeUser })
-}
-
-async function register(req, res) {
-  const db = await readDB();
-  const { firstName, lastName, email, phone, password, role } = req.body || {};
-
-  if (!firstName || !lastName || !email || !phone || !password) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
-
-  const exists = db.users?.some(u => u.email === email);
-  if (exists) {
-    return res.status(409).json({ message: 'User already exists' });
-  }
-
-  const newUser = {
-    firstName,
-    lastName,
-    email,
-    phone,
-    password,
-    role
-  };
-
-  db.users = db.users || [];
-  db.users.push(newUser);
-  await writeDB(db);
-
-  const { password: _pw, ...safeUser } = newUser;
-  return res.status(201).json({ message: 'Register successful', user: safeUser });
-}
+const User = require('../models/user_model'); // <-- dùng mongoose model
 
 function genCode() {
-  return Math.floor(100000 + Math.random() * 900000).toString(); 
+  return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 function nowPlusMinutes(min) {
   return Date.now() + min * 60 * 1000;
 }
 
+// ============= LOGIN =============
+async function login(req, res) {
+  try {
+    const { email, password } = req.body || {};
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User does not exist' });
+    }
+
+    // TODO: sau này dùng bcrypt.compare
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Incorrect email or password' });
+    }
+
+    const userObj = user.toObject();
+    delete userObj.password;
+
+    return res.status(200).json({ message: 'Login successful', user: userObj });
+  } catch (err) {
+    console.error('login error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+// ============= REGISTER =============
+async function register(req, res) {
+  try {
+    const { firstName, lastName, email, phone, password, role } = req.body || {};
+
+    if (!firstName || !lastName || !email || !phone || !password) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    const exists = await User.findOne({ email });
+    if (exists) {
+      return res.status(409).json({ message: 'User already exists' });
+    }
+
+    const newUser = await User.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password, // sau này hash
+      role,
+    });
+
+    const userObj = newUser.toObject();
+    delete userObj.password;
+
+    return res.status(201).json({ message: 'Register successful', user: userObj });
+  } catch (err) {
+    console.error('register error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+// ============= REQUEST RESET CODE =============
 async function requestResetCode(req, res) {
   try {
-    const db = await readDB();
     const { email } = req.body || {};
     if (!email) {
       return res.status(400).json({ message: 'Email is required' });
     }
 
-    const user = db.users?.find(u => u.email === email);
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User does not exist' });
     }
 
     const code = genCode();
     const resetToken = crypto.randomBytes(16).toString('hex');
-    const expiresAt = nowPlusMinutes(10); 
+    const expiresAt = new Date(nowPlusMinutes(10));
 
     user.reset = {
       code,
@@ -84,10 +96,10 @@ async function requestResetCode(req, res) {
       expiresAt,
       verified: false,
       attempts: 0,
-      sentAt: Date.now()
+      sentAt: new Date(),
     };
 
-    await writeDB(db);
+    await user.save();
 
     const subject = 'Your password reset code';
     const text = `Your verification code is ${code}. It expires in 10 minutes.`;
@@ -110,61 +122,88 @@ async function requestResetCode(req, res) {
   }
 }
 
+// ============= VERIFY RESET CODE =============
 async function verifyResetCode(req, res) {
-  const db = await readDB();
-  const { email, code } = req.body || {};
-  if (!email || !code) return res.status(400).json({ message: 'Email and code are required' });
+  try {
+    const { email, code } = req.body || {};
+    if (!email || !code) {
+      return res.status(400).json({ message: 'Email and code are required' });
+    }
 
-  const user = db.users?.find(u => u.email === email);
-  if (!user || !user.reset) return res.status(400).json({ message: 'No reset request found' });
+    const user = await User.findOne({ email });
+    if (!user || !user.reset) {
+      return res.status(400).json({ message: 'No reset request found' });
+    }
 
-  const { code: savedCode, expiresAt, resetToken } = user.reset;
+    const { code: savedCode, expiresAt, resetToken } = user.reset;
 
-  if (Date.now() > expiresAt) {
-    user.reset = undefined;
-    await writeDB(db);
-    return res.status(410).json({ message: 'Reset code expired' });
+    if (Date.now() > new Date(expiresAt).getTime()) {
+      user.reset = undefined;
+      await user.save();
+      return res.status(410).json({ message: 'Reset code expired' });
+    }
+
+    if (code !== savedCode) {
+      user.reset.attempts = (user.reset.attempts || 0) + 1;
+      await user.save();
+      return res.status(401).json({ message: 'Invalid code' });
+    }
+
+    user.reset.verified = true;
+    await user.save();
+
+    return res.status(200).json({ message: 'Code verified', resetToken });
+  } catch (err) {
+    console.error('verifyResetCode error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-
-  if (code !== savedCode) {
-    user.reset.attempts = (user.reset.attempts || 0) + 1;
-    await writeDB(db);
-    return res.status(401).json({ message: 'Invalid code' });
-  }
-
-  user.reset.verified = true;
-  await writeDB(db);
-
-  return res.status(200).json({ message: 'Code verified', resetToken });
 }
 
+// ============= RESET PASSWORD =============
 async function resetPassword(req, res) {
-  const db = await readDB();
-  const { email, resetToken, newPassword } = req.body || {};
-  if (!email || !resetToken || !newPassword) {
-    return res.status(400).json({ message: 'Email, resetToken and newPassword are required' });
-  }
+  try {
+    const { email, resetToken, newPassword } = req.body || {};
+    if (!email || !resetToken || !newPassword) {
+      return res.status(400).json({ message: 'Email, resetToken and newPassword are required' });
+    }
 
-  const user = db.users?.find(u => u.email === email);
-  if (!user || !user.reset) return res.status(400).json({ message: 'No reset request found' });
+    const user = await User.findOne({ email });
+    if (!user || !user.reset) {
+      return res.status(400).json({ message: 'No reset request found' });
+    }
 
-  const { resetToken: savedToken, expiresAt, verified } = user.reset;
+    const { resetToken: savedToken, expiresAt, verified } = user.reset;
 
-  if (!verified) return res.status(401).json({ message: 'Code not verified' });
-  if (Date.now() > expiresAt) {
+    if (!verified) {
+      return res.status(401).json({ message: 'Code not verified' });
+    }
+
+    if (Date.now() > new Date(expiresAt).getTime()) {
+      user.reset = undefined;
+      await user.save();
+      return res.status(410).json({ message: 'Reset window expired' });
+    }
+
+    if (resetToken !== savedToken) {
+      return res.status(401).json({ message: 'Invalid reset token' });
+    }
+
+    user.password = newPassword; // TODO: hash bằng bcrypt
     user.reset = undefined;
-    await writeDB(db);
-    return res.status(410).json({ message: 'Reset window expired' });
+
+    await user.save();
+
+    return res.status(200).json({ message: 'Password reset successful' });
+  } catch (err) {
+    console.error('resetPassword error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-  if (resetToken !== savedToken) return res.status(401).json({ message: 'Invalid reset token' });
-
-  user.password = newPassword;
-  user.reset = undefined;
-  await writeDB(db);
-
-  return res.status(200).json({ message: 'Password reset successful' });
 }
 
-
-
-module.exports = { login, register, requestResetCode, verifyResetCode, resetPassword }
+module.exports = {
+  login,
+  register,
+  requestResetCode,
+  verifyResetCode,
+  resetPassword,
+};
