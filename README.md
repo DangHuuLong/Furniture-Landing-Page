@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Furniture Landing Page
 
 A full-stack furniture e-commerce landing page built with:
@@ -292,4 +290,3 @@ Deploy frontend (e.g. Vercel/Netlify) and backend (Render/ Railway / VPS).
 License
 This project currently does not define a license.
 Until a license is added, all rights are reserved by the author.
->>>>>>> 399ba1ca9b7004b4ebae762d768c0392205c7f51
