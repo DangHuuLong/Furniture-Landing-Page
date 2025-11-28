@@ -1,22 +1,25 @@
-const express = require('express')
-const cors = require('cors')
+require('dotenv').config();           
+const express = require('express');
+const cors = require('cors');
 
-const productsRoute = require('./routes/products_route')
-const blogsRoute = require('./routes/blogs_route')
-const authRoute = require('./routes/auth_route')
+const productsRoute = require('./routes/products_route');
+const blogsRoute = require('./routes/blogs_route');
+const authRoute = require('./routes/auth_route');
+const { connectMongo } = require('./utils/mongo'); 
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(express.json())
-app.use('/products', productsRoute)
-app.use('/blogs', blogsRoute)
-app.use('/auth', authRoute)
+connectMongo();                          
 
+app.use(cors());
+app.use(express.json());
+
+app.use('/products', productsRoute);
+app.use('/blogs', blogsRoute);
+app.use('/auth', authRoute);
 
 app.get('/health', function (_req, res) {
-  res.json({ ok: true })
-})
-
+  res.json({ ok: true });
+});
 
 module.exports = app;
