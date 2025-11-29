@@ -1,6 +1,6 @@
 import { ChevronDown, Search, PenLine, Trash } from 'lucide-react';
-import { useEffect, useState, useMemo } from 'react';
-import { useOutletContext } from "react-router-dom";
+import { useEffect, useMemo, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 import TableProducts from './table_products';
 import HeaderSubPage from '../../components/header_sub_page';
@@ -13,9 +13,18 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [filterText, setFilterText] = useState('');
   const [searchText, setSearchText] = useState('');
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  const { setDeleteItems } = useOutletContext();
+  const {
+    setDeleteItems,
+    setDeleteCount,
+    setDeleteHandler,
+    setExportData,
+    setImportData,
+    setAddCategory,
+  } = useOutletContext();
 
+  // gọi API lấy products
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -23,10 +32,9 @@ export default function ProductsPage() {
         const res = await fetch('http://localhost:3001/products');
         const data = await res.json();
 
-        // data = array product từ BE (Mongo)
         setProducts(Array.isArray(data) ? data : []);
-      } catch (_err) {
-        console.error('fetch products error:', _err);
+      } catch (err) {
+        console.error('fetch products error:', err);
         setProducts([]);
       } finally {
         setLoading(false);
@@ -36,7 +44,7 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  // FILTER + SEARCH đơn giản
+  // filter + search
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const matchSearch =
@@ -52,41 +60,100 @@ export default function ProductsPage() {
     });
   }, [products, filterText, searchText]);
 
-  // Map sang format mà TableProducts đang dùng
+  // map sang format duy nhất cho TableProducts: { id, cells: [...] }
   const datas = useMemo(() => {
     return filtered.map((p) => {
       const image = p.images?.mainImage;
-      const stock = typeof p.stock === 'number' && p.stock > 0 ? p.stock : 'Out of Stock';
-      const colors = Array.isArray(p.colors) && p.colors.length
-        ? p.colors.join(', ')
-        : '-';
+      const stock =
+        typeof p.stock === 'number' && p.stock > 0
+          ? p.stock
+          : 'Out of Stock';
+      const colors =
+        Array.isArray(p.colors) && p.colors.length
+          ? p.colors.join(', ')
+          : '-';
       const price = p.price ?? 0;
       const rating = p.rating ?? 0;
       const reviews = p.reviews ?? 0;
 
-      return [
-        {
-          image: image,
-          name: p.name,
-          category: p.category,
-        },
-        stock,
-        colors,
-        price,
-        {
-          rating,
-          reviews: `(${reviews} Reviews)`,
-        },
-      ];
+      return {
+        id: p._id, 
+        cells: [
+          {
+            image,
+            name: p.name,
+            category: p.category,
+          },
+          stock,
+          colors,
+          price,
+          {
+            rating,
+            reviews: `(${reviews} Reviews)`,
+          },
+        ],
+      };
     });
   }, [filtered]);
 
-  const handleFilterChange = (e) => {
-    setFilterText(e.target.value);
+  // nếu filter/search làm mất 1 số row thì bỏ luôn id đó khỏi selectedIds
+  useEffect(() => {
+    const currentIds = datas.map((d) => d.id);
+    setSelectedIds((prev) => prev.filter((id) => currentIds.includes(id)));
+  }, [datas]);
+
+  const handleFilterChange = (e) => setFilterText(e.target.value);
+  const handleSearchChange = (e) => setSearchText(e.target.value);
+
+  // tick 1 dòng
+  const handleToggleRow = (id) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
   };
 
-  const handleSearchChange = (e) => {
-    setSearchText(e.target.value);
+  // tick all dòng đang hiển thị (trong 1 trang)
+  const handleToggleAll = (visibleIds, checked) => {
+    setSelectedIds((prev) => {
+      if (checked) {
+        const set = new Set([...prev, ...visibleIds]);
+        return Array.from(set);
+      }
+      return prev.filter((id) => !visibleIds.includes(id));
+    });
+  };
+
+  // hàm thật sự gọi API xóa nhiều
+  const handleConfirmDelete = async () => {
+    if (!selectedIds.length) return false;
+
+    try {
+      const res = await fetch(
+        'http://localhost:3001/products/bulk-delete',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ids: selectedIds }),
+        }
+      );
+
+      if (!res.ok) {
+        console.error('bulk delete failed');
+        return false;
+      }
+
+      const data = await res.json();
+
+      // xóa khỏi UI
+      setProducts((prev) =>
+        prev.filter((p) => !data.deletedIds.includes(p._id))
+      );
+      setSelectedIds([]);
+      return true; 
+    } catch (err) {
+      console.error('handleConfirmDelete error:', err);
+      return false;
+    }
   };
 
   const hasData = datas.length > 0;
@@ -118,10 +185,10 @@ export default function ProductsPage() {
         <>
           {/* Header */}
           <HeaderSubPage
-            headerTitle={'Products'}
-            addButtonTitle={'Product'}
+            headerTitle="Products"
+            addButtonTitle="Product"
             exportButton={true}
-            to={'/products/addproduct'}
+            to="/products/addproduct"
           />
 
           {/* Card */}
@@ -143,7 +210,7 @@ export default function ProductsPage() {
               }}
             >
               <div style={{ display: 'flex' }}>
-                {/* Filter (category simple text) */}
+                {/* Filter by category */}
                 <div style={{ position: 'relative', width: 180 }}>
                   <input
                     type="text"
@@ -179,7 +246,7 @@ export default function ProductsPage() {
                   />
                 </div>
 
-                {/* Search */}
+                {/* Search by name / SKU */}
                 <div
                   style={{
                     position: 'relative',
@@ -253,9 +320,15 @@ export default function ProductsPage() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    cursor: 'pointer',
+                    cursor: selectedIds.length ? 'pointer' : 'not-allowed',
+                    opacity: selectedIds.length ? 1 : 0.5,
                   }}
-                  onClick={() => setDeleteItems(true)}
+                  onClick={() => {
+                    if (!selectedIds.length) return;
+                    setDeleteCount(selectedIds.length);         
+                    setDeleteHandler(() => handleConfirmDelete); 
+                    setDeleteItems(true);                        
+                  }}
                 >
                   <Trash size={24} color="#1E5EFF" />
                 </button>
@@ -263,18 +336,22 @@ export default function ProductsPage() {
             </div>
 
             {/* Table */}
-            <TableProducts headers={headers} datas={datas} />
+            <TableProducts
+              headers={headers}
+              datas={datas}
+              selectedIds={selectedIds}
+              onToggleRow={handleToggleRow}
+              onToggleAll={handleToggleAll}
+            />
           </div>
         </>
       ) : (
         <EmptyStates
-          namePage={'Products'}
-          imagePath={'products.png'}
-          title={'Add Products'}
-          content={
-            'Start making sales by adding your products. You can import and manage your products at any time.'
-          }
-          btn={'Add Product'}
+          namePage="Products"
+          imagePath="products.png"
+          title="Add Products"
+          content="Start making sales by adding your products. You can import and manage your products at any time."
+          btn="Add Product"
         />
       )}
     </div>

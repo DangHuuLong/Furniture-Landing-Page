@@ -91,10 +91,32 @@ async function deleteProduct(req, res) {
   }
 }
 
+async function deleteManyProducts(req, res) {
+  try {
+    const { ids } = req.body;     
+
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ message: 'No product ids provided' });
+    }
+
+    await Product.deleteMany({ _id: { $in: ids } });
+
+    return res.status(200).json({
+      message: 'Delete products successfully',
+      deletedIds: ids,
+    });
+  } catch (err) {
+    console.error('deleteManyProducts error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
 module.exports = {
   getAllProducts,
   getProductBySku,
   createProduct,
   updateProduct,
   deleteProduct,
+  deleteManyProducts,
 };

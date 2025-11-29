@@ -8,10 +8,14 @@ import Import from "../modules/admin/notifications/import";
 import AddCategory from "../modules/admin/notifications/add_category";
 
 export default function AdminLayout() {
-  const [deleteItems, setDeleteItems] = useState(false)
-  const [exportData, setExportData] = useState(false)
-  const [importData, setImportData] = useState(false)
-  const [addCategory, setAddCategory] = useState(false)
+  const [deleteItems, setDeleteItems] = useState(false);
+  const [deleteCount, setDeleteCount] = useState(0);      
+  const [deleteHandler, setDeleteHandler] = useState(null); 
+
+  const [exportData, setExportData] = useState(false);
+  const [importData, setImportData] = useState(false);
+  const [addCategory, setAddCategory] = useState(false);
+
   return (
     <div
       style={{
@@ -26,33 +30,39 @@ export default function AdminLayout() {
         <DeleteItems
           open={deleteItems}
           onClose={() => setDeleteItems(false)}
+          count={deleteCount}             
+          onConfirm={deleteHandler}        
         />
       )}
+
       {exportData && (
-        <Export 
+        <Export
           open={exportData}
-          onClose={()=>setExportData(false)}
+          onClose={() => setExportData(false)}
         />
       )}
+
       {importData && (
-        <Import 
+        <Import
           open={importData}
           onClose={() => setImportData(false)}
         />
       )}
+
       {addCategory && (
-        <AddCategory 
+        <AddCategory
           open={addCategory}
           onClose={() => setAddCategory(false)}
         />
       )}
+
       <Header />
       <div
         style={{
           display: 'flex',
-          flex: 1,          
+          flex: 1,
           minHeight: 0,
-          alignItems: 'stretch', 
+          alignItems: 'stretch',
         }}
       >
         <Navigation />
@@ -65,7 +75,16 @@ export default function AdminLayout() {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Outlet context={{ setDeleteItems, setExportData, setImportData, setAddCategory }} />
+          <Outlet
+            context={{
+              setDeleteItems,
+              setDeleteCount,        
+              setDeleteHandler,      
+              setExportData,
+              setImportData,
+              setAddCategory,
+            }}
+          />
         </div>
       </div>
     </div>
