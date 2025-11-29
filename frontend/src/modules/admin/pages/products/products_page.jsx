@@ -1,6 +1,6 @@
 import { ChevronDown, Search, PenLine, Trash } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
 import TableProducts from './table_products';
 import HeaderSubPage from '../../components/header_sub_page';
@@ -14,6 +14,8 @@ export default function ProductsPage() {
   const [filterText, setFilterText] = useState('');
   const [searchText, setSearchText] = useState('');
   const [selectedIds, setSelectedIds] = useState([]);
+
+  const navigate = useNavigate();
 
   const {
     setDeleteItems,
@@ -296,20 +298,27 @@ export default function ProductsPage() {
                   gap: 12,
                 }}
               >
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 4,
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #D7DBEC',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <PenLine size={24} color="#1E5EFF" />
-                </div>
+                  <button
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 4,
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #D7DBEC',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      cursor: selectedIds.length === 1 ? 'pointer' : 'not-allowed',
+                      opacity: selectedIds.length === 1 ? 1 : 0.5,
+                    }}
+                    onClick={() => {
+                      if (selectedIds.length !== 1) return;          
+                      const id = selectedIds[0];
+                      navigate(`/products/edit/${id}`);              
+                    }}
+                  >
+                    <PenLine size={24} color="#1E5EFF" />
+                  </button>
                 <button
                   style={{
                     width: 40,

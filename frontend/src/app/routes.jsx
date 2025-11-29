@@ -23,6 +23,7 @@ import Blog from "../modules/customer/pages/Blog/Blog";
 // ADMIN pages
 import DashBorad from "../modules/admin/pages/dash_board/dash_board_page";
 import AddProduct from "../modules/admin/pages/products/add_product";
+import EditProduct from "../modules/admin/pages/products/edit_product";
 import OrdersPage from "../modules/admin/pages/orders/orders_page";
 import ProductsPage from "../modules/admin/pages/products/products_page";
 import CategoriesPage from "../modules/admin/pages/categories/categories_page";
@@ -72,6 +73,7 @@ export default function AppRoutes() {
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/addproduct" element={<AddProduct />} />
+        <Route path="/products/edit/:id" element={<EditProduct />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:name" element={<CategoryProductPage />} />
         <Route path="/customers" element={<CustomersPage />}/>
