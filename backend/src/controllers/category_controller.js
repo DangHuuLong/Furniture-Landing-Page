@@ -1,7 +1,7 @@
 const Category = require('../models/category_model');
 const Product = require('../models/product_model');
 
-// GET /categories
+// Lấy danh sách category, tính stock từ tổng stock product
 async function getAllCategories(req, res) {
   try {
     const { visible } = req.query;
@@ -14,14 +14,36 @@ async function getAllCategories(req, res) {
       .sort({ createdAt: -1 })
       .lean();
 
-    return res.json(categories);
+    // Gom stock theo category từ bảng Product
+    const stockStats = await Product.aggregate([
+      {
+        $group: {
+          _id: '$category',
+          totalStock: { $sum: '$stock' },
+        },
+      },
+    ]);
+
+    const stockMap = stockStats.reduce((acc, item) => {
+      if (item._id) {
+        acc[item._id.toString()] = item.totalStock;
+      }
+      return acc;
+    }, {});
+
+    const result = categories.map((cat) => ({
+      ...cat,
+      stock: stockMap[cat._id.toString()] || 0,
+    }));
+
+    return res.json(result);
   } catch (err) {
     console.error('getAllCategories error:', err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
 
-// GET /categories/:id
+// Lấy 1 category theo id, kèm stock tổng từ product
 async function getCategoryById(req, res) {
   try {
     const { id } = req.params;
@@ -31,14 +53,30 @@ async function getCategoryById(req, res) {
       return res.status(404).json({ message: 'Category not found' });
     }
 
-    return res.json(category);
+    const stockStats = await Product.aggregate([
+      { $match: { category: category._id } },
+      {
+        $group: {
+          _id: '$category',
+          totalStock: { $sum: '$stock' },
+        },
+      },
+    ]);
+
+    const totalStock =
+      stockStats.length > 0 ? stockStats[0].totalStock : 0;
+
+    return res.json({
+      ...category,
+      stock: totalStock,
+    });
   } catch (err) {
     console.error('getCategoryById error:', err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
 
-// GET /categories/:id/products
+// Lấy category + danh sách products thuộc category đó
 async function getCategoryWithProducts(req, res) {
   try {
     const { id } = req.params;
@@ -50,8 +88,16 @@ async function getCategoryWithProducts(req, res) {
 
     const products = await Product.find({ category: id }).lean();
 
+    const totalStock = products.reduce(
+      (sum, p) => sum + (p.stock || 0),
+      0
+    );
+
     return res.json({
-      category,
+      category: {
+        ...category,
+        stock: totalStock,
+      },
       products,
     });
   } catch (err) {
@@ -60,7 +106,7 @@ async function getCategoryWithProducts(req, res) {
   }
 }
 
-// POST /categories
+// Tạo mới 1 category (stock lưu DB, hiển thị tính lại từ product)
 async function createCategory(req, res) {
   try {
     const { categoryName, imagePath, stock, isVisible } = req.body || {};
@@ -79,7 +125,7 @@ async function createCategory(req, res) {
     const newCategory = await Category.create({
       categoryName,
       imagePath,
-      stock,
+      stock: stock || 0,
       isVisible,
     });
 
@@ -90,7 +136,7 @@ async function createCategory(req, res) {
   }
 }
 
-// PUT /categories/:id
+// Cập nhật thông tin category
 async function updateCategory(req, res) {
   try {
     const { id } = req.params;
@@ -114,7 +160,7 @@ async function updateCategory(req, res) {
   }
 }
 
-// DELETE /categories/:id
+// Xóa category, chặn xóa nếu vẫn còn product
 async function deleteCategory(req, res) {
   try {
     const { id } = req.params;
