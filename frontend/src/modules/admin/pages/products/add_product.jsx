@@ -1,5 +1,3 @@
-import { MoveLeft, ChevronDown } from 'lucide-react';
-import { NavLink, useOutletContext } from 'react-router-dom';
 import ToggleButton from '../../components/toggle_button';
 import SizeTag from '../../components/size_tag';
 import { useState } from 'react';
@@ -8,100 +6,367 @@ import Tags from './tags';
 import SEOSettings from './SEO_settings';
 import HeaderAddEditPage from '../../components/header_add_edit_page';
 import FooterAddEditPage from '../../components/footer_add_edit_page';
-export default function AddProduct(){
-  const [categories, setCategories] = useState([
-    'Women', 'Men', 'T-Shirt', 'Hoodie', 'Dress'
-  ])
-  const [tags, setTags] = useState([
-    'T-Shirt', 'Men Clothes', 'Summer Collection'
-  ])
+import ImportSuccessModal from '../../notifications/import';
+export default function AddProduct() {
+  const [categories] = useState([
+    'Living Room',
+    'Bedroom',
+    'Dining Room',
+    'Decor',
+    'Storage',
+    'Lighting',
+  ]);
+
+  const [tags] = useState([
+    'furniture',
+    'living room',
+    'modern',
+  ]);
+
   const [sizes, setSizes] = useState([
     { id: 1, label: 'S' },
     { id: 2, label: 'M' },
     { id: 3, label: 'L' },
   ]);
   const [sizeInput, setSizeInput] = useState('');
+
+  const [sku, setSku] = useState('');
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [intendedUse, setIntendedUse] = useState('');
+  const [price, setPrice] = useState('');
+  const [stock, setStock] = useState('');
+  const [discount, setDiscount] = useState('');
+  const [shortDescription, setShortDescription] = useState('');
+  const [fullDescription, setFullDescription] = useState('');
+  const [mainImage, setMainImage] = useState('');
+  const [subImagesText, setSubImagesText] = useState('');
+  const [colorsText, setColorsText] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+
   const handleRemoveSize = (id) => {
-    setSizes(prev => prev.filter(s => s.id !== id));
+    setSizes((prev) => prev.filter((s) => s.id !== id));
   };
-  const {setImportData} = useOutletContext()
+
+  const handleAddSize = () => {
+    const value = sizeInput.trim();
+    if (!value) return;
+    setSizes((prev) => [
+      ...prev,
+      { id: Date.now(), label: value },
+    ]);
+    setSizeInput('');
+  };
+
+  const handleSave = async () => {
+    if (!sku || !name || !category || !price) {
+      alert('Please fill SKU, Product Name, Category and Price');
+      return;
+    }
+
+    const payload = {
+      SKU: sku,
+      name,
+      category,
+      price: Number(price),
+      unit: 'VND',
+      stock: stock ? Number(stock) : 0,
+      isNew: true,
+      discount: discount ? Number(discount) : 0,
+      intendedUse,
+      images: {
+        mainImage,
+        subImages: subImagesText
+          .split('\n')
+          .map((s) => s.trim())
+          .filter(Boolean),
+      },
+      description: {
+        short: shortDescription,
+        full: fullDescription,
+      },
+      size: sizes.map((s) => s.label),
+      colors: colorsText
+        .split(',')
+        .map((c) => c.trim())
+        .filter(Boolean),
+      tags,
+      rating: 0,
+      reviews: 0,
+    };
+
+    try {
+      setLoading(true);
+      const res = await fetch('http://localhost:3001/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        console.error('Create product error:', data);
+        alert(data?.message || 'Create product failed');
+        return;
+      }
+
+      setOpenSuccess(true);
+
+      setSku('');
+      setName('');
+      setCategory('');
+      setIntendedUse('');
+      setPrice('');
+      setStock('');
+      setDiscount('');
+      setShortDescription('');
+      setFullDescription('');
+      setMainImage('');
+      setSubImagesText('');
+      setColorsText('');
+      // sizes & tags giữ nguyên cho tiện tạo nhiều sản phẩm tương tự
+    } catch (err) {
+      console.error('Create product error:', err);
+      alert('Network error, please try again');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      backgroundColor: '#F5F6FA',
-      padding: '30px 40px 40px 40px',
-    }}>
-      <HeaderAddEditPage to={'/products'} name={'Add Product'} saveFunction={setImportData}/>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#F5F6FA',
+        padding: '30px 40px 40px 40px',
+        boxSizing: 'border-box',
+      }}
+    >
+      <HeaderAddEditPage
+        to={'/products'}
+        name={'Add Product'}
+        saveFunction={handleSave}
+      />
 
-      {/**Form */}
-      <div style={{
-        display: 'flex',
-        gap: 30,
-        margin: '30px 0'
-      }}>
-        {/**Left */}
-        <div style={{
-          flex: 2,
-          borderRadius: 6,
-          backgroundColor: 'white',
-          padding: 28,
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.12)'
-        }}>
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 700,
-            fontSize: 16,
-            color: '#131523',
-          }}>Information</p>
-
-          {/**Product Name */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: 24,
-            gap: 4
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: 14,
-              color: '#5A607F',
-            }}>Product Name</p>
-            <input type='text' 
-              placeholder='Summer T-Shirt'
-              aria-label='Summer T-Shirt'
+      <div
+        style={{
+          display: 'flex',
+          gap: 30,
+          margin: '30px 0',
+        }}
+      >
+        {/* Left */}
+        <div
+          style={{
+            flex: 2,
+            borderRadius: 6,
+            backgroundColor: 'white',
+            padding: 28,
+            boxShadow: '0 4px 8px rgba(0,0,0,0.12)',
+            boxSizing: 'border-box',
+          }}
+        >
+          <p
             style={{
-              width: '100%',
-              height: 40,
-              borderRadius: 4,
-              backgroundColor: 'white',
-              border: '1px solid #D9E1EC',
-              padding: '8px 16px',
               fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: 16,
-              color: "#A1A7C4",
-              outline: "none",
-            }}/>
+              color: '#131523',
+            }}
+          >
+            Information
+          </p>
+
+          {/* SKU */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              SKU
+            </p>
+            <input
+              type="text"
+              placeholder="SOFA-MODERN-MS01"
+              aria-label="SKU"
+              value={sku}
+              onChange={(e) => setSku(e.target.value)}
+              style={{
+                width: '100%',
+                height: 40,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+                outline: 'none',
+              }}
+            />
           </div>
 
-          {/**Product Description */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: 24,
-            gap: 4
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: 14,
-              color: '#5A607F',
-            }}>Product Description</p>
-            <textarea 
-              placeholder='Product description'
-              aria-label='Product description'
+          {/* Product Name */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              Product Name
+            </p>
+            <input
+              type="text"
+              placeholder="Modern Living Sofa"
+              aria-label="Product Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={{
+                width: '100%',
+                height: 40,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+                outline: 'none',
+              }}
+            />
+          </div>
+
+          {/* Category */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              Category
+            </p>
+            <input
+              type="text"
+              placeholder="Living Room"
+              aria-label="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              style={{
+                width: '100%',
+                height: 40,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+                outline: 'none',
+              }}
+            />
+          </div>
+
+          {/* Intended Use */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              Intended Use
+            </p>
+            <input
+              type="text"
+              placeholder="A stylish and comfortable sofa for modern living spaces..."
+              aria-label="Intended use"
+              value={intendedUse}
+              onChange={(e) => setIntendedUse(e.target.value)}
+              style={{
+                width: '100%',
+                height: 40,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+                outline: 'none',
+              }}
+            />
+          </div>
+
+          {/* Short Description */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              Short Description
+            </p>
+            <textarea
+              placeholder="Short description..."
+              aria-label="Short description"
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
               style={{
                 width: '100%',
                 height: 96,
@@ -112,146 +377,427 @@ export default function AddProduct(){
                 fontFamily: '"Poppins", sans-serif',
                 fontWeight: 400,
                 fontSize: 16,
-                color: "#A1A7C4",
-                outline: "none",
-              }} />
+                color: '#131523',
+                outline: 'none',
+                resize: 'vertical',
+              }}
+            />
           </div>
 
-          <div style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: '#D7DBEC',
-            marginTop: 40
-          }}></div>
-
-          {/**Image */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24,
-            width: '100%',
-            marginTop: 40
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 700,
-              fontSize: 16,
-              color: '#131523',
-            }}>Image</p>
-            <div style={{
-              width: '100%',
-              height: 168,
-              borderRadius: 4,
-              border: '1px dashed #A1A7C4',
+          {/* Full Description */}
+          <div
+            style={{
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <div style={{
+              flexDirection: 'column',
+              marginTop: 24,
+              gap: 4,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                color: '#5A607F',
+              }}
+            >
+              Full Description
+            </p>
+            <textarea
+              placeholder="Full description..."
+              aria-label="Full description"
+              value={fullDescription}
+              onChange={(e) => setFullDescription(e.target.value)}
+              style={{
+                width: '100%',
+                height: 160,
+                borderRadius: 4,
+                backgroundColor: 'white',
+                border: '1px solid #D9E1EC',
+                padding: '8px 16px',
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: '#131523',
+                outline: 'none',
+                resize: 'vertical',
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              height: 1,
+              width: '100%',
+              backgroundColor: '#D7DBEC',
+              marginTop: 40,
+            }}
+          />
+
+          {/* Images */}
+          <div
+            style={{
+              marginTop: 32,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 700,
+                fontSize: 16,
+                color: '#131523',
+              }}
+            >
+              Images
+            </p>
+
+            {/* Main image */}
+            <div
+              style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 12
-              }}>
-                <div style={{
-                  width: 102,
+                marginTop: 24,
+                gap: 4,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}
+              >
+                Main Image URL
+              </p>
+              <input
+                type="text"
+                placeholder="https://..."
+                aria-label="Main image url"
+                value={mainImage}
+                onChange={(e) => setMainImage(e.target.value)}
+                style={{
+                  width: '100%',
                   height: 40,
                   borderRadius: 4,
-                  border: '1px solid #D7DBEC',
+                  backgroundColor: 'white',
+                  border: '1px solid #D9E1EC',
+                  padding: '8px 16px',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 16,
+                  color: '#131523',
+                  outline: 'none',
+                }}
+              />
+            </div>
+
+            {/* Sub images */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: 24,
+                gap: 4,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  color: '#5A607F',
+                }}
+              >
+                Sub Image URLs (one per line)
+              </p>
+              <textarea
+                placeholder={'https://...\nhttps://...\nhttps://...'}
+                aria-label="Sub image urls"
+                value={subImagesText}
+                onChange={(e) => setSubImagesText(e.target.value)}
+                style={{
+                  width: '100%',
+                  height: 120,
+                  borderRadius: 4,
+                  backgroundColor: 'white',
+                  border: '1px solid #D9E1EC',
+                  padding: '8px 16px',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 16,
+                  color: '#131523',
+                  outline: 'none',
+                  resize: 'vertical',
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            style={{
+              height: 1,
+              width: '100%',
+              backgroundColor: '#D7DBEC',
+              marginTop: 40,
+            }}
+          />
+
+          {/* Pricing & Inventory */}
+          <div
+            style={{
+              marginTop: 32,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 700,
+                fontSize: 16,
+                color: '#131523',
+              }}
+            >
+              Pricing & Inventory
+            </p>
+
+            <div
+              style={{
+                display: 'flex',
+                gap: 16,
+                marginTop: 24,
+              }}
+            >
+              {/* Price */}
+              <div
+                style={{
+                  flex: 1,
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <p style={{
+                  flexDirection: 'column',
+                  gap: 4,
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 14,
+                    color: '#5A607F',
+                  }}
+                >
+                  Product Price (VND)
+                </p>
+                <input
+                  type="number"
+                  placeholder="12500000"
+                  aria-label="Product price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
                     fontFamily: '"Poppins", sans-serif',
                     fontWeight: 400,
                     fontSize: 16,
-                    color: '#1E5EFF',
-                  }}>Add File</p>
-                </div>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Or drag and drop files</p>
+                    color: '#131523',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* Discount */}
+              <div
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 4,
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 14,
+                    color: '#5A607F',
+                  }}
+                >
+                  Discount (%)
+                </p>
+                <input
+                  type="number"
+                  placeholder="20"
+                  aria-label="Discount"
+                  value={discount}
+                  onChange={(e) => setDiscount(e.target.value)}
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: '#131523',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+
+              {/* Stock */}
+              <div
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 4,
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 14,
+                    color: '#5A607F',
+                  }}
+                >
+                  Stock
+                </p>
+                <input
+                  type="number"
+                  placeholder="50"
+                  aria-label="Stock"
+                  value={stock}
+                  onChange={(e) => setStock(e.target.value)}
+                  style={{
+                    width: '100%',
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: 'white',
+                    border: '1px solid #D9E1EC',
+                    padding: '8px 16px',
+                    fontFamily: '"Poppins", sans-serif',
+                    fontWeight: 400,
+                    fontSize: 16,
+                    color: '#131523',
+                    outline: 'none',
+                  }}
+                />
               </div>
             </div>
-          </div>
 
-          <div style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: '#D7DBEC',
-            marginTop: 40
-          }}></div>
-          
-          {/**Price */}
-          <div style={{
-            marginTop: 28,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 700,
-              fontSize: 16,
-              color: '#131523',
-            }}>Price</p>
-            <div style={{
-              display: 'flex',
-              gap: 28
-            }}>
-              {/**Proudct Price */}
-              <div style={{
-                flex: 1,
+            <div
+              style={{
                 display: 'flex',
-                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 12,
                 marginTop: 24,
-                gap: 4
-              }}>
-                <p style={{
+              }}
+            >
+              <ToggleButton />
+              <p
+                style={{
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Product Price</p>
-                <input type='text'
-                  placeholder='Enter price'
-                  aria-label='Enter price'
-                  style={{
-                    width: '100%',
-                    height: 40,
-                    borderRadius: 4,
-                    backgroundColor: 'white',
-                    border: '1px solid #D9E1EC',
-                    padding: '8px 16px',
-                    fontFamily: '"Poppins", sans-serif',
-                    fontWeight: 400,
-                    fontSize: 16,
-                    color: "#A1A7C4",
-                    outline: "none",
-                  }} />
-              </div>
-              {/**Discount Price */}
-              <div style={{
-                flex: 1,
+                  fontSize: 16,
+                  color: '#131523',
+                }}
+              >
+                Add tax for this product
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              height: 1,
+              width: '100%',
+              backgroundColor: '#D7DBEC',
+              marginTop: 40,
+            }}
+          />
+
+          {/* Options (Size & Colors) */}
+          <div
+            style={{
+              marginTop: 32,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 700,
+                fontSize: 16,
+                color: '#131523',
+              }}
+            >
+              Different Options
+            </p>
+
+            <div
+              style={{
                 display: 'flex',
-                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 12,
                 marginTop: 24,
-                gap: 4
-              }}>
-                <p style={{
+              }}
+            >
+              <ToggleButton />
+              <p
+                style={{
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Discount Price</p>
-                <input type='text'
-                  placeholder='Price at Discount'
-                  aria-label='Price at Discount'
+                  fontSize: 16,
+                  color: '#131523',
+                }}
+              >
+                This product has multiple options
+              </p>
+            </div>
+
+            {/* Size */}
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 700,
+                fontSize: 16,
+                color: '#131523',
+                marginTop: 32,
+              }}
+            >
+              Size
+            </p>
+
+            <div
+              style={{
+                display: 'flex',
+                marginTop: 16,
+                gap: 12,
+              }}
+            >
+              <div
+                style={{
+                  flex: 1,
+                  position: 'relative',
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Add size (e.g. S, M, L)"
+                  aria-label="Add size"
+                  value={sizeInput}
+                  onChange={(e) => setSizeInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddSize();
+                    }
+                  }}
                   style={{
                     width: '100%',
                     height: 40,
@@ -262,299 +808,136 @@ export default function AddProduct(){
                     fontFamily: '"Poppins", sans-serif',
                     fontWeight: 400,
                     fontSize: 16,
-                    color: "#A1A7C4",
-                    outline: "none",
-                  }} />
+                    color: '#131523',
+                    outline: 'none',
+                  }}
+                />
               </div>
-            </div>
-            <div style={{
-              display: 'flex',
-              gap: 12,
-              alignItems: 'center'
-            }}>
-              <ToggleButton />
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 16,
-                color: '#131523',
-              }}>Add tax for this product</p>
-            </div>
-          </div>
-
-          <div style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: '#D7DBEC',
-            marginTop: 40
-          }}></div>
-
-          {/**Different Options */}
-          <div style={{
-            marginTop: 28,
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 700,
-              fontSize: 16,
-              color: '#131523',
-            }}>Different Options</p>
-            <div style={{
-              display: 'flex',
-              gap: 12,
-              alignItems: 'center',
-              marginTop: 24
-            }}>
-              <ToggleButton />
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 16,
-                color: '#131523',
-              }}>This product has multiple options</p>
+              <button
+                type="button"
+                onClick={handleAddSize}
+                style={{
+                  height: 40,
+                  padding: '0 16px',
+                  borderRadius: 4,
+                  border: 'none',
+                  backgroundColor: '#1E5EFF',
+                  color: 'white',
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 500,
+                  fontSize: 14,
+                  cursor: 'pointer',
+                }}
+              >
+                Add
+              </button>
             </div>
 
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 700,
-              fontSize: 16,
-              color: '#131523',
-              marginTop: 40
-            }}>Option 1</p>
-            <div style={{
-              display: 'flex',
-              marginTop: 20,
-              gap: 28
-            }}>
-              {/**Size */}
-              <div style={{
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 8,
+                marginTop: 16,
+              }}
+            >
+              {sizes.map((s) => (
+                <SizeTag
+                  key={s.id}
+                  id={s.id}
+                  size={s.label}
+                  onRemove={handleRemoveSize}
+                />
+              ))}
+            </div>
+
+            {/* Colors */}
+            <div
+              style={{
                 display: 'flex',
                 flexDirection: 'column',
+                marginTop: 32,
                 gap: 4,
-                flex: 1
-              }}>
-                <p style={{
+              }}
+            >
+              <p
+                style={{
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: 400,
                   fontSize: 14,
                   color: '#5A607F',
-                }}>Size</p>
-                <div style={{
+                }}
+              >
+                Colors (comma separated)
+              </p>
+              <input
+                type="text"
+                placeholder="gray, beige, charcoal"
+                aria-label="Colors"
+                value={colorsText}
+                onChange={(e) => setColorsText(e.target.value)}
+                style={{
                   width: '100%',
-                  position: 'relative'
-                }}>
-                  <input disabled type='text'
-                    placeholder='Size'
-                    aria-label='Size'
-                    style={{
-                      width: '100%',
-                      height: 40,
-                      borderRadius: 4,
-                      backgroundColor: 'white',
-                      border: '1px solid #D9E1EC',
-                      padding: '8px 16px',
-                      fontFamily: '"Poppins", sans-serif',
-                      fontWeight: 400,
-                      fontSize: 16,
-                      color: "#131523",
-                      outline: "none",
-                    }} />
-                  <ChevronDown
-                    size={20}
-                    color="#7E84A3"
-                    style={{
-                      position: "absolute",
-                      right: 10,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/**Value */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 4,
-                flex: 1
-              }}>
-                <p style={{
+                  height: 40,
+                  borderRadius: 4,
+                  backgroundColor: 'white',
+                  border: '1px solid #D9E1EC',
+                  padding: '8px 16px',
                   fontFamily: '"Poppins", sans-serif',
                   fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Value</p>
-                <div style={{
-                  width: '100%',
-                }}>
-                  <div 
-                    style={{
-                      width: '100%',
-                      height: 40,
-                      borderRadius: 4,
-                      backgroundColor: 'white',
-                      border: '1px solid #D9E1EC',
-                      padding: '8px 16px',
-                      outline: "none",
-                      display: 'flex',
-                      gap: 8,
-                      alignItems: 'center'
-                    }}>
-                      {/** */} 
-                      {sizes.map(s => (
-                        <SizeTag key={s.id} id={s.id} size={s.label} onRemove={handleRemoveSize} />
-                      ))}
-                  </div> 
-                </div>
-              </div>
+                  fontSize: 16,
+                  color: '#131523',
+                  outline: 'none',
+                }}
+              />
             </div>
 
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 400,
-              fontSize: 16,
-              color: '#1E5EFF',
-              marginTop: 20
-            }}>Add More</p>
-          </div>
-
-          <div style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: '#D7DBEC',
-            marginTop: 40
-          }}></div>
-
-          {/**Shipping */}
-          <div style={{
-            marginTop: 28,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24
-          }}>
-            <p style={{
-              fontFamily: '"Poppins", sans-serif',
-              fontWeight: 700,
-              fontSize: 16,
-              color: '#131523',
-            }}>Shipping</p>
-            <div style={{
-              display: 'flex',
-              gap: 28,
-              marginTop: 24,
-            }}>
-              {/**Weight*/}
-              <div style={{
-                flex: 1,
+            <div
+              style={{
                 display: 'flex',
-                flexDirection: 'column',
-                gap: 4
-              }}>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Weight</p>
-                <input type='text'
-                  placeholder='Enter Weight'
-                  aria-label='Enter Weight'
-                  style={{
-                    width: '100%',
-                    height: 40,
-                    borderRadius: 4,
-                    backgroundColor: 'white',
-                    border: '1px solid #D9E1EC',
-                    padding: '8px 16px',
-                    fontFamily: '"Poppins", sans-serif',
-                    fontWeight: 400,
-                    fontSize: 16,
-                    color: "#A1A7C4",
-                    outline: "none",
-                  }} />
-              </div>
-
-              {/**Country */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 4,
-                flex: 1
-              }}>
-                <p style={{
-                  fontFamily: '"Poppins", sans-serif',
-                  fontWeight: 400,
-                  fontSize: 14,
-                  color: '#5A607F',
-                }}>Size</p>
-                <div style={{
-                  width: '100%',
-                  position: 'relative'
-                }}>
-                  <input 
-                  disabled
-                  type='text'
-                    placeholder='Select Country'
-                    aria-label='Select Country'
-                    style={{
-                      width: '100%',
-                      height: 40,
-                      borderRadius: 4,
-                      backgroundColor: 'white',
-                      border: '1px solid #D9E1EC',
-                      padding: '8px 16px',
-                      fontFamily: '"Poppins", sans-serif',
-                      fontWeight: 400,
-                      fontSize: 16,
-                      color: "#131523",
-                      outline: "none",
-                    }} />
-                  <ChevronDown
-                    size={20}
-                    color="#7E84A3"
-                    style={{
-                      position: "absolute",
-                      right: 10,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'flex',
-              gap: 12,
-              alignItems: 'center'
-            }}>
+                alignItems: 'center',
+                gap: 12,
+                marginTop: 32,
+              }}
+            >
               <ToggleButton />
-              <p style={{
-                fontFamily: '"Poppins", sans-serif',
-                fontWeight: 400,
-                fontSize: 16,
-                color: '#131523',
-              }}>This is digital item</p>
+              <p
+                style={{
+                  fontFamily: '"Poppins", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 16,
+                  color: '#131523',
+                }}
+              >
+                This is digital item
+              </p>
             </div>
           </div>
         </div>
-        {/**Right */}
-        <div style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 30,
-        }}>
+
+        {/* Right */}
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 30,
+          }}
+        >
           <Categories categories={categories} />
-          <Tags tags={tags}/>
+          <Tags tags={tags} />
           <SEOSettings />
         </div>
       </div>
 
-      <FooterAddEditPage to={"/products"} saveFunction={setImportData} />
+      <FooterAddEditPage
+        to={'/products'}
+        saveFunction={handleSave}
+      />
+      <ImportSuccessModal
+        open={openSuccess}
+        onClose={() => setOpenSuccess(false)}
+      />
     </div>
-  )
+  );
 }

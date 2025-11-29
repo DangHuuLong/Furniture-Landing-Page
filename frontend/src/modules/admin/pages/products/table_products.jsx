@@ -84,17 +84,18 @@ export default function TableProducts({ headers, datas }) {
               );
             }
 
-            // CỘT 3: giá (thêm $)
+            // CỘT 3: giá (VND)
             if (i === 3) {
+              const price = typeof cell === 'number' ? cell : Number(cell) || 0;
               return (
                 <div key={i} style={{ flex: 1, paddingLeft: 8, display: 'flex', alignItems: 'center' }}>
                   <span style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400, fontSize: 14, color: '#131523' }}>
-                    ${cell.toFixed ? cell.toFixed(2) : cell}
+                    {price.toLocaleString('vi-VN')} VND
                   </span>
                 </div>
               );
             }
-
+            
             // CỘT 4: rating + reviews (object)
             if (i === 4) {
               return (

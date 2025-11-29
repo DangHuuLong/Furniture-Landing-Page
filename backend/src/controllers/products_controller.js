@@ -1,6 +1,6 @@
 const Product = require('../models/product_model');
 
-// GET /products
+// GET /products  
 async function getAllProducts(req, res) {
   try {
     const products = await Product.find().lean();
@@ -11,12 +11,16 @@ async function getAllProducts(req, res) {
   }
 }
 
-// GET /products/:sku
+// GET /products/:sku  
 async function getProductBySku(req, res) {
   try {
     const { sku } = req.params;
     const product = await Product.findOne({ SKU: sku }).lean();
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
     return res.json(product);
   } catch (err) {
     console.error('getProductBySku error:', err);
@@ -27,54 +31,58 @@ async function getProductBySku(req, res) {
 // POST /products 
 async function createProduct(req, res) {
   try {
-    const data = req.body || {};
-    if (!data.SKU || !data.name || data.price == null || !data.category) {
+    const payload = req.body || {};
+
+    if (!payload.SKU || !payload.name || !payload.price) {
       return res
         .status(400)
-        .json({ message: 'SKU, name, price and category are required' });
+        .json({ message: 'SKU, name and price are required' });
     }
 
-    const exists = await Product.findOne({ SKU: data.SKU });
-    if (exists) {
-      return res
-        .status(409)
-        .json({ message: 'Product with this SKU already exists' });
-    }
-
-    const product = await Product.create(data);
-    return res.status(201).json({ message: 'Product created', product });
+    const product = await Product.create(payload);
+    return res.status(201).json(product);
   } catch (err) {
     console.error('createProduct error:', err);
+
+    if (err.code === 11000) {
+      return res.status(409).json({ message: 'SKU already exists' });
+    }
+
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
 
-// PUT /products/:id  
+// PUT /products/:id 
 async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const update = req.body || {};
+    const updates = req.body || {};
 
-    const product = await Product.findByIdAndUpdate(id, update, {
+    const product = await Product.findByIdAndUpdate(id, updates, {
       new: true,
       runValidators: true,
-    }).lean();
+    });
 
-    if (!product) return res.status(404).json({ message: 'Product not found' });
-    return res.json({ message: 'Product updated', product });
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.json(product);
   } catch (err) {
     console.error('updateProduct error:', err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
 
-// DELETE /products/:id  
+// DELETE /products/:id 
 async function deleteProduct(req, res) {
   try {
     const { id } = req.params;
+    const result = await Product.findByIdAndDelete(id);
 
-    const product = await Product.findByIdAndDelete(id).lean();
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    if (!result) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
 
     return res.json({ message: 'Product deleted' });
   } catch (err) {
