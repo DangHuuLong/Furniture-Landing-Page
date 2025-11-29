@@ -108,11 +108,13 @@ export default function CategoryCard({ category }) {
             fontWeight: 700,
             fontSize: 16,
             color: '#131523',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
           {category.categoryName}
         </p>
-
         <p
           style={{
             fontFamily: '"Poppins", sans-serif',

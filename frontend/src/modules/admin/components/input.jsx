@@ -1,21 +1,39 @@
-export default function Input({label, inputHeight, placeHolder, Icon, iconFunc}){
+export default function Input({
+  label,
+  inputHeight = 40,
+  placeHolder,
+  Icon,
+  iconFunc,
+  ...rest   // value, onChange, onClick, readOnly, type, style, ...
+}) {
+  const { style, type, ...inputProps } = rest;
+
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 4,
-      width: '100%'
-    }}>
-      <p style={{
-        fontFamily: '"Poppins", sans-serif',
-        fontWeight: 400,
-        fontSize: 14,
-        color: '#5A607F',
-      }}>{label}</p>
-      <div style={{
-        position: 'relative'
-      }}>
-        <input type="text"
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4,
+        width: '100%',
+      }}
+    >
+      {label && (
+        <p
+          style={{
+            fontFamily: '"Poppins", sans-serif',
+            fontWeight: 400,
+            fontSize: 14,
+            color: '#5A607F',
+          }}
+        >
+          {label}
+        </p>
+      )}
+
+      <div style={{ position: 'relative' }}>
+        <input
+          {...inputProps}                 // value, onChange, onClick, readOnly, ...
+          type={type || 'text'}
           placeholder={placeHolder}
           style={{
             height: inputHeight,
@@ -26,22 +44,34 @@ export default function Input({label, inputHeight, placeHolder, Icon, iconFunc})
             fontFamily: '"Poppins", sans-serif',
             fontWeight: 400,
             fontSize: 16,
-            color: '#A1A7C4',
-            outline: 'none'
-          }}/>
-        {Icon && <button style={{
-          position: 'absolute',
-          outline: 'none',
-          backgroundColor: 'transparent',
-          right: 0,
-          top: '20%',
-          border: 'none',
-          cursor: 'pointer'
-        }}
-          onClick={iconFunc}>
-          <Icon size={24} color='#7E84A3' />
-        </button>}
+            color: '#131523',
+            outline: 'none',
+            cursor:
+              inputProps.readOnly && (inputProps.onClick || iconFunc)
+                ? 'pointer'
+                : 'text',
+            ...(style || {}),
+          }}
+        />
+
+        {Icon && (
+          <button
+            type="button"
+            style={{
+              position: 'absolute',
+              outline: 'none',
+              backgroundColor: 'transparent',
+              right: 0,
+              top: '20%',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            onClick={iconFunc || inputProps.onClick}
+          >
+            <Icon size={24} color="#7E84A3" />
+          </button>
+        )}
       </div>
     </div>
-  )
+  );
 }
