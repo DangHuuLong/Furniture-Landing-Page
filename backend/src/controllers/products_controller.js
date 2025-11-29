@@ -1,9 +1,22 @@
 const Product = require('../models/product_model');
+const Category = require('../models/category_model');
 
-// GET /products  
+// GET /products
 async function getAllProducts(req, res) {
   try {
-    const products = await Product.find().lean();
+    const { categoryId } = req.query;
+    const filter = {};
+
+    if (categoryId) {
+      filter.category = categoryId; 
+    }
+
+    const query = Product.find(filter).populate(
+      'category',
+      'categoryName imagePath isVisible'
+    );
+
+    const products = await query.lean();
     return res.json(products);
   } catch (err) {
     console.error('getAllProducts error:', err);
@@ -11,11 +24,17 @@ async function getAllProducts(req, res) {
   }
 }
 
-// GET /products/:sku  
+// GET /products/:sku
 async function getProductBySku(req, res) {
   try {
     const { sku } = req.params;
-    const product = await Product.findOne({ SKU: sku }).lean();
+
+    const query = Product.findOne({ SKU: sku }).populate(
+      'category',
+      'categoryName imagePath isVisible'
+    );
+
+    const product = await query.lean();
 
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
@@ -28,13 +47,22 @@ async function getProductBySku(req, res) {
   }
 }
 
+// GET /products/id/:id  
 async function getProductById(req, res) {
   try {
     const { id } = req.params;
-    const product = await Product.findById(id).lean();
+
+    const query = Product.findById(id).populate(
+      'category',
+      'categoryName imagePath isVisible'
+    );
+
+    const product = await query.lean();
+
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
+
     return res.json(product);
   } catch (err) {
     console.error('getProductById error:', err);
@@ -42,15 +70,21 @@ async function getProductById(req, res) {
   }
 }
 
-// POST /products 
+// POST /products
 async function createProduct(req, res) {
   try {
     const payload = req.body || {};
 
-    if (!payload.SKU || !payload.name || !payload.price) {
-      return res
-        .status(400)
-        .json({ message: 'SKU, name and price are required' });
+    if (!payload.SKU || !payload.name || !payload.price || !payload.category) {
+      return res.status(400).json({
+        message: 'SKU, name, price and category are required',
+      });
+    }
+
+    // Validate category tồn tại
+    const categoryExists = await Category.findById(payload.category).lean();
+    if (!categoryExists) {
+      return res.status(400).json({ message: 'Invalid category id' });
     }
 
     const product = await Product.create(payload);
@@ -66,11 +100,19 @@ async function createProduct(req, res) {
   }
 }
 
-// PUT /products/:id 
+// PUT /products/:id
 async function updateProduct(req, res) {
   try {
     const { id } = req.params;
     const updates = req.body || {};
+
+    // Nếu client gửi category mới thì validate luôn
+    if (updates.category) {
+      const categoryExists = await Category.findById(updates.category).lean();
+      if (!categoryExists) {
+        return res.status(400).json({ message: 'Invalid category id' });
+      }
+    }
 
     const product = await Product.findByIdAndUpdate(id, updates, {
       new: true,
@@ -88,7 +130,7 @@ async function updateProduct(req, res) {
   }
 }
 
-// DELETE /products/:id 
+// DELETE /products/:id
 async function deleteProduct(req, res) {
   try {
     const { id } = req.params;
@@ -105,9 +147,10 @@ async function deleteProduct(req, res) {
   }
 }
 
+// DELETE /products (body: { ids: [id1, id2, ...] })
 async function deleteManyProducts(req, res) {
   try {
-    const { ids } = req.body;     
+    const { ids } = req.body;
 
     if (!Array.isArray(ids) || ids.length === 0) {
       return res.status(400).json({ message: 'No product ids provided' });
@@ -124,7 +167,6 @@ async function deleteManyProducts(req, res) {
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
-
 
 module.exports = {
   getAllProducts,

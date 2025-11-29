@@ -66,7 +66,11 @@ const ProductSchema = new mongoose.Schema(
   {
     SKU: { type: String, required: true, unique: true },
     name: { type: String, required: true },
-    category: { type: String, required: true },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      required: true,
+    },
 
     price: { type: Number, required: true },
     unit: { type: String, default: 'VND' },
