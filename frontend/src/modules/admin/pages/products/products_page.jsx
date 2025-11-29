@@ -21,12 +21,12 @@ export default function ProductsPage() {
     setDeleteItems,
     setDeleteCount,
     setDeleteHandler,
+    // mấy cái export/import/addCategory giờ chưa dùng
     setExportData,
     setImportData,
     setAddCategory,
   } = useOutletContext();
 
-  // gọi API lấy products
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -46,7 +46,6 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  // filter + search
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const matchSearch =
@@ -62,7 +61,6 @@ export default function ProductsPage() {
     });
   }, [products, filterText, searchText]);
 
-  // map sang format duy nhất cho TableProducts: { id, cells: [...] }
   const datas = useMemo(() => {
     return filtered.map((p) => {
       const image = p.images?.mainImage;
@@ -79,7 +77,7 @@ export default function ProductsPage() {
       const reviews = p.reviews ?? 0;
 
       return {
-        id: p._id, 
+        id: p._id,
         cells: [
           {
             image,
@@ -98,7 +96,6 @@ export default function ProductsPage() {
     });
   }, [filtered]);
 
-  // nếu filter/search làm mất 1 số row thì bỏ luôn id đó khỏi selectedIds
   useEffect(() => {
     const currentIds = datas.map((d) => d.id);
     setSelectedIds((prev) => prev.filter((id) => currentIds.includes(id)));
@@ -107,14 +104,12 @@ export default function ProductsPage() {
   const handleFilterChange = (e) => setFilterText(e.target.value);
   const handleSearchChange = (e) => setSearchText(e.target.value);
 
-  // tick 1 dòng
   const handleToggleRow = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
   };
 
-  // tick all dòng đang hiển thị (trong 1 trang)
   const handleToggleAll = (visibleIds, checked) => {
     setSelectedIds((prev) => {
       if (checked) {
@@ -125,7 +120,6 @@ export default function ProductsPage() {
     });
   };
 
-  // hàm thật sự gọi API xóa nhiều
   const handleConfirmDelete = async () => {
     if (!selectedIds.length) return false;
 
@@ -146,16 +140,70 @@ export default function ProductsPage() {
 
       const data = await res.json();
 
-      // xóa khỏi UI
       setProducts((prev) =>
         prev.filter((p) => !data.deletedIds.includes(p._id))
       );
       setSelectedIds([]);
-      return true; 
+      return true;
     } catch (err) {
       console.error('handleConfirmDelete error:', err);
       return false;
     }
+  };
+
+  const handleExport = () => {
+    if (!filtered.length) {
+      alert('No products to export');
+      return;
+    }
+
+    const headersCsv = [
+      'SKU',
+      'Name',
+      'Category',
+      'Price',
+      'Stock',
+      'Colors',
+      'Rating',
+      'Reviews',
+    ];
+
+    const escapeCsv = (value) => {
+      if (value == null) return '';
+      const s = String(value);
+      if (/[",\n]/.test(s)) {
+        return `"${s.replace(/"/g, '""')}"`;
+      }
+      return s;
+    };
+
+    const rows = filtered.map((p) => [
+      p.SKU ?? '',
+      p.name ?? '',
+      p.category ?? '',
+      p.price ?? '',
+      p.stock ?? '',
+      Array.isArray(p.colors) ? p.colors.join('|') : '',
+      p.rating ?? '',
+      p.reviews ?? '',
+    ]);
+
+    const csv = [
+      headersCsv.join(','),
+      ...rows.map((r) => r.map(escapeCsv).join(',')),
+    ].join('\n');
+
+    const blob = new Blob([csv], {
+      type: 'text/csv;charset=utf-8;',
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'products_export.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const hasData = datas.length > 0;
@@ -185,15 +233,14 @@ export default function ProductsPage() {
         </p>
       ) : hasData ? (
         <>
-          {/* Header */}
           <HeaderSubPage
             headerTitle="Products"
             addButtonTitle="Product"
             exportButton={true}
             to="/products/addproduct"
+            onExport={handleExport}
           />
 
-          {/* Card */}
           <div
             style={{
               marginTop: 28,
@@ -204,7 +251,6 @@ export default function ProductsPage() {
               border: '1px solid #E6E9F4',
             }}
           >
-            {/* Tool bar */}
             <div
               style={{
                 display: 'flex',
@@ -212,7 +258,6 @@ export default function ProductsPage() {
               }}
             >
               <div style={{ display: 'flex' }}>
-                {/* Filter by category */}
                 <div style={{ position: 'relative', width: 180 }}>
                   <input
                     type="text"
@@ -248,7 +293,6 @@ export default function ProductsPage() {
                   />
                 </div>
 
-                {/* Search by name / SKU */}
                 <div
                   style={{
                     position: 'relative',
@@ -291,34 +335,34 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              {/* Action buttons */}
               <div
                 style={{
                   display: 'flex',
                   gap: 12,
                 }}
               >
-                  <button
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 4,
-                      backgroundColor: '#FFFFFF',
-                      border: '1px solid #D7DBEC',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      cursor: selectedIds.length === 1 ? 'pointer' : 'not-allowed',
-                      opacity: selectedIds.length === 1 ? 1 : 0.5,
-                    }}
-                    onClick={() => {
-                      if (selectedIds.length !== 1) return;          
-                      const id = selectedIds[0];
-                      navigate(`/products/edit/${id}`);              
-                    }}
-                  >
-                    <PenLine size={24} color="#1E5EFF" />
-                  </button>
+                <button
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 4,
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid #D7DBEC',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor:
+                      selectedIds.length === 1 ? 'pointer' : 'not-allowed',
+                    opacity: selectedIds.length === 1 ? 1 : 0.5,
+                  }}
+                  onClick={() => {
+                    if (selectedIds.length !== 1) return;
+                    const id = selectedIds[0];
+                    navigate(`/products/edit/${id}`);
+                  }}
+                >
+                  <PenLine size={24} color="#1E5EFF" />
+                </button>
                 <button
                   style={{
                     width: 40,
@@ -334,9 +378,9 @@ export default function ProductsPage() {
                   }}
                   onClick={() => {
                     if (!selectedIds.length) return;
-                    setDeleteCount(selectedIds.length);         
-                    setDeleteHandler(() => handleConfirmDelete); 
-                    setDeleteItems(true);                        
+                    setDeleteCount(selectedIds.length);
+                    setDeleteHandler(() => handleConfirmDelete);
+                    setDeleteItems(true);
                   }}
                 >
                   <Trash size={24} color="#1E5EFF" />
@@ -344,7 +388,6 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Table */}
             <TableProducts
               headers={headers}
               datas={datas}

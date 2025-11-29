@@ -1,42 +1,75 @@
-import { Plus } from "lucide-react"
-import { useOutletContext, NavLink } from "react-router-dom"
-export default function HeaderSubPage({headerTitle, addButtonTitle, exportButton, to, addFunc}){
-  const { setExportData } = useOutletContext()
+import { Plus } from "lucide-react";
+import { useOutletContext, NavLink } from "react-router-dom";
+
+export default function HeaderSubPage({
+  headerTitle,
+  addButtonTitle,
+  exportButton,
+  to,
+  addFunc,
+  onExport,          // ✨ thêm prop này
+}) {
+  const { setExportData } = useOutletContext();
+
+  const handleExportClick = () => {
+    if (typeof onExport === "function") {
+      onExport();          // ✨ ưu tiên hàm export do page truyền xuống
+    } else if (setExportData) {
+      setExportData(true); // fallback: behavior cũ, mở modal Export
+    }
+  };
+
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end'
-    }}>
-      <p style={{
-        fontFamily: '"Poppins", sans-serif',
-        fontWeight: 700,
-        fontSize: 24,
-        color: '#131523',
-      }}>{headerTitle}</p>
-      <div style={{
-        display: 'flex',
-        gap: 12
-      }}>
-        {exportButton && <button style={{
-          width: 98,
-          height: 40,
-          borderRadius: 4,
-          backgroundColor: 'white',
-          border: '1px solid #D7DBEC',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          cursor: 'pointer'
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+      }}
+    >
+      <p
+        style={{
+          fontFamily: '"Poppins", sans-serif',
+          fontWeight: 700,
+          fontSize: 24,
+          color: "#131523",
         }}
-          onClick={setExportData}>
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 400,
-            fontSize: 16,
-            color: '#1E5EFF',
-          }}>Export</p>
-        </button>}
+      >
+        {headerTitle}
+      </p>
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+        }}
+      >
+        {exportButton && (
+          <button
+            style={{
+              width: 98,
+              height: 40,
+              borderRadius: 4,
+              backgroundColor: "white",
+              border: "1px solid #D7DBEC",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+            onClick={handleExportClick}  // ✨ dùng handler mới
+          >
+            <p
+              style={{
+                fontFamily: '"Poppins", sans-serif',
+                fontWeight: 400,
+                fontSize: 16,
+                color: "#1E5EFF",
+              }}
+            >
+              Export
+            </p>
+          </button>
+        )}
         <NavLink
           onClick={addFunc}
           to={to}
@@ -44,24 +77,29 @@ export default function HeaderSubPage({headerTitle, addButtonTitle, exportButton
             width: 148,
             height: 40,
             borderRadius: 4,
-            backgroundColor: '#1E5EFF',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            border: 'none',
+            backgroundColor: "#1E5EFF",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "none",
             textDecoration: "none",
-            cursor: 'pointer'
-          }}>
-          <Plus size={14} color='white' />
-          <p style={{
-            fontFamily: '"Poppins", sans-serif',
-            fontWeight: 400,
-            fontSize: 16,
-            color: 'white',
-            marginLeft: 10
-          }}>Add {addButtonTitle}</p>
+            cursor: "pointer",
+          }}
+        >
+          <Plus size={14} color="white" />
+          <p
+            style={{
+              fontFamily: '"Poppins", sans-serif',
+              fontWeight: 400,
+              fontSize: 16,
+              color: "white",
+              marginLeft: 10,
+            }}
+          >
+            Add {addButtonTitle}
+          </p>
         </NavLink>
       </div>
     </div>
-  )
+  );
 }
