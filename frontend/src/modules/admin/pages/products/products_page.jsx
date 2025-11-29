@@ -48,6 +48,11 @@ export default function ProductsPage() {
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
+      const categoryName =
+        typeof p.category === 'string'
+          ? p.category
+          : p.category?.categoryName || '';
+
       const matchSearch =
         !searchText ||
         p.name?.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -55,7 +60,7 @@ export default function ProductsPage() {
 
       const matchFilter =
         !filterText ||
-        p.category?.toLowerCase() === filterText.toLowerCase();
+        categoryName.toLowerCase() === filterText.toLowerCase();
 
       return matchSearch && matchFilter;
     });
@@ -76,13 +81,18 @@ export default function ProductsPage() {
       const rating = p.rating ?? 0;
       const reviews = p.reviews ?? 0;
 
+      const categoryName =
+        typeof p.category === 'string'
+          ? p.category
+          : p.category?.categoryName || '';
+
       return {
         id: p._id,
         cells: [
           {
             image,
             name: p.name,
-            category: p.category,
+            category: categoryName,
           },
           stock,
           colors,
@@ -177,25 +187,24 @@ export default function ProductsPage() {
       return s;
     };
 
-    const rows = filtered.map((p) => [
-      p.SKU ?? '',
-      p.name ?? '',
-      p.category ?? '',
-      p.price ?? '',
-      p.stock ?? '',
-      Array.isArray(p.colors) ? p.colors.join('|') : '',
-      p.rating ?? '',
-      p.reviews ?? '',
-    ]);
+    const rows = filtered.map((p) => {
+      const categoryName =
+        typeof p.category === 'string'
+          ? p.category
+          : p.category?.categoryName || '';
 
-    const csv = [
-      headersCsv.join(','),
-      ...rows.map((r) => r.map(escapeCsv).join(',')),
-    ].join('\n');
-
-    const blob = new Blob([csv], {
-      type: 'text/csv;charset=utf-8;',
+      return [
+        p.SKU ?? '',
+        p.name ?? '',
+        categoryName,
+        p.price ?? '',
+        p.stock ?? '',
+        Array.isArray(p.colors) ? p.colors.join('|') : '',
+        p.rating ?? '',
+        p.reviews ?? '',
+      ];
     });
+
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;

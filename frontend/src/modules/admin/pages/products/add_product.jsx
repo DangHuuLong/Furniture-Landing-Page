@@ -1,6 +1,6 @@
 import ToggleButton from '../../components/toggle_button';
 import SizeTag from '../../components/size_tag';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Categories from './categories';
 import Tags from './tags';
 import SEOSettings from './SEO_settings';
@@ -8,14 +8,7 @@ import HeaderAddEditPage from '../../components/header_add_edit_page';
 import FooterAddEditPage from '../../components/footer_add_edit_page';
 import ImportSuccessModal from '../../notifications/import';
 export default function AddProduct() {
-  const [categories] = useState([
-    'Living Room',
-    'Bedroom',
-    'Dining Room',
-    'Decor',
-    'Storage',
-    'Lighting',
-  ]);
+  const [categories, setCategories] = useState([]);
 
   const [tags] = useState([
     'furniture',
@@ -58,6 +51,24 @@ export default function AddProduct() {
     ]);
     setSizeInput('');
   };
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch('http://localhost:3001/categories');
+        if (!res.ok) {
+          throw new Error('Failed to load categories');
+        }
+        const data = await res.json();
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('fetchCategories error:', err);
+        setCategories([]);
+      }
+    }
+
+    fetchCategories();
+  }, []);
 
   const handleSave = async () => {
     if (!sku || !name || !category || !price) {
@@ -280,9 +291,7 @@ export default function AddProduct() {
             >
               Category
             </p>
-            <input
-              type="text"
-              placeholder="Living Room"
+            <select
               aria-label="Category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -299,7 +308,14 @@ export default function AddProduct() {
                 color: '#131523',
                 outline: 'none',
               }}
-            />
+            >
+              <option value="">Select category</option>
+              {categories.map((c) => (
+                <option key={c._id} value={c._id}>
+                  {c.categoryName}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Intended Use */}
@@ -924,7 +940,7 @@ export default function AddProduct() {
             gap: 30,
           }}
         >
-          <Categories categories={categories} />
+          <Categories categories={categories.map((c) => c.categoryName)} />
           <Tags tags={tags} />
           <SEOSettings />
         </div>

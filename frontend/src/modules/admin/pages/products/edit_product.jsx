@@ -12,14 +12,7 @@ export default function EditProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [categories] = useState([
-    'Living Room',
-    'Bedroom',
-    'Dining Room',
-    'Decor',
-    'Storage',
-    'Lighting',
-  ]);
+  const [categories, setCategories] = useState([]);
 
   const [tags, setTags] = useState([
     'furniture',
@@ -49,6 +42,24 @@ export default function EditProduct() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch('http://localhost:3001/categories');
+        if (!res.ok) {
+          throw new Error('Failed to load categories');
+        }
+        const data = await res.json();
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('fetchCategories error:', err);
+        setCategories([]);
+      }
+    }
+
+    fetchCategories();
+  }, []);
+
   const handleRemoveSize = (id) => {
     setSizes((prev) => prev.filter((s) => s.id !== id));
   };
@@ -75,7 +86,11 @@ export default function EditProduct() {
 
         setSku(p.SKU ?? '');
         setName(p.name ?? '');
-        setCategory(p.category ?? '');
+        setCategory(
+          p.category && typeof p.category === 'object'
+            ? p.category._id
+            : p.category ?? ''
+        );
         setIntendedUse(p.intendedUse ?? '');
         setPrice(p.price != null ? String(p.price) : '');
         setStock(p.stock != null ? String(p.stock) : '');
@@ -353,9 +368,7 @@ export default function EditProduct() {
             >
               Category
             </p>
-            <input
-              type="text"
-              placeholder="Living Room"
+            <select
               aria-label="Category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -372,7 +385,14 @@ export default function EditProduct() {
                 color: '#131523',
                 outline: 'none',
               }}
-            />
+            >
+              <option value="">Select category</option>
+              {categories.map((c) => (
+                <option key={c._id} value={c._id}>
+                  {c.categoryName}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div
@@ -983,7 +1003,7 @@ export default function EditProduct() {
             gap: 30,
           }}
         >
-          <Categories categories={categories} />
+          <Categories categories={categories.map((c) => c.categoryName)} />
           <Tags tags={tags} />
           <SEOSettings />
         </div>
