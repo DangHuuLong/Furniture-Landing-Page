@@ -1,9 +1,7 @@
 function  MaskGroup() {
   return (
     <>
-      <div style={{ 
-        height: 720,
-      }}>
+      <div>
         {/* Mask Group Image */}
         <img src="./src/modules/customer/pages/Home/images/scandinavian-interior-mockup-wall-decal-background 1.png" style={{
           width: '100%',

@@ -55,7 +55,6 @@ export default function AddCategory({ open, onClose }) {
           marginTop: 'auto',
           alignItems: 'center',
           justifyContent: 'flex-end',
-          marginTop: 28
         }}>
           <button style={{
             fontFamily: '"Poppins", sans-serif',
