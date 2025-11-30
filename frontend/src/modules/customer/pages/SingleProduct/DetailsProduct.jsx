@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import { CartContext } from "../../../../contexts/CartContext";
 import { useToast } from "../../../../contexts/ToastContext";
+import { Star } from "lucide-react";
+
 function DetailsProduct({ product }) {
   if (!product) return null;
   const { addToCart } = useContext(CartContext)
@@ -92,14 +94,29 @@ function DetailsProduct({ product }) {
           marginTop: '10px',
         }}>
           {/*Rating*/ }
-          <div style={{
-            display: 'flex',
-            gap: '6px',
-            marginRight: '18px',
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: '6px',
+              marginRight: '18px',
+            }}
+          >
             {Array.from({ length: 5 }).map((_, index) => {
-              const starType = index + 1 <= Math.floor(product.rating) ? 'full' : (index < product.rating ? 'half' : 'empty');
-              return <img key={index} src={`/src/modules/customer/pages/SingleProduct/images/star-${starType}.png`} alt={`${starType} star`} />;
+              const position = index + 1;
+              const isFull = position <= Math.floor(product.rating);
+              const isHalf = !isFull && position - 0.5 <= product.rating;
+
+              return (
+                <Star
+                  key={index}
+                  size={20}
+                  style={{
+                    stroke: '#FFC700',
+                    fill: isFull || isHalf ? '#FFC700' : 'transparent',
+                    opacity: isHalf ? 0.5 : 1,
+                  }}
+                />
+              );
             })}
           </div>
           <div style={{

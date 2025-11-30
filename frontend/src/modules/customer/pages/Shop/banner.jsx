@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ChevronRight } from 'lucide-react';
 function Banner({name}) {
   return (
     <div style={{
@@ -37,10 +38,7 @@ function Banner({name}) {
             fontSize: '16px',
             color: '000000',
           }}><Link to="/" style={{ textDecoration: "none", color: "inherit", font: "inherit" }}>Home</Link></p>
-          <img src="/src/modules/customer/pages/Shop/images/dashicons_arrow-down-alt2.png" style={{
-            width: "20px",
-            height: "20px",
-          }}/>
+          <ChevronRight size={20}/>
           <p style={{
             fontFamily: '"Poppins", sans-serif',
             fontWeight: '300',

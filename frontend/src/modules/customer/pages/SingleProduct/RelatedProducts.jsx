@@ -24,14 +24,16 @@ function RelatedProducts({ products }){
         fontSize: '36px',
         color: 'rgba(0,0,0,1)'
       }}>Related Products</p>
-      <div style={{
-        display: 'flex',
-        gap: '32px',
-        marginTop: '26px',
-        marginBottom: '44px',
-        flexWrap: 'wrap',
-        justifyContent: 'center', 
-      }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+          gap: '32px',
+          marginTop: '26px',
+          marginBottom: '44px',
+          justifyItems: 'center',
+        }}
+      >
         {products.slice(0, visibleProductsCount).map((product) => (
           <Product
             key={product.SKU}
@@ -45,7 +47,6 @@ function RelatedProducts({ products }){
             productData={product}
           />
         ))}
-
       </div>
       {/* Show More Button */}
       {!isAllProductsShown && (
