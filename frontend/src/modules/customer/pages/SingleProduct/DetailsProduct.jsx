@@ -382,7 +382,7 @@ function DetailsProduct({ product }) {
               fontWeight: '400',
               fontSize: '16px',
               color: 'rgba(159, 159, 159, 1)',
-            }}>{product.category}</p>
+            }}>{product.category?.categoryName}</p>
             <p style={{
               fontFamily: '"Poppins", sans-serif',
               fontWeight: '400',

@@ -108,7 +108,7 @@ function ListProduct() {
               key={product.SKU}
               image={product.images.mainImage}
               name={product.name}
-              category={product.category}
+              category={product.category?.categoryName}
               price={product.price}
               discount={product.discount}
               isNew={product.isNew}
